@@ -76,6 +76,7 @@ CREATE TABLE Livros_Fornecedores (
 CREATE TABLE Usuarios_ADM(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) UNIQUE NOT NULL,
     FOREIGN KEY (livro_id) REFERENCES Livros(id),
     FOREIGN KEY (fornecedor_id) REFERENCES Fornecedores(id)
     FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
