@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS Biblioteca
+USE Biblioteca;
+
 CREATE TABLE Livros (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(255) NOT NULL,
@@ -76,11 +79,10 @@ CREATE TABLE Livros_Fornecedores (
 CREATE TABLE Usuarios_ADM(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
-    senha VARCHAR(255) UNIQUE NOT NULL,
-    FOREIGN KEY (livro_id) REFERENCES Livros(id),
-    FOREIGN KEY (fornecedor_id) REFERENCES Fornecedores(id)
-    FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
-    FOREIGN KEY (categoria_id) REFERENCES Categorias(id)
+    senha VARCHAR(255) UNIQUE NOT NULL
 );
 
+INSERT INTO Usuarios_ADM (nome, senha) VALUES
+('admin', 'admin12345');
 
+ALTER TABLE Livros ADD autor_id INT, ADD FOREIGN KEY (autor_id) REFERENCES Autores(id);
