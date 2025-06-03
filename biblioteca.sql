@@ -81,3 +81,12 @@ CREATE TABLE Usuarios_ADM(
     FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
     FOREIGN KEY (categoria_id) REFERENCES Categorias(id)
 );
+
+CREATE TABLE Usuarios_ADM(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    FOREIGN KEY (livro_id) REFERENCES Livros(id),
+    FOREIGN KEY (fornecedor_id) REFERENCES Fornecedores(id)
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
+    FOREIGN KEY (categoria_id) REFERENCES Categorias(id)
+);
