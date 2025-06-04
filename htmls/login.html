@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,18 +26,26 @@
 
     <div class="">
         <h2>Login</h2>
-        <form action="">
+        <p style="color:red;">
+            <?php if (isset($_GET['erro'])) { echo "Login inválido!"; 
+                } 
+                if (isset($_GET['cadastro'])) {
+                    echo "<p style='color:green;'>Cadastro realizado com sucesso! Faça login.</p>";
+                }
+            ?>
+        </p>
+        <form method="POST" action="login.php">
             <div class="">
-                <input type="text">
-                <label for="">Nome de usuário</label>
+                <input type="text" name="Email" required>
+                <label for="">Email</label>
             </div>
 
             <div class="">
-                <input type="password">
+                <input type="password" name="senha" required>
                 <label for="">Senha</label>
             </div>
 
-            <button type="button">Entrar</button>
+            <button type="submit">Entrar</button>
 
             <p>Ainda não tem conta? <a href="#">Cadastre-se</a></p>
 
