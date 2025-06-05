@@ -22,7 +22,7 @@ $livros = $stmt->fetchAll();
 </head>
 <body>
 
-<h1>Área Administrativa - Lista de Livros</h1>
+<h1>Área Administrativa - Lista de Filmes</h1>
 <a href="">Cadastrar novo filme</a> | <a href="">Sair</a>
 <hr>
 
