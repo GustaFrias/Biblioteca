@@ -26,17 +26,9 @@
 
     <div class="">
         <h2>Login</h2>
-        <p style="color:red;">
-            <?php if (isset($_GET['erro'])) { echo "Login inválido!"; 
-                } 
-                if (isset($_GET['cadastro'])) {
-                    echo "<p style='color:green;'>Cadastro realizado com sucesso! Faça login.</p>";
-                }
-            ?>
-        </p>
-        <form method="POST" action="login.php">
+        <form method="POST" action="../php/login.php">
             <div class="">
-                <input type="text" name="Email" required>
+                <input type="text" name="email" required>
                 <label for="">Email</label>
             </div>
 
@@ -47,7 +39,7 @@
 
             <button type="submit">Entrar</button>
 
-            <p>Ainda não tem conta? <a href="#">Cadastre-se</a></p>
+            <p>Ainda não tem conta? <a href="index.html">Cadastre-se</a></p>
 
         </form>
     </div>
