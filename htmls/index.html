@@ -2,60 +2,54 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
     <title>Leyo ++</title>
 </head>
 
 <body>
     <header>
-
-        <img src="#" alt="#">
-
+        <img src="#" alt="#" />
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Contato</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
-
     </header>
 
     <div class="">
         <h2>Cadastre-se</h2>
-        <form action="">
+        <form action="../php/cadastro.php" method="POST">
             <div class="">
-                <input type="text">
+                <input type="text" name="nome" required />
                 <label for="">Nome de usuário</label>
             </div>
 
             <div class="">
-                <input type="text">
+                <input type="text" name="email" required />
                 <label for="">Email</label>
             </div>
 
             <div class="">
-                <input type="password">
+                <input type="password" name="senha" required />
                 <label for="">Senha</label>
             </div>
 
             <div class="">
-                <input type="password">
+                <input type="password" name="confirma_senha" required />
                 <label for="">Confirme sua senha</label>
             </div>
 
-            <button type="button">Cadastrar</button>
+            <button type="submit">Cadastrar</button>
 
-            <p>Já tem uma conta? <a href="#">Login</a></p>
-
+            <p>Já tem uma conta? <a href="login.html">Login</a></p>
         </form>
     </div>
 
-    <footer>
-
-    </footer>
+    <footer></footer>
 </body>
 
 </html>
