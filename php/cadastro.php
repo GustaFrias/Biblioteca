@@ -16,14 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 
-    $sqlCheck = "SELECT id FROM Clientes WHERE email = :email";
+    $sqlCheck = "SELECT id FROM clientes WHERE email = :email";
     $stmtCheck = $pdo->prepare($sqlCheck);
     $stmtCheck->bindParam(':email', $email);
     $stmtCheck->execute();
 
     if ($stmtCheck->rowCount() > 0) {
-        header("Location: index.html?erro=email_existe");
-        echo("email ja existe");
+        header("Location: ../htmls/index.php");
+        $emailvalidacao = true;
         exit;
     }
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sql = "INSERT INTO Clientes (nome, email, senha, data_cadastro) VALUES (:nome, :email, :senha, :data_cadastro)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(e':email', $email);
     $stmt->bindParam(':senha', $senha);
     $stmt->bindParam(':data_cadastro', $data_cadastro);
 
