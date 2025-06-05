@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     if ($stmt->execute()) {
         header("Location: ../php/admin.php");
     } else {
-        echo "Erro ao excluir o filme.";
+        echo "Erro ao excluir o livro.";
     }
 } else {
     echo "ID não especificado.";
