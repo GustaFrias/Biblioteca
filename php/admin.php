@@ -1,12 +1,10 @@
 <?php
 require 'verifica.php';
 require 'conexao.php';
-
 $sql = "SELECT * FROM livros";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $livros = $stmt->fetchAll();
-
 ?>
 
 <!DOCTYPE html>
