@@ -1,6 +1,23 @@
 <?php
 require 'conexao.php';
+?>
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Livro</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    .swal2-popup {
+        font-family: Arial, sans-serif !important;
+    }
+</style>
+
+</head>
+<body>
+
+<?php
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -11,11 +28,27 @@ if (isset($_GET['id'])) {
     $livro = $stmt->fetch();
 
     if (!$livro) {
-        echo "Livro não encontrado.";
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Livro não encontrado.'
+            }).then(() => {
+                window.location.href = 'admin.php';
+            });
+        </script>";
         exit;
     }
 } else {
-    echo "ID não especificado.";
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'ID não especificado.'
+        }).then(() => {
+            window.location.href = 'admin.php';
+        });
+    </script>";
     exit;
 }
 
@@ -34,9 +67,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        echo "Livro atualizado com sucesso!";
+        echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: 'Livro atualizado com sucesso!'
+                timer: 2500,
+                showConfirmButton: false,
+                timerProgressBar: true
+            }).then(() => {
+                window.location.href = 'admin.php';
+            });
+        </script>";
+        exit;
     } else {
-        echo "Erro ao atualizar o livro.";
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Erro ao atualizar o livro.'
+            }).then(() => {
+                window.location.href = 'edit.php?id={$id}';
+            });
+        </script>";
+        exit;
     }
 }
 ?>
@@ -56,3 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <button type="submit">Salvar alterações</button>
 </form>
+
+</body>
+</html>
