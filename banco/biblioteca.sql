@@ -6,6 +6,7 @@ CREATE TABLE Livros (
     titulo VARCHAR(255) NOT NULL,
     autor VARCHAR(255) NOT NULL,
     preco DECIMAL(10, 2) NOT NULL,
+    imagem VARCHAR(255) NOT NULL,
     estoque INT NOT NULL
 );
 
