@@ -60,7 +60,11 @@ if (isset($_SESSION['msg_erro'])) {
         <p><strong>Preço:</strong> R$ <?php echo htmlspecialchars($livro['preco']); ?></p>
         <p><strong>Em Estoque:</strong> <?php echo htmlspecialchars($livro['estoque']); ?></p>
 
-        <br><br>
+        <?php if (!empty($livro['imagem'])): ?>
+                <img src="<?php echo htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro" style="max-width: 150px; border: 1px solid #ccc; padding: 4px;">
+        <?php endif; ?>
+
+        <br>
         <a href="edit.php?id=<?php echo $livro['id']; ?>">Editar</a> |
         <a href="#" onclick="confirmarExclusao(<?php echo $livro['id']; ?>)">Deletar</a>
     </div>
