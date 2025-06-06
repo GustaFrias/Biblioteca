@@ -18,6 +18,14 @@ CREATE TABLE Autores (
     biografia TEXT
 );
 
+CREATE TABLE Livros_Autores (
+    livro_id INT NOT NULL,
+    autor_id INT NOT NULL,
+    PRIMARY KEY (livro_id, autor_id),
+    FOREIGN KEY (livro_id) REFERENCES Livros(id),
+    FOREIGN KEY (autor_id) REFERENCES Autores(id)
+);
+
 CREATE TABLE Clientes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
@@ -86,4 +94,3 @@ CREATE TABLE Usuarios_ADM(
 INSERT INTO Usuarios_ADM (nome, senha) VALUES
 ('admin', 'admin12345');
 
-ALTER TABLE Livros ADD autor_id INT, ADD FOREIGN KEY (autor_id) REFERENCES Autores(id);
