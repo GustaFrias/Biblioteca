@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../php/usuario_area.php';
+                window.location.href = '../htmls/index.html';
             });
         </script>
         <?php
