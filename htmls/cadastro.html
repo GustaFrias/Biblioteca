@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Leyo+</title>
+</head>
+
+<body>
+    <header>
+        <span class="">Leyo</span><span class="">+</span>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <div class="caixa">
+        <h2>Cadastrar-se</h2>
+        <form method="POST" action="../php/cadastro.php">
+            <div class="caixa-input">
+                <input type="text" name="nome" required />
+                <label for="">Nome de usuário</label>
+            </div>
+
+            <div class="caixa-input">
+                <input type="text" name="email" required />
+                <label for="">Email</label>
+            </div>
+
+            <div class="caixa-input">
+                <input type="password" name="senha" required />
+                <label for="">Senha</label>
+            </div>
+
+            <div class="caixa-input">
+                <input type="password" name="confirma_senha" required />
+                <label for="">Confirme sua senha</label>
+            </div>
+
+            <button type="submit">Entrar</button>
+
+            <p class="nao__tem">Ainda não tem conta? <a href="login.html">Cadastre-se</a></p>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
