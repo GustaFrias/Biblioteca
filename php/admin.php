@@ -15,6 +15,7 @@ $livros = $stmt->fetchAll();
     <title>Painel Administrativo</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+        
         .swal2-popup {
             font-family: Arial, sans-serif !important;
         }
