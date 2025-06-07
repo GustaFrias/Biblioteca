@@ -1,8 +1,8 @@
 <?php
-$host = 'srv1549.hstgr.io';
+$host = 'localhost';
 $db = 'biblioteca';
-$user = 'u210018739_isaac';
-$password = '12345678Is$';
+$user = 'root';
+$password = '';
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $password);
 } catch (PDOException $e) {
