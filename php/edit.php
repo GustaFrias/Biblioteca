@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             Swal.fire({
                 icon: 'success',
                 title: 'Sucesso!',
-                text: 'Livro atualizado com sucesso!'
+                text: 'Livro atualizado com sucesso!',
                 timer: 2500,
                 showConfirmButton: false,
                 timerProgressBar: true
