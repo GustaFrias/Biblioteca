@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagemTmp = $_FILES['imagem']['tmp_name'];
         $nomeImagem = uniqid() . '-' . basename($_FILES['imagem']['name']);
-        $pastaUploads = 'uploads/';
+        $pastaUploads = '../uploads/';
         $caminhoDestino = $pastaUploads . $nomeImagem;
 
         if (!is_dir($pastaUploads)) {
