@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Kalam:wght@300;400;700&display=swap');
+
 header {
     display: flex;
     justify-content: space-between;
@@ -9,13 +11,20 @@ header {
 }
 
 .logo {
-    color: #A66E4E;
     font-size: 24px;
-    font-weight: bold;
 }
 
 .logo span:last-child {
+    font-family: "Kalam", cursive;
+    font-size: 32px;
+    font-weight: 400;
     color: #FFFFFF;
+}
+
+.logo a{
+    color: #A66E4E;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 nav ul {
@@ -42,6 +51,7 @@ nav ul li a:hover {
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    margin-left: auto;
 }
 
 .menu-toggle span {
@@ -55,7 +65,7 @@ nav ul li a:hover {
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
-        background-color: #1a1a1a;
+        background-color: #591902;
         position: absolute;
         top: 60px;
         right: 30px;
