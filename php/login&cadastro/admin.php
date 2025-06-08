@@ -51,7 +51,7 @@ if (isset($_SESSION['msg_erro'])) {
 ?>
 
 <h1>Área Administrativa - Lista de Livros</h1>
-<a href="create.php">Cadastrar novo livro</a> | <a href="logout.php">Sair</a>
+<a href="../crud/create.php">Cadastrar novo livro</a> | <a href="logout.php">Sair</a>
 <hr>
 
 <?php foreach ($livros as $livro): ?>
