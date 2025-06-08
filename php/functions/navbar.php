@@ -1,5 +1,5 @@
 <?php
-require 'conexao.php';
+require '../php/crud/conexao.php';
 if(isset($_GET['busca'])){
     $busca= "%". $_GET['busca'] ."%";
     $sql= "SELECT* FROM livros where titulo LIKE :busca";
