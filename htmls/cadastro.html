@@ -11,9 +11,17 @@
 
 <body>
     <header>
-        <span class="">Leyo</span><span class="">+</span>
+        <!-- Hamburguer -->
+        <div class="logo">
+            <a href=""> Leyo<span> +</span> </a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
-            <ul>
+            <ul id="nav-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">Contato</a></li>
                 <li><a href="login.html">Login</a></li>
@@ -23,26 +31,29 @@
     </header>
 
     <div class="caixa">
+
         <h2>Cadastrar-se</h2>
+
         <form method="POST" action="../php/cadastro.php">
+
             <div class="caixa-input">
                 <input type="text" name="nome" required />
-                <label for="">Nome de usuário</label>
+                <label>Nome de usuário</label>
             </div>
 
             <div class="caixa-input">
                 <input type="text" name="email" required />
-                <label for="">Email</label>
+                <label>Email</label>
             </div>
 
             <div class="caixa-input">
                 <input type="password" name="senha" required />
-                <label for="">Senha</label>
+                <label>Senha</label>
             </div>
 
             <div class="caixa-input">
                 <input type="password" name="confirma_senha" required />
-                <label for="">Confirme sua senha</label>
+                <label>Confirme sua senha</label>
             </div>
 
             <button type="submit">Cadastrar</button>
@@ -53,5 +64,7 @@
     </div>
 
 </body>
+
+<script src="styles/script.js"></script>
 
 </html>
