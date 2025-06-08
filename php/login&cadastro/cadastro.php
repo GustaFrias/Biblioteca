@@ -1,5 +1,5 @@
 <?php
-require 'conexao.php';
+require '../conexao/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -95,9 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 }
-//ola mundo
-//juidnaijhdaudhnaisndjashdnuiandiuandiuansidnaiudaw
-
 
 ?>
 

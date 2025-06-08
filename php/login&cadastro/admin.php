@@ -1,6 +1,6 @@
 <?php
 require 'verifica.php';
-require 'conexao.php';
+require '../conexao/conexao.php';
 
 $sql = "SELECT * FROM livros";
 $stmt = $pdo->prepare($sql);
@@ -14,8 +14,7 @@ $livros = $stmt->fetchAll();
     <meta charset="UTF-8">
     <title>Painel Administrativo</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        
+    <style>    
         .swal2-popup {
             font-family: Arial, sans-serif !important;
         }

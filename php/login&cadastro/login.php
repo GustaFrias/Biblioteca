@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'conexao.php';
+require '../conexao/conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,10 +9,6 @@ require 'conexao.php';
     <title>Autenticação</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-    body{
-        background-color: #A66E4E;
-    }
-
     .swal2-popup {
         font-family: Arial, sans-serif !important;
     }
