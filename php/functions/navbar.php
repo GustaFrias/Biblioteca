@@ -7,11 +7,12 @@ if(isset($_GET['busca'])){
     $stmt->bindParam(':busca' ,$busca, PDO::PARAM_STR);
     $stmt->execute();
 
-       if ($stmt->rowCount() > 0) { // Corrigido "rowCount()count" para "rowCount() > 0"
+       if ($stmt->rowCount() > 0) { 
         echo "<h2>Resultados da busca:</h2>";
         while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<p><strong>Título:</strong> " . htmlspecialchars($livro['titulo']) . "<br>";
             echo "<strong>Autor:</strong> " . htmlspecialchars($livro['autor']) . "</p>";
+            echo "<img src='" . htmlspecialchars($livro['imagem']) . "' alt= 'carregando' width: '150'>";
         }
     } else {
         echo "Nenhum livro encontrado para '" . htmlspecialchars($_GET['busca']) . "'.";
