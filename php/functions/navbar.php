@@ -1,5 +1,5 @@
 <?php
-require 'conexao.php';
+require '../conexao/conexao.php';
 if(isset($_GET['busca'])){
     $busca= "%". $_GET['busca'] ."%";
     $sql= "SELECT* FROM livros where titulo LIKE :busca";
@@ -12,6 +12,7 @@ if(isset($_GET['busca'])){
         while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<p><strong>Título:</strong> " . htmlspecialchars($livro['titulo']) . "<br>";
             echo "<strong>Autor:</strong> " . htmlspecialchars($livro['autor']) . "</p>";
+            echo "<img src='" . htmlspecialchars($livro['imagem']) . "' alt= 'carregando' width: '150'>";
         }
     } else {
         echo "Nenhum livro encontrado para '" . htmlspecialchars($_GET['busca']) . "'.";

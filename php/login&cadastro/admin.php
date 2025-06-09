@@ -1,6 +1,6 @@
 <?php
 require 'verifica.php';
-require 'conexao.php';
+require '../conexao/conexao.php';
 
 $sql = "SELECT * FROM livros";
 $stmt = $pdo->prepare($sql);
@@ -14,8 +14,7 @@ $livros = $stmt->fetchAll();
     <meta charset="UTF-8">
     <title>Painel Administrativo</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        
+    <style>    
         .swal2-popup {
             font-family: Arial, sans-serif !important;
         }
@@ -51,7 +50,7 @@ if (isset($_SESSION['msg_erro'])) {
 ?>
 
 <h1>Área Administrativa - Lista de Livros</h1>
-<a href="create.php">Cadastrar novo livro</a> | <a href="logout.php">Sair</a>
+<a href="../crud/create.php">Cadastrar novo livro</a> | <a href="logout.php">Sair</a>
 <hr>
 
 <?php foreach ($livros as $livro): ?>
