@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Kalam:wght@300;400;700&display=swap');
+@import url(import.css);
 
 header {
     display: flex;
@@ -21,7 +21,7 @@ header {
     color: #FFFFFF;
 }
 
-.logo a{
+.logo a {
     color: #A66E4E;
     font-weight: bold;
     text-decoration: none;

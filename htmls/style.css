@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+@import url(styles/import.css);
 @import url(styles/NavBar.css);
 
 * {
@@ -11,7 +11,7 @@
 body {
     height: 100vh;
     background-image: url(img/d8515f6560eb8a1c3da1ab7d721c43c039af0ee9.png);
-    background-size: cover; 
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -63,8 +63,8 @@ body {
     background-color: transparent;
 }
 
-.caixa .caixa-input input:focus + label,
-.caixa .caixa-input input:valid + label {
+.caixa .caixa-input input:focus+label,
+.caixa .caixa-input input:valid+label {
     top: -14px;
     left: 10px;
     font-size: 12px;

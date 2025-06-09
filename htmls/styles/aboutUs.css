@@ -1,0 +1,81 @@
+@import url(import.css);
+@import url(NavBar.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Jacques Francois", serif;
+}
+
+body {
+    height: 100vh;
+    background: #D2B48C;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.principal {
+    height: 100vh;
+    background-image: url(../img/d8515f6560eb8a1c3da1ab7d721c43c039af0ee9.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tela {
+    height: 40%;
+    width: 70%;
+    margin: 5%;
+    position: absolute;
+    padding: 40px;
+    background: transparent;
+}
+
+.titulo {
+    color: #fff;
+    font-size: 36px;
+}
+
+.texto {
+    text-align: justify;
+    color: #fff;
+    justify-items: left;
+    font-size: 20px;
+    text-wrap: 50px;
+}
+
+.separador {
+    margin-top: 20px;
+}
+
+#segundo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+}
+
+#centro {
+    margin-top: 0;
+    text-align: center;
+    align-items: justify;
+}
+
+.mudanca{
+    color: #591902;
+}
+
+
+#terceiro{
+    background-image: url(../img/d6e7d65728d81e0366968df1eb5c253311a836ab.png);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+}
+
+#end{
+    text-align: end;
+}
