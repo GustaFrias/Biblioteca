@@ -1,96 +1,88 @@
-CREATE DATABASE IF NOT EXISTS Biblioteca
-USE Biblioteca;
+-- Criação do banco de dados
+CREATE DATABASE IF NOT EXISTS livraria;
+USE livraria;
 
-CREATE TABLE Livros (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(255) NOT NULL,
-    autor VARCHAR(255) NOT NULL,
-    preco DECIMAL(10, 2) NOT NULL,
-    imagem VARCHAR(255) NOT NULL,
-    estoque INT NOT NULL
+-- Tabela de Autores
+CREATE TABLE autores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(50)
 );
 
-CREATE TABLE Autores (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    nacionalidade VARCHAR(100) NOT NULL,
-    data_nascimento DATE NOT NULL,
-    biografia TEXT
+-- Tabela de Editoras
+CREATE TABLE editoras (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    pais VARCHAR(50)
 );
 
-CREATE TABLE Livros_Autores (
-    livro_id INT NOT NULL,
-    autor_id INT NOT NULL,
-    PRIMARY KEY (livro_id, autor_id),
-    FOREIGN KEY (livro_id) REFERENCES Livros(id),
-    FOREIGN KEY (autor_id) REFERENCES Autores(id)
+-- Tabela de Categorias (gêneros literários)
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Clientes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    senha VARCHAR(255) NOT NULL,
-    data_cadastro DATETIME NOT NULL
-);
-
-CREATE TABLE Pedidos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cliente_id INT NOT NULL,
-    data_pedido DATETIME NOT NULL,
-    status VARCHAR(50) NOT NULL,
-    total DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
-);
-
-CREATE TABLE Itens_Pedido (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id INT NOT NULL,
-    livro_id INT NOT NULL,
-    quantidade INT NOT NULL,
-    preco_unitario DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (pedido_id) REFERENCES Pedidos(id),
-    FOREIGN KEY (livro_id) REFERENCES Livros(id)
-);
-
-CREATE TABLE Categorias (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
+-- Tabela de Livros
+CREATE TABLE livros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
     descricao TEXT,
-    data_criacao DATETIME NOT NULL,
-    status VARCHAR(50) NOT NULL
+    autor_id INT,
+    editora_id INT,
+    categoria_id INT,
+    ano_publicacao INT,
+    imagem VARCHAR(255) NOT NULL,
+    preco DECIMAL(10,2),
+    estoque INT NOT NULL,
+    FOREIGN KEY (autor_id) REFERENCES autores(id),
+    FOREIGN KEY (editora_id) REFERENCES editoras(id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
 
-CREATE TABLE Livros_Categorias (
-    livro_id INT NOT NULL,
-    categoria_id INT NOT NULL,
-    PRIMARY KEY (livro_id, categoria_id),
-    FOREIGN KEY (livro_id) REFERENCES Livros(id),
-    FOREIGN KEY (categoria_id) REFERENCES Categorias(id)
+-- Tabela de Usuários (Clientes)
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    endereco TEXT,
+    telefone VARCHAR(20)
 );
 
-CREATE TABLE Fornecedores (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+-- Tabela de Pedidos
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Armazena automaticamente a data e hora em que o pedido foi criado
+    status ENUM('pendente', 'pago', 'enviado', 'cancelado') DEFAULT 'pendente', -- Define o status atual do pedido. Só aceita os valores especificados.
+    -- Se nenhum valor for informado, será definido como 'pendente' por padrão.
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+-- Tabela de Itens do Pedido
+CREATE TABLE itens_pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT,
+    livro_id INT,
+    quantidade INT,
+    preco_unitario DECIMAL(10,2),
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (livro_id) REFERENCES livros(id)
+);
+
+-- Tabela de Vendas (registro individual de vendas avulsas, opcional)
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    livro_id INT,
+    data_venda DATE,
+    quantidade INT,
+    preco_unitario DECIMAL(10,2),
+    FOREIGN KEY (livro_id) REFERENCES livros(id)
+);
+
+-- Tabela de Administradores
+CREATE TABLE usuarios_adm (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    contato VARCHAR(255) NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
-    email VARCHAR(255) NOT NULL
+    senha VARCHAR(255) NOT NULL
 );
-
-CREATE TABLE Livros_Fornecedores (
-    livro_id INT NOT NULL,
-    fornecedor_id INT NOT NULL,
-    PRIMARY KEY (livro_id, fornecedor_id),
-    FOREIGN KEY (livro_id) REFERENCES Livros(id),
-    FOREIGN KEY (fornecedor_id) REFERENCES Fornecedores(id)
-);
-
-CREATE TABLE Usuarios_ADM(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    senha VARCHAR(255) UNIQUE NOT NULL
-);
-
-INSERT INTO Usuarios_ADM (nome, senha) VALUES
-('admin', 'admin12345');
-
