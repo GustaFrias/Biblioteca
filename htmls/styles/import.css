@@ -3,3 +3,6 @@
 
 /*font-family: "Kalam", cursive;*/
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Kalam:wght@300;400;700&display=swap');
+
+/*NavBar*/
+@import url(NavBar.css);
