@@ -1,6 +1,17 @@
 @import url(aboutUs.css);
 
-#index{
+.home {
+    background: black;
+    margin: 2%;
+    display: flex;
+    text-align: center;
+}
+
+.conteudos{
+    width: 65%;
+}
+
+#index {
     background-image: url(../img/c8b1d922870a6fec38a22b890e7f4b8fbf10c6c4.png);
     padding-top: 100px;
 }
