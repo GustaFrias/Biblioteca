@@ -12,15 +12,13 @@ require '../conexao/conexao.php';
     .swal2-popup {
         font-family: Arial, sans-serif !important;
     }
-</style>
-
+    </style>
 </head>
 <body>
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $entrada = trim($_POST['email']);
     $senha = $_POST['senha'];
-
 
     $sqlAdm = "SELECT * FROM usuarios_adm WHERE nome = :nome AND senha = :senha";
     $stmtAdm = $pdo->prepare($sqlAdm);
@@ -42,14 +40,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = 'admin.php';
+                window.location.href = '../login&cadastro/admin.php';
             });
         </script>
         <?php
         exit;
     }
 
-    $sqlUser = "SELECT * FROM clientes WHERE email = :email AND senha = :senha";
+    $sqlUser = "SELECT * FROM usuarios WHERE email = :email AND senha = :senha";
     $stmtUser = $pdo->prepare($sqlUser);
     $stmtUser->bindParam(':email', $entrada);
     $stmtUser->bindParam(':senha', $senha);
@@ -69,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../htmls/index.html';
+                window.location.href = '../login&cadastro/index.html';
             });
         </script>
         <?php
@@ -85,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../htmls/login.html';
+                window.location.href = '../login&cadastro/login.html';
             });
         </script>
         <?php

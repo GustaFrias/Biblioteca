@@ -2,7 +2,9 @@
 require 'verifica.php';
 require '../conexao/conexao.php';
 
-$sql = "SELECT * FROM livros";
+$sql = "SELECT livros.*, categorias.nome AS categoria_nome 
+        FROM livros 
+        LEFT JOIN categorias ON livros.categoria_id = categorias.id";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $livros = $stmt->fetchAll();
@@ -50,23 +52,25 @@ if (isset($_SESSION['msg_erro'])) {
 ?>
 
 <h1>Área Administrativa - Lista de Livros</h1>
-<a href="../crud/create.php">Cadastrar novo livro</a> | <a href="logout.php">Sair</a>
+<a href="../crud/create.php">Cadastrar novo livro</a> | <a href="../login&cadastro/logout.php">Sair</a>
 <hr>
 
 <?php foreach ($livros as $livro): ?>
     <div>
-        <h3><?php echo htmlspecialchars($livro['titulo']); ?></h3>
-        <p><strong>Autor:</strong> <?php echo htmlspecialchars($livro['autor']); ?></p>
-        <p><strong>Preço:</strong> R$ <?php echo htmlspecialchars($livro['preco']); ?></p>
-        <p><strong>Em Estoque:</strong> <?php echo htmlspecialchars($livro['estoque']); ?></p>
+        <h3><?= htmlspecialchars($livro['titulo']); ?></h3>
+        <p><strong>Descrição:</strong> <?= nl2br(htmlspecialchars($livro['descricao'])); ?></p>
+        <p><strong>Preço:</strong> R$ <?= htmlspecialchars($livro['preco']); ?></p>
+        <p><strong>Em Estoque:</strong> <?= htmlspecialchars($livro['estoque']); ?></p>
+        <p><strong>Categoria:</strong> <?= htmlspecialchars($livro['categoria_nome'] ?? 'Não categorizado'); ?></p>
+        <p><strong>Ano de publicação:</strong> <?= htmlspecialchars($livro['ano_publicacao']); ?></p>
 
         <?php if (!empty($livro['imagem'])): ?>
-                <img src="<?php echo htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro" style="max-width: 150px; border: 1px solid #ccc; padding: 4px;">
+            <img src="<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro" style="max-width: 150px; border: 1px solid #ccc; padding: 4px;">
         <?php endif; ?>
 
         <br>
-        <a href="edit.php?id=<?php echo $livro['id']; ?>">Editar</a> |
-        <a href="#" onclick="confirmarExclusao(<?php echo $livro['id']; ?>)">Deletar</a>
+        <a href="../crud/edit.php?id=<?= $livro['id']; ?>">Editar</a> |
+        <a href="#" onclick="confirmarExclusao(<?= $livro['id']; ?>)">Deletar</a>
     </div>
     <hr>
 <?php endforeach; ?>
@@ -84,7 +88,7 @@ function confirmarExclusao(id) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = 'delete.php?id=' + id;
+            window.location.href = '../crud/delete.php?id=' + id;
         }
     });
 }

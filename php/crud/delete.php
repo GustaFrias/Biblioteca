@@ -19,6 +19,7 @@ require '../conexao/conexao.php';
 <?php
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+ 
 
     $sql = "DELETE FROM livros WHERE id = :id";
     $stmt = $pdo->prepare($sql);
@@ -35,7 +36,7 @@ if (isset($_GET['id'])) {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../php/admin.php';
+                window.location.href = '../login&cadastro/admin.php';
             });
         </script>";
     } else {
@@ -47,7 +48,7 @@ if (isset($_GET['id'])) {
                 text: 'Erro ao excluir o livro.',
                 showConfirmButton: true
             }).then(() => {
-                window.location.href = '../php/admin.php';
+                window.location.href = '../login&cadastro/admin.php';
             });
         </script>";
     }
@@ -60,7 +61,7 @@ if (isset($_GET['id'])) {
             text: 'ID não especificado.',
             showConfirmButton: true
         }).then(() => {
-            window.location.href = '../php/admin.php';
+            window.location.href = '../login&cadastro/admin.php';
         });
     </script>";
 }

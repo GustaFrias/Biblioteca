@@ -86,3 +86,15 @@ CREATE TABLE usuarios_adm (
     nome VARCHAR(255) NOT NULL,
     senha VARCHAR(255) NOT NULL
 );
+
+INSERT INTO usuarios_adm (nome, senha) VALUES ('admin', 'admin12345');
+
+INSERT INTO categorias (nome) VALUES
+('Ficção Científica'),
+('Romance'),
+('Fantasia'),
+('Terror'),
+('Aventura'),
+('Biografia'),
+('Histórico'),
+('Autoajuda');

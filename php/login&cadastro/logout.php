@@ -26,7 +26,7 @@ session_destroy();
         showConfirmButton: false,
         timerProgressBar: true
     }).then(() => {
-        window.location.href = '../htmls/login.html';
+        window.location.href = '../../htmls/login.html';
     });
 </script>
 </body>
