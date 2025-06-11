@@ -1,0 +1,99 @@
+body, html {
+  margin: 0;
+  font-family: serif;
+  background-color: #c2a98c;
+  overflow-x: hidden;
+}
+
+.best-sellers {
+  text-align: center;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.best-sellers h2 {
+  font-weight: bold;
+  font-size: 24px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.subtitle {
+  font-size: 12px;
+  margin-bottom: 40px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  will-change: transform;
+}
+
+.book-card {
+  background-color: #e3e3e3;
+  flex: 0 0 250px;
+  margin: 0 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.book-image {
+  background-color: #5a2f0e;
+  width: 60px;
+  height: 80px;
+  margin: 0 auto 10px auto;
+}
+
+.book-info h3 {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.description {
+  font-size: 12px;
+}
+
+.author {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.price {
+  text-align: right;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #000;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+}
+
+.nav.left {
+  left: -10px;
+}
+
+.nav.right {
+  right: -10px;
+}
+
+.bottom-line {
+  margin-top: 40px;
+  border: 1px solid #331f0e;
+  width: 90%;
+}
