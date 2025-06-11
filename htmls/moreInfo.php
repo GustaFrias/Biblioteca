@@ -1,3 +1,30 @@
+<?php
+require '../php/conexao/conexao.php';
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "Livro não encontrado.";
+    exit;
+}
+
+$id = (int) $_GET['id'];
+
+$sql = "SELECT livros.*, autores.nome AS nome_autor, categorias.nome AS nome_categoria, editoras.nome AS nome_editora
+        FROM livros
+        LEFT JOIN autores ON livros.autor_id = autores.id
+        LEFT JOIN categorias ON livros.categoria_id = categorias.id
+        LEFT JOIN editoras ON livros.editora_id = editoras.id
+        WHERE livros.id = :id";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':id' => $id]);
+$livro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$livro) {
+    echo "Livro não encontrado.";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,13 +55,14 @@
         </nav>
     </header>
     <div class="container">
-        <div class="imgLivroPrincipal"><img src="" alt=""></div>
-        <h1 id="bookTitle"></h1>
-        <p id="temas"></p>
-        <p id="enredo"></p>
-        <button>
-            <p class="textButton"></p>
-        </button>
+        <div class="imgLivroPrincipal"><img src="/Biblioteca-main/php/uploads/<?php echo htmlspecialchars($livro['imagem']); ?>" alt="<?= htmlspecialchars($livro['imagem']) ?>" width="200"></div>
+        
+        <h1><?= htmlspecialchars($livro['titulo']) ?></h1>
+        <p><strong>Autor:</strong> <?= htmlspecialchars($livro['nome_autor']) ?></p>
+        <p><strong>Categoria:</strong> <?= htmlspecialchars($livro['nome_categoria']) ?></p>
+        <p><strong>Editora:</strong> <?= htmlspecialchars($livro['nome_editora']) ?></p>
+        <p><strong>Descrição:</strong> <?= nl2br(htmlspecialchars($livro['descricao'])) ?></p>
+
         <hr class="hr">
         <div class="imglivrosRelacionados"></div>
         <div class="imglivrosRelacionados"></div>

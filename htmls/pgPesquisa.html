@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +11,11 @@
         <div class="logo">
             <a href="index.html"> Leyo<span> +</span> </a>
         </div>
-        <form action="../php/functions/navbar.php" method="POST">
+        <form id="formBusca" onSubmit="returnfalse;">
 
-            <input type="text">
+            <input type= "text" id="barraBusca" name="busca" placeholder="pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>
             <span>pesquise aqui</span>
-            <span class="">
-                <i class="fas fa-search"></i>
-            </span>
+                <span><i class="fas fa-search"></i></span>
         </form>
         <nav>
             <ul id="nav-list">
@@ -27,13 +26,8 @@
             </ul>
         </nav>
     </header>
-    <div class="conteudo">
-        <div class="card"><img src="" alt="" class="capaLivros"></div>
-        <div class="card"><img src="" alt="" class="capaLivros"></div>
-        <div class="card"><img src="" alt="" class="capaLivros"></div>
-        <div class="card"><img src="" alt="" class="capaLivros"></div>
-        <div class="card"><img src="" alt="" class="capaLivros"></div>
-        <div class="card"><img src="" alt="" class="capaLivros"></div>
+    <div class="conteudo" id="resultadosBusca">
+        
     </div>
  <footer>
         <div id="footer_items">
@@ -58,5 +52,28 @@
             </div>
         </div>
     </footer>
+<script>
+    let debounceTimeout;
+
+    function buscarInstantaneamente() {
+        clearTimeout(debounceTimeout);
+        const termo = document.getElementById('barraBusca').value.trim();
+
+        if (termo.length >= 2) {
+            debounceTimeout = setTimeout(() => {
+                fetch('pgPesquisa.php?busca=' + encodeURIComponent(termo))
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById('resultadosBusca').innerHTML = html;
+                    })
+                    .catch(() => {
+                        document.getElementById('resultadosBusca').innerHTML = '<p>Erro na busca.</p>';
+                    });
+            }, 300);
+        } else {
+            document.getElementById('resultadosBusca').innerHTML = '';
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,22 +1,17 @@
-<?php
-require '../conexao/conexao.php';
-if(isset($_GET['busca'])){
-    $busca= "%". $_GET['busca'] ."%";
-    $sql= "SELECT* FROM livros where titulo LIKE :busca";
-    $stmt= $pdo->prepare($sql);
-    $stmt->bindParam(':busca' ,$busca, PDO::PARAM_STR);
-    $stmt->execute();
+<form action="busca.php" method="get" onsubmit="return validarBusca()">
+    <input type="text" name="busca" id="barraBusca" placeholder="Buscar livros..." oninput="buscarInstantaneamente()">
+</form>
 
-       if ($stmt->rowCount() > 0) { 
-        echo "<h2>Resultados da busca:</h2>";
-        while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<p><strong>Título:</strong> " . htmlspecialchars($livro['titulo']) . "<br>";
-            echo "<strong>Autor:</strong> " . htmlspecialchars($livro['autor']) . "</p>";
-            echo "<img src='" . htmlspecialchars($livro['imagem']) . "' alt= 'carregando' width: '150'>";
-        }
-    } else {
-        echo "Nenhum livro encontrado para '" . htmlspecialchars($_GET['busca']) . "'.";
-    }
-} else {
-    echo "Por favor, insira um termo para busca.";
+<script>
+function validarBusca() {
+    const termo = document.getElementById('barraBusca').value.trim();
+    return termo.length > 0;
 }
+
+function buscarInstantaneamente() {
+    const termo = document.getElementById('barraBusca').value;
+    if (termo.length >= 2) {
+        window.location.href = 'pgPesquisa.php?busca=' + encodeURIComponent(termo);
+    }
+}
+</script>

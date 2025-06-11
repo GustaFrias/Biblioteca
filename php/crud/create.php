@@ -20,6 +20,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $descricao = $_POST['descricao'];
     $ano_publicacao = $_POST['ano_publicacao'];
     $categoria_id = $_POST['categoria_id'];
+    $autor_nome = trim($_POST['autor_nome']);
+    $editora_nome =trim($_POST['editora_nome']);
+
+      $stmt = $pdo->prepare("SELECT id FROM autores WHERE nome = :nome");
+    $stmt->execute([':nome' => $autor_nome]);
+    $autor = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($autor) {
+        $autor_id = $autor['id'];
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO autores (nome) VALUES (:nome)");
+        $stmt->execute([':nome' => $autor_nome]);
+        $autor_id = $pdo->lastInsertId();
+    }
+
+    // Verifica editora
+    $stmt = $pdo->prepare("SELECT id FROM editoras WHERE nome = :nome");
+    $stmt->execute([':nome' => $editora_nome]);
+    $editora = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($editora) {
+        $editora_id = $editora['id'];
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO editoras (nome) VALUES (:nome)");
+        $stmt->execute([':nome' => $editora_nome]);
+        $editora_id = $pdo->lastInsertId();
+    }
 
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagemTmp = $_FILES['imagem']['tmp_name'];
@@ -32,8 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if (move_uploaded_file($imagemTmp, $caminhoDestino)) {
-            $sql = "INSERT INTO livros (titulo, preco, estoque, imagem, descricao, ano_publicacao, categoria_id) 
-                    VALUES (:titulo, :preco, :estoque, :imagem, :descricao, :ano_publicacao, :categoria_id)";
+            $sql = "INSERT INTO livros (titulo, preco, estoque, imagem, descricao, ano_publicacao, categoria_id, autor_id, editora_id) 
+                    VALUES (:titulo, :preco, :estoque, :imagem, :descricao, :ano_publicacao, :categoria_id, :autor_id, :editora_id)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':titulo', $titulo);
             $stmt->bindParam(':preco', $preco);
@@ -42,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':ano_publicacao', $ano_publicacao);
             $stmt->bindParam(':categoria_id', $categoria_id);
-
+            $stmt->bindParam(':autor_id', $autor_id);
+            $stmt->bindParam(':editora_id', $editora_id);
             if ($stmt->execute()) {
                 echo "<script>
                     Swal.fire({
@@ -105,6 +131,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <option value="<?= $categoria['id'] ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
         <?php endforeach; ?>
     </select><br><br>
+     
+    <label>Nome do Autor:</label><br>
+    <input type="text" name="autor_nome" required><br><br>
+
+    <label>Nome da Editora:</label><br>
+    <input type="text" name="editora_nome" required><br><b
 
     <label>Imagem:</label><br>
     <input type="file" name="imagem" accept="image/*" required><br><br>
