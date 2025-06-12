@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $ano_publicacao = $_POST['ano_publicacao'];
     $categoria_id = $_POST['categoria_id'];
     $autor_nome = trim($_POST['autor_nome']);
-    $editora_nome =trim($_POST['editora_nome']);
+    $editora_nome = trim($_POST['editora_nome']);
 
-      $stmt = $pdo->prepare("SELECT id FROM autores WHERE nome = :nome");
+    $stmt = $pdo->prepare("SELECT id FROM autores WHERE nome = :nome");
     $stmt->execute([':nome' => $autor_nome]);
     $autor = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($autor) {
@@ -34,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $autor_id = $pdo->lastInsertId();
     }
 
-    // Verifica editora
     $stmt = $pdo->prepare("SELECT id FROM editoras WHERE nome = :nome");
     $stmt->execute([':nome' => $editora_nome]);
     $editora = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagemTmp = $_FILES['imagem']['tmp_name'];
         $nomeImagem = uniqid() . '-' . basename($_FILES['imagem']['name']);
-        $pastaUploads = '../uploads/';
+        $pastaUploads = '../../uploads/';
         $caminhoDestino = $pastaUploads . $nomeImagem;
 
         if (!is_dir($pastaUploads)) {
@@ -63,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':titulo', $titulo);
             $stmt->bindParam(':preco', $preco);
             $stmt->bindParam(':estoque', $estoque);
-            $stmt->bindParam(':imagem', $caminhoDestino);
+            $stmt->bindParam(':imagem', $nomeImagem);
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':ano_publicacao', $ano_publicacao);
             $stmt->bindParam(':categoria_id', $categoria_id);
@@ -71,15 +70,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':editora_id', $editora_id);
             if ($stmt->execute()) {
                 echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Livro cadastrado com sucesso!',
-                        timer: 2500,
-                        showConfirmButton: false,
-                        timerProgressBar: true
-                    }).then(() => {
-                        window.location.href = '../login&cadastro/admin.php';
-                    });
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Livro cadastrado com sucesso!',
+                            timer: 2500,
+                            showConfirmButton: false,
+                            timerProgressBar: true
+                        }).then(() => {
+                            window.location.href = '..//login&cadastro/admin.php';});
+                        });
+
                 </script>";
             } else {
                 echo "<script>
@@ -136,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <input type="text" name="autor_nome" required><br><br>
 
     <label>Nome da Editora:</label><br>
-    <input type="text" name="editora_nome" required><br><b
+    <input type="text" name="editora_nome" required><br><br>
 
     <label>Imagem:</label><br>
     <input type="file" name="imagem" accept="image/*" required><br><br>
