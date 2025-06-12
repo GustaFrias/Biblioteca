@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
         $livro = $stmt->fetch(PDO::FETCH_ASSOC);
         echo "<h2>" . htmlspecialchars($livro['titulo']) . "</h2>";
         echo "<p>Autor: " . htmlspecialchars($livro['nome_autor']) . "</p>";
-        echo "<img src='uploads/" . htmlspecialchars($livro['imagem']) . "' width='200'><br>";
+        echo "<img src='../uploads/" . htmlspecialchars($livro['imagem']) . "' width='200'><br>";
         echo "<p>" . nl2br(htmlspecialchars($livro['descricao'])) . "</p>";
     } else {
         echo "Livro não encontrado.";

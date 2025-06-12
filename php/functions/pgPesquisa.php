@@ -1,5 +1,5 @@
 <?php
-require '../conexao/conexao.php';
+require '../conexao/conexao.php';  // ✅ Correto
 
 if (isset($_GET['busca'])) {
     $busca = "%" . $_GET['busca'] . "%";
@@ -14,10 +14,12 @@ if (isset($_GET['busca'])) {
     if ($stmt->rowCount() > 0) {
         while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<div class='card'>";
-            echo "<a href='/Biblioteca-main/htmls/moreInfo.php?id=" . htmlspecialchars($livro['id']) . "'>";
-            echo "<img src='../uploads/" . htmlspecialchars($livro['imagem']) . "' class='capaLivros' width='100'><br>";
+            // ✅ Correto - vai para htmls/moreInfo.php
+            echo "<a href='../../htmls/moreInfo.php?id=" . htmlspecialchars($livro['id']) . "'>";
+            // ✅ Correto - vai para pasta uploads
+            echo "<img src='../../uploads/" . htmlspecialchars($livro['imagem']) . "' class='capaLivros' width='100'><br>";
             echo htmlspecialchars($livro['titulo']) . "</a><br>";
-           echo "Autor: " . htmlspecialchars($livro['nome_autor']);
+            echo "Autor: " . htmlspecialchars($livro['nome_autor']);
             echo "</div>";
         }
     } else {
