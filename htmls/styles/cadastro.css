@@ -1,6 +1,4 @@
-@import url(styles/import.css);
-@import url(styles/NavBar.css);
-
+@import url(import.css);
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +8,7 @@
 
 body {
     height: 100vh;
-    background-image: url(img/d8515f6560eb8a1c3da1ab7d721c43c039af0ee9.png);
+    background-image: url(../img/d8515f6560eb8a1c3da1ab7d721c43c039af0ee9.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
