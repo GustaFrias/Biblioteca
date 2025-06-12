@@ -1,0 +1,85 @@
+@import url(../styles/import.css);
+
+* {
+    font-family: "Jacques Francois", serif;
+    font-weight: 200;
+}
+
+body {
+    background: #D2B48C;
+}
+
+.organization {
+    margin: 10px;
+    gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #591902;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.book-card-image {
+    flex-shrink: 0;
+}
+
+.book-card-image img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+.book-card-details {
+    flex-grow: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.book-card-details h3 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.8em;
+}
+
+.book-card-details p {
+    margin-bottom: 8px;
+    color: #fff;
+    line-height: 1.5;
+}
+
+.book-card-actions {
+    margin-top: 15px;
+}
+
+.book-card-actions a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.book-card-actions a:first-of-type {
+    background-color: #016de0;
+}
+
+.book-card-actions a:last-of-type {
+    background-color: #dc3545;
+}
+
+.book-card-actions a:hover {
+    opacity: 0.9;
+}
