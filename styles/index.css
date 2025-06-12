@@ -1,0 +1,23 @@
+@import url(aboutUs.css);
+
+.home {
+    background: #591902;
+    margin: 2%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.conteudos{
+    width: 65%;
+}
+
+.conteudos .conteudos-input{
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#index {
+    background-image: url(../img/c8b1d922870a6fec38a22b890e7f4b8fbf10c6c4.png);
+    padding-top: 100px;
+}
