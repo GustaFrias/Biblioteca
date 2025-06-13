@@ -33,11 +33,14 @@ body {
 }
 
 .book-card-image img {
-    max-width: 150px;
-    height: auto;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    padding: 4px;
+
+  width: 200px;      /* largura fixa */
+  height: 315px;     /* altura fixa */
+  object-fit: cover; /* mantém proporção, recortando o excesso */
+  border-radius: 5px; /* opcional, para cantos arredondados */
+  box-shadow: 0 0 5px rgba(0,0,0,0.2); /* opcional, sombra */
+
+
 }
 
 .book-card-details {

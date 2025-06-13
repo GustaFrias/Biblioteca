@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             showConfirmButton: false,
                             timerProgressBar: true
                         }).then(() => {
-                            window.location.href = '..//login&cadastro/admin.php';});
+                            window.location.href = '../login&cadastro/admin.php';});
                         });
 
                 </script>";

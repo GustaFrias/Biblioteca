@@ -14,8 +14,8 @@ if (isset($_GET['busca'])) {
     if ($stmt->rowCount() > 0) {
         while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<div class='card'>";
-            echo "<a href='/Biblioteca-main/htmls/moreInfo.php?id=" . htmlspecialchars($livro['id']) . "'>";
-            echo "<img src='../uploads/" . htmlspecialchars($livro['imagem']) . "' class='capaLivros' width='100'><br>";
+            echo "<a href='../../htmls/moreInfo.php?id=" . htmlspecialchars($livro['id']) . "'>";
+            echo "<img src='../../uploads/" . htmlspecialchars($livro['imagem']) . "' class='capaLivros' width='100'><br>";
             echo htmlspecialchars($livro['titulo']) . "</a><br>";
             echo "Autor: " . htmlspecialchars($livro['nome_autor']);
             echo "</div>";

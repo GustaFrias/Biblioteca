@@ -55,7 +55,7 @@ if (!$livro) {
         </nav>
     </header>
     <div class="container">
-        <div class="imgLivroPrincipal"><img src="../php/uploads/<?php echo htmlspecialchars($livro['imagem']); ?>" alt="<?= htmlspecialchars($livro['imagem']) ?>" width="200"></div>
+        <div class="imgLivroPrincipal"><img src="../uploads/<?php echo htmlspecialchars($livro['imagem']); ?>" alt="<?= htmlspecialchars($livro['imagem']) ?>" width="200"></div>
         
         <h1><?= htmlspecialchars($livro['titulo']) ?></h1>
         <p><strong>Autor:</strong> <?= htmlspecialchars($livro['nome_autor']) ?></p>

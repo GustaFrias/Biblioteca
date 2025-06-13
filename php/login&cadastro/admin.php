@@ -65,7 +65,7 @@ $livros = $stmt->fetchAll();
             <div class="book-card">
                 <?php if (!empty($livro['imagem'])): ?>
                     <div class="book-card-image">
-                        <img src="<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro">
+                        <img src="../../uploads/<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro">
                     </div>
                 <?php endif; ?>
                 <div class="book-card-details">
@@ -73,8 +73,7 @@ $livros = $stmt->fetchAll();
                     <p><strong>Descrição:</strong> <?= nl2br(htmlspecialchars($livro['descricao'])); ?></p>
                     <p><strong>Preço:</strong> R$ <?= number_format($livro['preco'], 2, ',', '.'); ?></p>
                     <p><strong>Em Estoque:</strong> <?= htmlspecialchars($livro['estoque']); ?></p>
-                    <p><strong>Categoria:</strong> <?= htmlspecialchars($livro['categoria_nome'] ?? 'Não categorizado'); ?>
-                    </p>
+                    <p><strong>Categoria:</strong> <?= htmlspecialchars($livro['categoria_nome'] ?? 'Não categorizado'); ?></p>
                     <p><strong>Ano de publicação:</strong> <?= htmlspecialchars($livro['ano_publicacao']); ?></p>
                     <div class="book-card-actions">
                         <a href="../crud/edit.php?id=<?= $livro['id']; ?>">Editar</a>

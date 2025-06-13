@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
                 title: 'Erro',
                 text: 'Livro não encontrado.'
             }).then(() => {
-                window.location.href = 'admin.php';
+                window.location.href = '../login&cadastro/admin.php';
             });
         </script>";
         exit;
@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
             title: 'Erro',
             text: 'ID não especificado.'
         }).then(() => {
-            window.location.href = 'admin.php';
+            window.location.href = '../login&cadastro/admin.php';
         });
     </script>";
     exit;
@@ -45,11 +45,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $descricao = $_POST['descricao'];
     $ano_publicacao = $_POST['ano_publicacao'];
     $categoria_id = $_POST['categoria_id'];
+    $autor_nome = trim($_POST['autor_nome']);
+    $editora_nome = trim($_POST['editora_nome']);
+
+
+    $stmt = $pdo->prepare("SELECT id FROM autores WHERE nome = :nome");
+    $stmt->execute([':nome' => $autor_nome]);
+    $autor = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($autor) {
+        $autor_id = $autor['id'];
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO autores (nome) VALUES (:nome)");
+        $stmt->execute([':nome' => $autor_nome]);
+        $autor_id = $pdo->lastInsertId();
+    }
+
+    $stmt = $pdo->prepare("SELECT id FROM editoras WHERE nome = :nome");
+    $stmt->execute([':nome' => $editora_nome]);
+    $editora = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($editora) {
+        $editora_id = $editora['id'];
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO editoras (nome) VALUES (:nome)");
+        $stmt->execute([':nome' => $editora_nome]);
+        $editora_id = $pdo->lastInsertId();
+    }
 
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagemTmp = $_FILES['imagem']['tmp_name'];
         $nomeImagem = uniqid() . '-' . basename($_FILES['imagem']['name']);
-        $pastaUploads = '../uploads/';
+        $pastaUploads = '../../uploads/';
         $caminhoDestino = $pastaUploads . $nomeImagem;
 
         if (!is_dir($pastaUploads)) {
@@ -60,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (!empty($livro['imagem']) && file_exists($livro['imagem'])) {
                 unlink($livro['imagem']);
             }
-            $imagemParaSalvar = $caminhoDestino;
+            $imagemParaSalvar = $nomeImagem;
         } else {
             echo "<script>
                 Swal.fire({
@@ -81,6 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 descricao = :descricao,
                 ano_publicacao = :ano_publicacao,
                 categoria_id = :categoria_id,
+                autor_id = :autor_id,
+                editora_id = :editora_id,
                 imagem = :imagem
             WHERE id = :id";
 
@@ -91,6 +118,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bindParam(':descricao', $descricao);
     $stmt->bindParam(':ano_publicacao', $ano_publicacao);
     $stmt->bindParam(':categoria_id', $categoria_id);
+    $stmt->bindParam(':autor_id', $autor_id);
+    $stmt->bindParam(':editora_id', $editora_id);
     $stmt->bindParam(':imagem', $imagemParaSalvar);
     $stmt->bindParam(':id', $id);
 
@@ -104,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = 'admin.php';
+                window.location.href = '../login&cadastro/admin.php';
             });
         </script>";
         exit;
@@ -168,9 +197,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endforeach; ?>
     </select><br><br>
 
+    <label>Nome do Autor:</label><br>
+    <?php
+        $stmtAutor = $pdo->prepare("SELECT nome FROM autores WHERE id = :id");
+        $stmtAutor->execute([':id' => $livro['autor_id']]);
+        $autor = $stmtAutor->fetchColumn();
+    ?>
+    <input type="text" name="autor_nome" value="<?php echo htmlspecialchars($autor ?: ''); ?>" required><br><br>
+
+    <label>Nome da Editora:</label><br>
+    <?php
+        $stmtEditora = $pdo->prepare("SELECT nome FROM editoras WHERE id = :id");
+        $stmtEditora->execute([':id' => $livro['editora_id']]);
+        $editora = $stmtEditora->fetchColumn();
+    ?>
+    <input type="text" name="editora_nome" value="<?php echo htmlspecialchars($editora ?: ''); ?>" required><br><br>
+
     <label>Imagem atual:</label><br>
-    <?php if (!empty($livro['imagem']) && file_exists($livro['imagem'])): ?>
-        <img src="<?php echo $livro['imagem']; ?>" alt="Imagem do livro" class="preview">
+    <?php if (!empty($livro['imagem']) && file_exists('../../uploads/' . $livro['imagem'])): ?>
+        <img src="../../uploads/<?php echo $livro['imagem']; ?>" alt="Imagem do livro" class="preview">
     <?php else: ?>
         <p>Sem imagem</p>
     <?php endif; ?>
