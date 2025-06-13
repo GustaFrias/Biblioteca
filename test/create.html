@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leyo+ - Cadastro de Livro</title>
+  <link rel="stylesheet" href="../test/create.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- TOPO -->
+  <header class="top-bar">
+    <div class="logo">Leyo<span class="plus">+</span></div>
+    <div class="search-box">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <a href="#" class="delete-link">Excluir</a>
+  </header>
+
+  <!-- FORMULÁRIO -->
+  <main class="cadastro-container">
+
+    <section class="form-principal">
+      <h2>Novo Cadastro</h2>
+
+      <div class="form-grid">
+        <div class="img-box">
+          <div class="img-preview">IMGs Book</div>
+          <button class="add-img">Add Book Title</button>
+        </div>
+
+        <div class="dados-principais">
+          <label>Enredo | Temas</label>
+          <textarea rows="7"></textarea>
+
+          <div class="qt-preco">
+            <div class="campo">
+              <label>Quantidade</label>
+              <input type="number">
+            </div>
+            <div class="campo">
+              <label>Preço</label>
+              <input type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="aviso">ATENÇÃO: Preencha todos os campos.</p>
+    </section>
+
+    <aside class="info-extra">
+      <div class="campo-box">
+        <h3>Autor</h3>
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Sobrenome">
+      </div>
+
+      <div class="campo-box">
+        <h3>Editora</h3>
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Número">
+      </div>
+
+      <button class="btn-cadastrar">Cadastrar</button>
+    </aside>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; copyright terms</p>
+      <div class="contato">
+        <p>Entre em contato conosco</p>
+        <p>(xx) xx xxx-xxx</p>
+        <p class="logo-footer">Leyo<span>+</span></p>
+      </div>
+      <div class="redes">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
