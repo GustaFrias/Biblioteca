@@ -15,7 +15,7 @@ $livros = $stmt->fetchAll();
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../../styles/admin.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
     <title>Painel Administrativo</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
