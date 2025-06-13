@@ -31,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Vish!',
                 text: 'As senhas não estão iguais.'
             }).then(() => {
-                window.location.href = '../login&cadastro/index.html';
+                window.location.href = '../../index.html';
             });
         </script>";
         exit;
     }
 
-    $sqlCheck = "SELECT id FROM clientes WHERE email = :email";
+    $sqlCheck = "SELECT id FROM usuarios WHERE email = :email";
     $stmtCheck = $pdo->prepare($sqlCheck);
     $stmtCheck->bindParam(':email', $email);
     $stmtCheck->execute();
@@ -50,20 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Erro!',
                 text: 'E-mail já cadastrado.'
             }).then(() => {
-                window.location.href = '../login&cadastro/index.html';
+                window.location.href = '../../index.html';
             });
         </script>";
         exit;
     }
 
-    $data_cadastro = date('Y-m-d H:i:s');
-    $sql = "INSERT INTO clientes (nome, email, senha, data_cadastro) 
-            VALUES (:nome, :email, :senha, :data_cadastro)";
+    $sql = "INSERT INTO usuarios (nome, email, senha) 
+            VALUES (:nome, :email, :senha)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':senha', $senha);
-    $stmt->bindParam(':data_cadastro', $data_cadastro);
+
 
     if ($stmt->execute()) {
         echo "
@@ -76,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../login&cadastro/login.html';
+                window.location.href = '../../htmls/login.html';
             });
         </script>";
         exit;
@@ -88,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Erro!',
                 text: 'Erro ao cadastrar no banco de dados.'
             }).then(() => {
-                window.location.href = '../login&cadastro/index.html';
+                window.location.href = '../../index.html';
             });
         </script>";
         exit;
