@@ -1,17 +1,14 @@
-<form action="busca.php" method="get" onsubmit="return validarBusca()">
-    <input type="text" name="busca" id="barraBusca" placeholder="Buscar livros..." oninput="buscarInstantaneamente()">
-</form>
+<form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
+    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/> 
+ </form>
 
 <script>
 function validarBusca() {
     const termo = document.getElementById('barraBusca').value.trim();
-    return termo.length > 0;
-}
-
-function buscarInstantaneamente() {
-    const termo = document.getElementById('barraBusca').value;
-    if (termo.length >= 2) {
-        window.location.href = 'pgPesquisa.php?busca=' + encodeURIComponent(termo);
+    if (termo.length === 0) {
+        alert('Digite algo para busca');
+        return false;
     }
+    return true;
 }
 </script>
