@@ -1,21 +1,50 @@
 @import url(aboutUs.css);
 
 .home {
-    background: #591902;
-    margin: 2%;
-    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    width: 90%;
+    max-width: 60%;
+    background: #260B01B2;
     text-align: center;
-    align-items: center;
 }
 
-.conteudos{
-    width: 65%;
+.home h2 {
+    margin: 0 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 35px;
+    font-weight: 200;
+    letter-spacing: 3px;
 }
 
-.conteudos .conteudos-input{
+.home .caixa-input{
     position: relative;
     margin-bottom: 30px;
 }
+
+.home .caixa-input input{
+    width: 2px;
+    padding: 12px;
+    font-size: 16px;
+    color: black;
+    border-radius: 16px;
+    border: none;
+    outline: none;
+    background: #D9D9D9;
+}
+
+.diminuicao{
+    margin: 5px 25% 40px;
+    text-align: center;
+    font-weight: 200;
+    max-width: 50%;
+}
+
+
 
 #index {
     background-image: url(../img/c8b1d922870a6fec38a22b890e7f4b8fbf10c6c4.png);
