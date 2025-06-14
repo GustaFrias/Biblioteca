@@ -6,17 +6,26 @@ function buscarInstantaneamente() {
 
     if (termo.length >= 2) {
         debounceTimeout = setTimeout(() => {
-            fetch('pgPesquisa.php?busca=' + encodeURIComponent(termo))
+            fetch('/Biblioteca/php/functions/pgPesquisa.php?busca=' + encodeURIComponent(termo))
                 .then(response => response.text())
                 .then(html => {
-                    document.getElementById('resultadosBusca').innerHTML = html;
+                    const resultados = document.getElementById('resultadosBusca');
+                    if(resultados) {
+                        resultados.innerHTML = html;
+                    }
                 })
                 .catch(err => {
-                    document.getElementById('resultadosBusca').innerHTML = 'Erro na busca.';
+                    const resultados = document.getElementById('resultadosBusca');
+                    if(resultados) {
+                        resultados.innerHTML = 'Erro na busca.';
+                    }
                     console.error(err);
                 });
         }, 500);
     } else {
-        document.getElementById('resultadosBusca').innerHTML = '';
+        const resultados = document.getElementById('resultadosBusca');
+        if(resultados) {
+            resultados.innerHTML = '';
+        }
     }
 }

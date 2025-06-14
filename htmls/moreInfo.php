@@ -37,13 +37,8 @@ if (!$livro) {
         <div class="logo">
             <a href="index.html"> Leyo<span> +</span> </a>
         </div>
-        <form action="../php/functions/navbar.php" method="POST">
-
-            <input type="text">
-            <span>pesquise aqui</span>
-            <span class="">
-                <i class="fas fa-search"></i>
-            </span>
+        <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
+            <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>    
         </form>
         <nav>
             <ul id="nav-list">

@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +8,10 @@
 <body>
     <header>
         <div class="logo">
-            <a href="../index.html"> Leyo<span> +</span> </a>
+            <a href="../index.html">Leyo<span> +</span></a>
         </div>
-        <form id="formBusca" onSubmit="returnfalse;">
-
-            <input type= "text" id="barraBusca" name="busca" placeholder="pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>
-            <span>pesquise aqui</span>
-                <span><i class="fas fa-search"></i></span>
+        <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
+            <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>  
         </form>
         <nav>
             <ul id="nav-list">
@@ -26,54 +22,63 @@
             </ul>
         </nav>
     </header>
+
     <div class="conteudo" id="resultadosBusca">
-        
+      
     </div>
- <footer>
+
+    <footer>
         <div id="footer_items">
             <span id="copyright">
                 © 2025 <span class="">Leyo</span><span class="">+</span>
             </span>
             <div class="footer_infos">
-                <div class="">Entre em Contato:</div>
-                <div class=""> (11) 98765-4321</div>
-                <div class="">Leyo+</div>
+                <div>Entre em Contato:</div>
+                <div>(11) 98765-4321</div>
+                <div>Leyo+</div>
             </div>
             <div class="social-media-buttons">
-                <a href="">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
     </footer>
-<script>
-    let debounceTimeout;
 
-    function buscarInstantaneamente() {
-        clearTimeout(debounceTimeout);
-        const termo = document.getElementById('barraBusca').value.trim();
-
-        if (termo.length >= 2) {
-            debounceTimeout = setTimeout(() => {
-                fetch('pgPesquisa.php?busca=' + encodeURIComponent(termo))
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById('resultadosBusca').innerHTML = html;
-                    })
-                    .catch(() => {
-                        document.getElementById('resultadosBusca').innerHTML = '<p>Erro na busca.</p>';
-                    });
-            }, 300);
-        } else {
-            document.getElementById('resultadosBusca').innerHTML = '';
+    
+    <script>
+       
+        function validarBusca() {
+            const termo = document.getElementById('barraBusca').value.trim();
+            if (termo.length === 0) {
+                alert('Digite algo para buscar!');
+                return false;
+            }
+            return true;
         }
-    }
-</script>
+
+       
+        let debounceTimeout;
+
+        function buscarInstantaneamente() {
+            clearTimeout(debounceTimeout);
+            const termo = document.getElementById('barraBusca').value.trim();
+
+            if (termo.length >= 2) {
+                debounceTimeout = setTimeout(() => {
+                    fetch('/Biblioteca/php/functions/pgPesquisa.php?busca=' + encodeURIComponent(termo))
+                        .then(res => res.text())
+                        .then(html => {
+                            document.getElementById('resultadosBusca').innerHTML = html;
+                        })
+                        .catch(() => {
+                            document.getElementById('resultadosBusca').innerHTML = '<p>Erro na busca.</p>';
+                        });
+                }, 300);
+            } else {
+                document.getElementById('resultadosBusca').innerHTML = '';
+            }
+        }
+    </script>
 </body>
 </html>

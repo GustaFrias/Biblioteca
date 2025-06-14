@@ -1,8 +1,8 @@
 <?php
 require '../conexao/conexao.php';
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = (int) $_GET['id'];
     $sql = "SELECT livros.*, autores.nome AS nome_autor 
             FROM livros 
             LEFT JOIN autores ON livros.autor_id = autores.id 
@@ -21,5 +21,6 @@ if (isset($_GET['id'])) {
         echo "Livro não encontrado.";
     }
 } else {
-    echo "ID não informado.";
+    echo "ID não informado ou inválido.";
 }
+?>
