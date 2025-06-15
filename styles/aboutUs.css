@@ -89,8 +89,8 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000; /* Garante que fique acima do degrade */
-    background: transparent; /* Remove fundo padrão (opcional) */
-    padding: 15px 30px; /* Ajuste conforme necessário */
+    background: transparent;
+    padding: 15px 30px;
 }
 
 .degrade{
