@@ -1,99 +1,93 @@
-body, html {
-  margin: 0;
-  font-family: serif;
-  background-color: #c2a98c;
-  overflow-x: hidden;
+/* Estilos do carrossel */
+.books-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 50px;
 }
 
-.best-sellers {
-  text-align: center;
-  padding: 40px 20px;
-  width: 100%;
+.book-grid {
+    display: flex;
+    gap: 30px;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.best-sellers h2 {
-  font-weight: bold;
-  font-size: 24px;
-  text-shadow: 1px 1px 2px #000;
-}
-
-.subtitle {
-  font-size: 12px;
-  margin-bottom: 40px;
-}
-
-.carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 0 20px;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-  will-change: transform;
+.book-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .book-card {
-  background-color: #e3e3e3;
-  flex: 0 0 250px;
-  margin: 0 10px;
-  padding: 10px;
-  position: relative;
+    min-width: calc(33.333% - 20px);
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    flex: 0 0 auto;
+    transform: translateY(0);
 }
 
-.book-image {
-  background-color: #5a2f0e;
-  width: 60px;
-  height: 80px;
-  margin: 0 auto 10px auto;
+.book-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-.book-info h3 {
-  font-size: 14px;
-  margin: 5px 0;
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #260B01;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.8;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.description {
-  font-size: 12px;
+.scroll-btn:hover {
+    opacity: 1;
+    background: #4a1a08;
 }
 
-.author {
-  font-size: 12px;
-  margin-top: 10px;
+.scroll-btn.left {
+    left: 5px;
 }
 
-.price {
-  text-align: right;
-  font-size: 13px;
-  font-weight: bold;
-  margin-top: 10px;
+.scroll-btn.right {
+    right: 5px;
 }
 
-.nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 30px;
-  color: #000;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1;
+.scroll-btn i {
+    font-size: 18px;
 }
 
-.nav.left {
-  left: -10px;
+/* Garante que os botões estejam visíveis quando necessário */
+.scroll-btn {
+    display: none; /* Inicialmente escondido */
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.nav.right {
-  right: -10px;
+.books-container:hover .scroll-btn {
+    opacity: 0.8;
 }
 
-.bottom-line {
-  margin-top: 40px;
-  border: 1px solid #331f0e;
-  width: 90%;
+.books-container:hover .scroll-btn:hover {
+    opacity: 1;
+}
+
+.scroll-btn.show {
+    display: flex;
+    opacity: 0.8;
 }

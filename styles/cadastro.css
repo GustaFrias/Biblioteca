@@ -14,6 +14,10 @@ body {
     background-position: center;
 }
 
+.navbar{
+    background: transparent;
+}
+
 .caixa {
     position: absolute;
     top: 50%;

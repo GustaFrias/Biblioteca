@@ -10,7 +10,7 @@
     <title>Leyo+</title>
 </head>
 
-<body id="grid">
+<body>
     <div class="principal" id="tela">
         <header>
             <!-- Hamburguer -->
@@ -35,52 +35,110 @@
 
         <div class="home">
             <h2 class="titulo">ONDE LER É REALEZA E CADA PÁGINA, UM CONVITE AO ENCANTAMENTO.</h2>
-            <div class="diminuicao"><span class="texto">Descubra um espaço onde a elegância encontra a paixão pelos livros, e cada visita é uma experiência única de conforto e inspiração.</span></div>
+            <div class="diminuicao"><span class="texto">Descubra um espaço onde a elegância encontra a paixão pelos
+                    livros, e cada visita é uma experiência única de conforto e inspiração.</span></div>
             <form action="php/functions/navbar.php" method="POST">
 
                 <div class="caixa-input">
                     <input type="text">
-                    <label>pesquise aqui</label>
-                    <label class="">
-                        <i class="fas fa-search"></i>
-                    </label>
+                    <label>Pesquise</label>
+                    <i class="fas fa-search"></i>
                 </div>
             </form>
- 
-            <div class="conteudos">
-                <h2 class="titulo">ONDE LER É REALEZA E CADA PÁGINA, UM CONVITE AO ENCANTAMENTO.</h2>
-                <span class="texto">Descubra um espaço onde a elegância encontra a paixão pelos livros, e cada visita é uma experiência única de conforto e inspiração.</span>
-                <!DOCTYPE html>
+        </div>
+    </div>
 
-                <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-                    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/> 
-                 </form>
-        
+    <div class="carussel">
+        <div class="principal" id="best-sellers">
+            <section class="tela">
+                <div class="separador" id="temas">
+                    <h2 class="titulo">Best Sellers Of The Library</h2>
+                    <p class="subtitle">Os livros mais amados pelos nossos leitores</p>
+                </div>
 
-            </div>
+                <div class="books-container">
+                    <button class="scroll-btn left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
 
-        <div class="gustavo">
-            <div></div>
+                    <div class="book-grid">
+                        <div class="book-card">
+                            <div class="book-info">
+                                <h3 class="book-title">Dom Casmurro</h3>
+                                <p class="book-description">A clássica história de Bentinho e Capitu, cheia de dúvidas e
+                                    ciúmes.</p>
+                                <p class="book-author">Machado de Assis</p>
+                                <p class="book-price">R$ 39,90</p>
+                            </div>
+                        </div>
+
+                        <div class="book-card">
+                            <div class="book-info">
+                                <h3 class="book-title">O Pequeno Príncipe</h3>
+                                <p class="book-description">A jornada filosófica de um príncipe por diferentes planetas.
+                                </p>
+                                <p class="book-author">Antoine de Saint-Exupéry</p>
+                                <p class="book-price">R$ 29,90</p>
+                            </div>
+                        </div>
+
+                        <div class="book-card">
+                            <div class="book-info">
+                                <h3 class="book-title">1984</h3>
+                                <p class="book-description">Um clássico distópico sobre vigilância e controle
+                                    governamental.</p>
+                                <p class="book-author">George Orwell</p>
+                                <p class="book-price">R$ 45,90</p>
+                            </div>
+                        </div>
+
+                        <div class="book-card">
+                            <div class="book-info">
+                                <h3 class="book-title">Orgulho e Preconceito</h3>
+                                <p class="book-description">O romance clássico de Jane Austen sobre Elizabeth Bennet e
+                                    Mr. Darcy.</p>
+                                <p class="book-author">Jane Austen</p>
+                                <p class="book-price">R$ 37,50</p>
+                            </div>
+                        </div>
+
+                        <div class="book-card">
+                            <div class="book-info">
+                                <h3 class="book-title">Cem Anos de Solidão</h3>
+                                <p class="book-description">A saga da família Buendía na mítica cidade de Macondo.</p>
+                                <p class="book-author">Gabriel García Márquez</p>
+                                <p class="book-price">R$ 49,90</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="scroll-btn right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
         </div>
     </div>
 
     <div class="principal" id="index">
-        <section class="tela">
-            <div class="separador">
-                <h2 class="titulo">
-                    Um Pouco Sobre Nós
-                </h2>
-            </div>
-            <div class="separador">
-                <span class="texto">
-                    Mais que uma livraria, somos um refúgio elegante para quem ama livros e valoriza momentos de calma e
-                    beleza. Inspirados pela realeza e guiados pela paixão pela leitura, criamos um espaço onde
-                    sofisticação, conforto e cultura se encontram. Cada detalhe foi pensado com carinho para oferecer
-                    uma experiência única. Quer saber como esse sonho ganhou vida? Conheça nossa história completa na
-                    página Sobre Nós.
-                </span>
-            </div>
-        </section>
+        <div class="degrade">
+            <section class="tela">
+                <div class="separador">
+                    <h2 class="titulo">
+                        Um Pouco Sobre Nós
+                    </h2>
+                </div>
+                <div class="separador">
+                    <span class="texto">
+                        Mais que uma livraria, somos um refúgio elegante para quem ama livros e valoriza momentos de calma e
+                        beleza. Inspirados pela realeza e guiados pela paixão pela leitura, criamos um espaço onde
+                        sofisticação, conforto e cultura se encontram. Cada detalhe foi pensado com carinho para oferecer
+                        uma experiência única. Quer saber como esse sonho ganhou vida? Conheça nossa história completa na
+                        página Sobre Nós.
+                    </span>
+                </div>
+            </section>
+        </div>
     </div>
 
     <footer>
@@ -107,5 +165,7 @@
         </div>
     </footer>
 </body>
+
+<script src="styles/carussel.js"></script>
 
 </html>

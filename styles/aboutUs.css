@@ -77,6 +77,33 @@ body {
 }
 
 #end{
+    margin-left: 30%;
     text-align: end;
 }
 
+/*degrade*/
+
+.navbar{
+    position: absolute; /* Permanece no topo, mas sem rolar com a página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Garante que fique acima do degrade */
+    background: transparent; /* Remove fundo padrão (opcional) */
+    padding: 15px 30px; /* Ajuste conforme necessário */
+}
+
+.degrade{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, #591902, #00000080);
+    padding-top: 100px;
+}
+
+#right{
+    background: linear-gradient(to right, #591902, #BF360400);
+}
+
+#left{
+    background: linear-gradient(to left, #591902, #BF360400);
+}
