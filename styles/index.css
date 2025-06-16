@@ -49,7 +49,8 @@
     background-color: transparent;
 }
 
-.home .caixa-input input:focus+label{
+.home .caixa-input input:focus+label
+.home .caixa-input input:valid+label{
     color: transparent;
     background: transparent;
 }
