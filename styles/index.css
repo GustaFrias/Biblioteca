@@ -45,11 +45,12 @@
     left: 12px;
     color: black;
     pointer-events: none;
-    transition: 0.3s;
+    transition: 0.5s;
     background-color: transparent;
 }
 
-.home .caixa-input input:focus+label{
+.home .caixa-input input:focus+label
+.home .caixa-input input:valid+label{
     color: transparent;
     background: transparent;
 }
