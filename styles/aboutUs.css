@@ -91,6 +91,7 @@ body {
     z-index: 1000; /* Garante que fique acima do degrade */
     background: transparent;
     padding: 15px 30px;
+    box-shadow: none;
 }
 
 .degrade{
