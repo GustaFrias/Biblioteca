@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/> 
- </form>
-</head>
-<body>
-    
-</body>
-</html>
 <?php
 require 'verifica.php';
 require '../conexao/conexao.php';
@@ -25,10 +14,25 @@ $livros = $stmt->fetchAll();
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../styles/admin.css">
+
+
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../styles/admin.css" />
     <title>Painel Administrativo</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
+    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/> 
+    </form>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        #barraBusca {
+            margin-bottom: 20px;
+            padding: 8px;
+            width: 100%;
+            max-width: 400px;
+            font-size: 16px;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -61,6 +65,9 @@ $livros = $stmt->fetchAll();
     ?>
 
     <h1>Área Administrativa - Lista de Livros</h1>
+
+
+
     <p>
         <a href="../crud/create.php"
             style="text-decoration: none; padding: 8px 15px; background-color: #28a745; color: white; border-radius: 5px;">Cadastrar
@@ -71,12 +78,12 @@ $livros = $stmt->fetchAll();
     </p>
     <hr>
 
-    <div class="organization">
+    <div class="organization" id="listaLivros">
         <?php foreach ($livros as $livro): ?>
-            <div class="book-card">
+            <div class="book-card" data-titulo="<?= strtolower(htmlspecialchars($livro['titulo'])); ?>">
                 <?php if (!empty($livro['imagem'])): ?>
                     <div class="book-card-image">
-                        <img src="../../uploads/<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro">
+                        <img src="../../uploads/<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro" />
                     </div>
                 <?php endif; ?>
                 <div class="book-card-details">
@@ -94,6 +101,7 @@ $livros = $stmt->fetchAll();
             </div>
         <?php endforeach; ?>
     </div>
+
     <script>
         function confirmarExclusao(id) {
             Swal.fire({
@@ -111,6 +119,20 @@ $livros = $stmt->fetchAll();
                 }
             });
         }
+
+        document.getElementById('barraBusca').addEventListener('input', function () {
+            const termoBusca = this.value.toLowerCase();
+            const livros = document.querySelectorAll('#listaLivros .book-card');
+
+            livros.forEach(function (livro) {
+                const titulo = livro.getAttribute('data-titulo');
+                if (titulo.includes(termoBusca)) {
+                    livro.style.display = '';
+                } else {
+                    livro.style.display = 'none';
+                }
+            });
+        });
     </script>
 
 </body>

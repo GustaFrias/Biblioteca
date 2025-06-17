@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css" />
+    
     <title>Resultado de Pesquisa na Leyo+</title>
 </head>
 <body>
@@ -11,7 +13,10 @@
             <a href="../index.html">Leyo<span> +</span></a>
         </div>
         <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-            <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>  
+            <div class="caixa-input">
+             <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>
+                <i class="fas fa-search"></i>
+             </div>             
         </form>
         <nav>
             <ul id="nav-list">
