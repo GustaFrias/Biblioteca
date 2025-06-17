@@ -88,7 +88,6 @@ $livros = $stmt->fetchAll();
                 <?php endif; ?>
                 <div class="book-card-details">
                     <h3><?= htmlspecialchars($livro['titulo']); ?></h3>
-                    <p><strong>Descrição:</strong> <?= nl2br(htmlspecialchars($livro['descricao'])); ?></p>
                     <p><strong>Preço:</strong> R$ <?= number_format($livro['preco'], 2, ',', '.'); ?></p>
                     <p><strong>Em Estoque:</strong> <?= htmlspecialchars($livro['estoque']); ?></p>
                     <p><strong>Categoria:</strong> <?= htmlspecialchars($livro['categoria_nome'] ?? 'Não categorizado'); ?></p>
