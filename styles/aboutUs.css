@@ -97,12 +97,8 @@ body {
 .degrade{
     height: 100%;
     width: 100%;
-    background: linear-gradient(to right, #591902, #00000080);
+    background: linear-gradient(to right, #591902, #00000000);
     padding-top: 100px;
-}
-
-#right{
-    background: linear-gradient(to right, #591902, #BF360400);
 }
 
 #left{

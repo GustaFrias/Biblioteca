@@ -1,4 +1,5 @@
 footer {
+    max-height: 116px;
     background-color: #260B01;
     padding: 40px 8% 40px 8%;
     color: #fff;
@@ -7,26 +8,26 @@ footer {
 #footer_items{
     display: flex;
     justify-content: space-between;
-    padding: 0px 8% 24px 8%;
     align-items: center;
 }
 
 .social-media-buttons{
     display: flex;
-    color: #fff;
-    gap: 10px;
 }
 
 .social-media-buttons a{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 45px;
-    height: 40px;
-    margin-top: 100%;
-    margin-left: 10%;
+    width: 30px;
+    height: 20px;
+    margin: 10%;
     font-size: 30px;
     text-decoration: none;
     color: #fff;
     
+}
+
+.footer_infos{
+    text-align: center;
 }

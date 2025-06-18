@@ -5,7 +5,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #1a120b;
     color: white;
     width: 100%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -14,7 +13,7 @@ header {
 
 .logo {
     font-size: 24px;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 }
 
 .logo:hover {

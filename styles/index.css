@@ -9,7 +9,9 @@
     border-radius: 25px;
     width: 90%;
     max-width: 60%;
-    background: #260B01B2;
+    height: 250px;
+    backdrop-filter: blur(2px);
+    border-radius:  16%;
     text-align: center;
 }
 
@@ -72,7 +74,6 @@
 
 #index {
     background-image: url(../img/c8b1d922870a6fec38a22b890e7f4b8fbf10c6c4.png);
-
 }
 
 
