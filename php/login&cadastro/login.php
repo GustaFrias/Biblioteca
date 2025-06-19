@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../../index.html';
+                window.location.href = '../../index.php';
             });
         </script>
         <?php
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 showConfirmButton: false,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = '../login&cadastro/login.html';
+                window.location.href = '../../htmls/login.html';
             });
         </script>
         <?php

@@ -25,7 +25,7 @@ require '../conexao/conexao.php';
         <header>
             <!-- Hamburguer -->
             <div class="logo">
-                <a href="index.html"> Leyo<span> +</span> </a>
+                <a href="index.php"> Leyo<span> +</span> </a>
             </div>
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
@@ -34,7 +34,7 @@ require '../conexao/conexao.php';
             </div>
             <nav>
                 <ul id="nav-list">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="htmls/AboutUs.html">Sobre Nós</a></li>
                     <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
                     <li><a href="htmls/login.html">Login</a></li>
@@ -196,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Vish!',
                 text: 'As senhas não estão iguais.'
             }).then(() => {
-                window.location.href = '../../index.html';
+                window.location.href = '../../index.php';
             });
         </script>";
         exit;
@@ -215,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Erro!',
                 text: 'E-mail já cadastrado.'
             }).then(() => {
-                window.location.href = '../../index.html';
+                window.location.href = '../../index.php';
             });
         </script>";
         exit;
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Erro!',
                 text: 'Erro ao cadastrar no banco de dados.'
             }).then(() => {
-                window.location.href = '../../index.html';
+                window.location.href = '../../index.php';
             });
         </script>";
         exit;

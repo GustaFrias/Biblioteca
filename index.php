@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,7 +17,7 @@
         <header>
             <!-- Hamburguer -->
             <div class="logo">
-                <a href="index.html"> Leyo<span> +</span> </a>
+                <a href="index.php"> Leyo<span> +</span> </a>
             </div>
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
@@ -24,9 +26,14 @@
             </div>
             <nav>
                 <ul id="nav-list">
-                    <li><a href="htmls/AboutUs.html">Sobre Nós</a></li>
-                    <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
-                    <li><a href="htmls/login.html">Login</a></li>
+    <li><a href="htmls/AboutUs.html">Sobre Nós</a></li>
+
+    <?php if (!isset($_SESSION['usuario'])): ?>
+        <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
+        <li><a href="htmls/login.html">Login</a></li>
+    <?php else: ?>
+        <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+    <?php endif; ?>
                 </ul>
             </nav>
 
