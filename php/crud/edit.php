@@ -1,4 +1,21 @@
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Livro</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .swal2-popup {
+            font-family: Arial, sans-serif !important;
+        }
+        img.preview {
+            max-width: 150px;
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
 
 <?php
 require '../conexao/conexao.php';
@@ -154,24 +171,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Livro</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        .swal2-popup {
-            font-family: Arial, sans-serif !important;
-        }
-        img.preview {
-            max-width: 150px;
-            margin-bottom: 10px;
-            display: block;
-        }
-    </style>
-</head>
-<body>
 
 <form method="POST" action="edit.php?id=<?php echo $livro['id']; ?>" enctype="multipart/form-data">
     <label>Título do livro:</label><br>

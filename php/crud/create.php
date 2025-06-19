@@ -9,7 +9,7 @@ $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
     .swal2-popup {
         font-family: Arial, sans-serif !important;
     }
-</style>
+    </style>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <?php
