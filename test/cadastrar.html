@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Livro - Leyo</title>
+    <link rel="stylesheet" href="teste.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Leyo+</div>
+        <div class="search-container">
+            <input type="search" placeholder="pesquise o livro">
+            <div class="search-icon"></div>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+        <section class="form-section">
+            <form class="book-form">
+                
+                <div class="form-left">
+                    <div class="cover-upload"></div>
+                    <button type="button" class="btn-upload">Editar foto</button>
+                </div>
+
+                <div class="form-right">
+                    <h1 class="book-title">Book Title</h1>
+                    <p class="theme">Tema Unico</p>
+                    
+                    <label for="plot" class="plot-label">ESCREVA O ENREDO -</label>
+                    <textarea id="plot" class="plot-textarea" readonly>Deep in the heart of the valley lies a quiet forest, untouched by time. The trees stand tall, their branches swaying gently in the wind, whispering secrets only nature can understand. Birds chirp high above, and the soft rustle of leaves creates a peaceful symphony. Occasionally, a deer wanders through the underbrush, pausing to listen to the silence. It’s a place where the world slows down, where one can breathe freely and feel connected to something greater</textarea>
+
+                    <div class="author-editor">
+                        Nome Autor <br>
+                        Editora
+                    </div>
+
+                    <div class="stock-price">
+                        <button type="button" class="btn btn-stock">Estoque</button>
+                        <button type="button" class="btn btn-price">Preço</button>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+        <p class="attention">ATENÇÃO: Preencha todos os campos.</p>
+        <button type="submit" class="btn-submit">Cadastrar</button>
+    </main>
+
+    <footer class="footer">
+        <div class="copyright">© copyrigth terms</div>
+        <div class="contact-info">
+            entre em contato conosco<br>
+            (xx) xx xxx-xxx<br>
+            <div class="logo-footer">Leyo+</div>
+        </div>
+        <div class="social-icons">
+            <a href="#">F</a>
+            <a href="#">O</a>
+            <a href="#">X</a>
+        </div>
+    </footer>
+
+</body>
+</html>

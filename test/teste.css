@@ -1,0 +1,314 @@
+/* GERAL E DEFINIÇÕES DE CORES */
+:root {
+    --cor-fundo-claro: #f4eee5;
+    --cor-fundo-medio: #decbb3;
+    --cor-fundo-escuro: #4f3f33;
+    --cor-destaque-claro: #b99b7a;
+    --cor-destaque-escuro: #4e342e;
+    --cor-texto: #3e2723;
+    --cor-vermelho: #c62828;
+    --fonte-serif: 'Georgia', 'Times New Roman', serif;
+}
+
+@import url(import.css);
+@import url(NavBar.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-serif);
+    background-color: #D2B48C;
+    color: var(--cor-texto);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* CABEÇALHO (HEADER) */
+.header {
+    background-color: var(--cor-destaque-claro);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--cor-fundo-escuro);
+}
+
+.header .logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.header .search-container {
+    flex-grow: 0.5;
+    position: relative;
+}
+
+.header .search-container input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--cor-fundo-escuro);
+    background-color: var(--cor-fundo-claro);
+    font-size: 1rem;
+    font-family: var(--fonte-serif);
+}
+
+.header .search-container .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%234f3f33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>') center no-repeat;
+    background-size: contain;
+}
+
+
+.header .nav-links a {
+    font-size: 1.8rem;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+/* CONTEÚDO PRINCIPAL (MAIN) */
+main {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+/* PÁGINA DE ADMINISTRAÇÃO (Adm.png) */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.book-card {
+    background-color: var(--cor-fundo-medio);
+    padding: 20px;
+    border: 2px solid var(--cor-fundo-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-card .cover-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: var(--cor-fundo-escuro);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-fundo-medio);
+    font-size: 1.5rem;
+}
+
+.book-card .card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    font-family: var(--fonte-serif);
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: var(--cor-destaque-claro);
+    color: var(--cor-texto);
+    flex-grow: 1;
+}
+
+.btn-delete {
+    background-color: var(--cor-vermelho);
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* PÁGINA DE FORMULÁRIO (cadastrar e editar) */
+.form-section {
+    background-color: var(--cor-fundo-medio);
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 1100px;
+    border: 2px solid var(--cor-fundo-escuro);
+}
+
+.book-form {
+    display: flex;
+    gap: 40px;
+}
+
+/* Lado Esquerdo do Formulário (Imagem) */
+.form-left {
+    flex-basis: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-left .cover-upload {
+    width: 100%;
+    height: 450px;
+    background-color: var(--cor-fundo-escuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.form-left .btn-upload {
+    background-color: var(--cor-destaque-claro);
+    color: var(--cor-texto);
+    padding: 12px;
+    border: 1px solid var(--cor-texto);
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Lado Direito do Formulário (Dados) */
+.form-right {
+    flex-basis: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-right .book-title {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.form-right .theme {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: right;
+    color: var(--cor-fundo-escuro);
+}
+
+.form-right .plot-label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.form-right .plot-textarea {
+    width: 100%;
+    height: 180px; /* Altura ajustada */
+    background: none;
+    border: none;
+    resize: none;
+    font-family: var(--fonte-serif);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    margin-bottom: 20px;
+}
+
+.form-right .author-editor {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.form-right .stock-price {
+    display: flex;
+    gap: 20px;
+}
+
+.form-right .stock-price .btn {
+    flex-grow: 1;
+}
+
+.btn-stock {
+    background-color: var(--cor-destaque-claro);
+    border: 1px solid var(--cor-texto);
+}
+
+.btn-price {
+    background-color: var(--cor-destaque-escuro);
+    color: var(--cor-fundo-claro);
+}
+
+
+/* Botão principal do formulário e atenção */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.form-container .attention {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.btn-submit {
+    background-color: var(--cor-destaque-claro);
+    padding: 15px 80px;
+    font-size: 1.8rem;
+    border: 2px solid var(--cor-fundo-escuro);
+    cursor: pointer;
+}
+
+/* RODAPÉ (FOOTER) */
+.footer {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-fundo-claro);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.footer .contact-info {
+    text-align: center;
+}
+.footer .contact-info .logo-footer {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.footer .social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--cor-fundo-claro);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
