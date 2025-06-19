@@ -32,6 +32,8 @@
         <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
         <li><a href="htmls/login.html">Login</a></li>
     <?php else: ?>
+        <img src="img/iconLogin.png" alt="" id="icon-login">
+        <li><a><?php echo htmlspecialchars($_SESSION['usuario']); ?></a></li>
         <li><a href="php/login&cadastro/logout.php">Sair</a></li>
     <?php endif; ?>
                 </ul>

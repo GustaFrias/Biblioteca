@@ -141,7 +141,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <label>Imagem:</label><br>
     <input type="file" name="imagem" accept="image/*" required><br><br>
+    <img id="preview-imagem" src="#" alt="Prévia da imagem" style="display:none; max-width: 200px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px;">
+    <br><br>
+
 
     <button type="submit">Cadastrar Livro</button>
+
+    <script>
+    document.querySelector('input[name="imagem"]').addEventListener('change', function(event) {
+        const input = event.target;
+        const preview = document.getElementById('preview-imagem');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
+    });
+</script>
+
 </form>
 
