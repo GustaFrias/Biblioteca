@@ -27,9 +27,22 @@
                 <nav>
                     <ul id="nav-list">
                         <li><a href="../index.php">Home</a></li>
-                    <li><a href="cadastro.html">Cadastrar-se</a></li>
-                        <li><a href="login.html">Login</a></li>
-                    </ul>
+                     <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+    <li><a href="cadastro.html">Cadastrar-se</a></li>
+    <li><a href="login.html">Login</a></li>
+<?php else: ?>
+    <img src="img/iconLogin.png" alt="" id="icon-login">
+    <li><a>
+        <?php
+            if (isset($_SESSION['usuario'])) {
+                echo htmlspecialchars($_SESSION['usuario']);
+            } elseif (isset($_SESSION['admin'])) {
+                echo 'Administrador';
+            }
+        ?>
+    </a></li>
+    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+<?php endif; ?>
                 </nav>
 
             </header>

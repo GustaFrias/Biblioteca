@@ -26,16 +26,25 @@
             </div>
             <nav>
                 <ul id="nav-list">
-    <li><a href="htmls/AboutUs.html">Sobre Nós</a></li>
+    <li><a href="htmls/AboutUs.php">Sobre Nós</a></li>
 
-    <?php if (!isset($_SESSION['usuario'])): ?>
-        <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
-        <li><a href="htmls/login.html">Login</a></li>
-    <?php else: ?>
-        <img src="img/iconLogin.png" alt="" id="icon-login">
-        <li><a><?php echo htmlspecialchars($_SESSION['usuario']); ?></a></li>
-        <li><a href="php/login&cadastro/logout.php">Sair</a></li>
-    <?php endif; ?>
+   <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+    <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
+    <li><a href="htmls/login.html">Login</a></li>
+<?php else: ?>
+    <img src="img/iconLogin.png" alt="" id="icon-login">
+    <li><a>
+        <?php
+            if (isset($_SESSION['usuario'])) {
+                echo htmlspecialchars($_SESSION['usuario']);
+            } elseif (isset($_SESSION['admin'])) {
+                echo 'Administrador';
+            }
+        ?>
+    </a></li>
+    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+<?php endif; ?>
+
                 </ul>
             </nav>
 

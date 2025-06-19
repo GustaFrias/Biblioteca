@@ -9,43 +9,67 @@ require '../conexao/conexao.php';
     <title>Excluir Livro</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-    .swal2-popup {
-        font-family: Arial, sans-serif !important;
-    }
-</style>
+        .swal2-popup {
+            font-family: Arial, sans-serif !important;
+        }
+    </style>
 </head>
 <body>
 
 <?php
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
- 
 
-    $sql = "DELETE FROM livros WHERE id = :id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $id);
+    $stmtImagem = $pdo->prepare("SELECT imagem FROM livros WHERE id = :id");
+    $stmtImagem->bindParam(':id', $id);
+    $stmtImagem->execute();
+    $livro = $stmtImagem->fetch(PDO::FETCH_ASSOC);
 
-    if ($stmt->execute()) {
-        echo "
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: 'Livro excluído com sucesso!',
-                timer: 2500,
-                showConfirmButton: false,
-                timerProgressBar: true
-            }).then(() => {
-                window.location.href = '../login&cadastro/admin.php';
-            });
-        </script>";
+    if ($livro) {
+        $caminhoImagem = '../../uploads/' . $livro['imagem'];
+
+        if (file_exists($caminhoImagem)) {
+            unlink($caminhoImagem);
+        }
+        
+        $sql = "DELETE FROM livros WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+
+        if ($stmt->execute()) {
+            echo "
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: 'Livro excluído com sucesso!',
+                    timer: 2500,
+                    showConfirmButton: false,
+                    timerProgressBar: true
+                }).then(() => {
+                    window.location.href = '../login&cadastro/admin.php';
+                });
+            </script>";
+        } else {
+            echo "
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao excluir o livro.',
+                    showConfirmButton: true
+                }).then(() => {
+                    window.location.href = '../login&cadastro/admin.php';
+                });
+            </script>";
+        }
     } else {
         echo "
         <script>
             Swal.fire({
-                icon: 'error',
-                title: 'Erro!',
-                text: 'Erro ao excluir o livro.',
+                icon: 'warning',
+                title: 'Livro não encontrado',
+                text: 'Não foi possível localizar o livro para exclusão.',
                 showConfirmButton: true
             }).then(() => {
                 window.location.href = '../login&cadastro/admin.php';
@@ -69,4 +93,3 @@ if (isset($_GET['id'])) {
 
 </body>
 </html>
-
