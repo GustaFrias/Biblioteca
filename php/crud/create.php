@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <input type="number" name="estoque" min="0" required><br><br>
 
     <label>Ano de publicação:</label><br>
-    <input type="number" name="ano_publicacao" min="1000" required><br><br>
+    <input type="number" name="ano_publicacao" min="1000" max="2025" required><br><br>
 
     <label>Descrição:</label><br>
     <textarea name="descricao" rows="4" cols="50" required></textarea><br><br>
