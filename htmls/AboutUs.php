@@ -33,7 +33,7 @@
     <li><a href="login.html">Login</a></li>
 <?php else: ?>
     <li>
-        <img src="img/iconLogin.png" alt="" id="icon-login" style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+        <img src="../img/iconLogin.png" alt="" id="icon-login" style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
     </li>
     <li>
         <a href="<?php echo isset($_SESSION['admin']) ? '../php/login&cadastro/admin.php' : ''; ?>">
@@ -46,7 +46,7 @@
             ?>
         </a>
     </li>
-    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+    <li><a href="../php/login&cadastro/logout.php">Sair</a></li>
 <?php endif; ?>
                 </nav>
 
