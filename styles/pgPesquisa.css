@@ -1,0 +1,121 @@
+@import url(import.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D2B48C;
+    font-family: 'Jacques Francois', serif;
+    color: #fff;
+}
+
+.navbar {
+    background-color: #A66E4E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    color: #591902;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo span {
+    font-family: "Kalam", cursive;
+    font-size: 32px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.resultados-container h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.livros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.capaLivros {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.capa-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+}
+
+.card h3 {
+    padding: 10px;
+    color: #333;
+    font-size: 1rem;
+    text-align: center;
+}
+
+
+.nenhum-resultado, .nenhum-termo {
+    text-align: center;
+    padding: 50px 20px;
+    color: #fff;
+}
+
+.nenhum-resultado p:first-child {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#barraBusca {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    width: 250px;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .livros-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    #barraBusca {
+        width: 180px;
+    }
+}

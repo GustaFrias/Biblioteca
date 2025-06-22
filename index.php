@@ -26,24 +26,24 @@
             </div>
             <nav>
                 <ul id="nav-list">
-    <li><a href="htmls/AboutUs.php">Sobre Nós</a></li>
+                    <li><a href="htmls/AboutUs.php">Sobre Nós</a></li>
 
-   <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-    <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
-    <li><a href="htmls/login.html">Login</a></li>
-<?php else: ?>
-    <img src="img/iconLogin.png" alt="" id="icon-login">
-    <li><a>
-        <?php
+                    <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+                    <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
+                    <li><a href="htmls/login.html">Login</a></li>
+                    <?php else: ?>
+                    <img src="img/iconLogin.png" alt="" id="icon-login">
+                    <li><a>
+                            <?php
             if (isset($_SESSION['usuario'])) {
                 echo htmlspecialchars($_SESSION['usuario']);
             } elseif (isset($_SESSION['admin'])) {
                 echo 'Administrador';
             }
         ?>
-    </a></li>
-    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
-<?php endif; ?>
+                        </a></li>
+                    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+                    <?php endif; ?>
 
                 </ul>
             </nav>
@@ -54,13 +54,14 @@
             <h2 class="titulo">ONDE LER É REALEZA E CADA PÁGINA, UM CONVITE AO ENCANTAMENTO.</h2>
             <div class="diminuicao"><span class="texto">Descubra um espaço onde a elegância encontra a paixão pelos
                     livros, e cada visita é uma experiência única de conforto e inspiração.</span></div>
-                    
-                    <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-                        <div class="caixa-input">
-                         <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off" oninput="buscarInstantaneamente()"/>
-                            <i class="fas fa-search"></i>
-                         </div>             
-                    </form>
+
+            <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
+                <div class="caixa-input">
+                    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
+                        oninput="buscarInstantaneamente()" />
+                    <i class="fas fa-search"></i>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -146,10 +147,13 @@
                 </div>
                 <div class="separador">
                     <span class="texto">
-                        Mais que uma livraria, somos um refúgio elegante para quem ama livros e valoriza momentos de calma e
+                        Mais que uma livraria, somos um refúgio elegante para quem ama livros e valoriza momentos de
+                        calma e
                         beleza. Inspirados pela realeza e guiados pela paixão pela leitura, criamos um espaço onde
-                        sofisticação, conforto e cultura se encontram. Cada detalhe foi pensado com carinho para oferecer
-                        uma experiência única. Quer saber como esse sonho ganhou vida? Conheça nossa história completa na
+                        sofisticação, conforto e cultura se encontram. Cada detalhe foi pensado com carinho para
+                        oferecer
+                        uma experiência única. Quer saber como esse sonho ganhou vida? Conheça nossa história completa
+                        na
                         página Sobre Nós.
                     </span>
                 </div>
