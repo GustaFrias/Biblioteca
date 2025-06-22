@@ -110,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <form method="POST" action="create.php" enctype="multipart/form-data">
-    <a src=>Sair</a>
     <label>Título do livro:</label><br>
     <input type="text" name="titulo" required><br><br>
 
