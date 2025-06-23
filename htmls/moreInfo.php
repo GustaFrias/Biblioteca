@@ -8,6 +8,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
+// Adicionado 'livros.valor' para buscar o preço do banco de dados
 $sql = "SELECT livros.*, autores.nome AS nome_autor, categorias.nome AS nome_categoria, editoras.nome AS nome_editora
         FROM livros
         LEFT JOIN autores ON livros.autor_id = autores.id
@@ -44,6 +45,13 @@ if (!$livro) {
                 <input type="text" name="busca" placeholder="Pesquise aqui" autocomplete="off">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
+            
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <nav class="main-nav">
                 <ul>
                     <li><a href="../index.php">Home</a></li>
@@ -55,48 +63,67 @@ if (!$livro) {
         </div>
     </header>
     
-    <main class="book-container">
-        <section class="book-main-info">
-            <div class="book-cover-container">
-                <img src="../uploads/<?= htmlspecialchars($livro['imagem']) ?>" alt="<?= htmlspecialchars($livro['titulo']) ?>" class="book-cover">
-            </div>
-            
-            <div class="book-details">
-                <h1 class="book-title"><?= htmlspecialchars($livro['titulo']) ?></h1>
-                <p class="book-genre"><?= htmlspecialchars($livro['nome_categoria']) ?></p>
-                <p class="book-author"><?= htmlspecialchars($livro['nome_autor']) ?></p>
+    <main class="page-container">
+        <div class="content-wrapper">
+            <section class="book-main-info">
+                <div class="book-cover-section">
+                    <div class="book-cover-container">
+                        <img src="../uploads/<?= htmlspecialchars($livro['imagem']) ?>" alt="<?= htmlspecialchars($livro['titulo']) ?>" class="book-cover">
+                    </div>
+                    <p class="book-author">Nome Autor: <?= htmlspecialchars($livro['nome_autor']) ?></p>
+                    <p class="book-publisher">Editora: <?= htmlspecialchars($livro['nome_editora']) ?></p>
+                </div>
                 
-                <div class="book-description">
-                    <p><?= nl2br(htmlspecialchars($livro['descricao'])) ?></p>
-                    <div>
-                        <button>COMPRAR <p>R$valor</p></button>
+                <div class="book-details">
+                    <h1 class="book-title"><?= htmlspecialchars($livro['titulo']) ?></h1>
+                    <p class="book-genre"><?= htmlspecialchars($livro['nome_categoria']) ?></p>
+                    
+                    <div class="book-description">
+                        <p><?= nl2br(htmlspecialchars($livro['descricao'])) ?></p>
+                    </div>
+
+                    <div class="purchase-section">
+                        <button class="buy-button">
+                            COMPRAR
+                            <span>R$valor</span>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <section class="related-books">
-            <h2 class="section-title">Livros similares</h2>
-            <div class="related-books-grid">
-                <div class="related-book">
-                    <img src="../images/placeholder-book.jpg" alt="Livro relacionado">
-                    <p>Título do Livro</p>
+            </section>
+            
+            <section class="related-books">
+                <h2 class="section-title">Livros similares</h2>
+                <div class="related-books-grid">
+                    <div class="related-book">
+                        <div class="related-book-cover"></div>
+                        <p>Título</p>
+                    </div>
+                    <div class="related-book">
+                        <div class="related-book-cover"></div>
+                        <p>Título</p>
+                    </div>
+                    <div class="related-book">
+                        <div class="related-book-cover"></div>
+                        <p>Título</p>
+                    </div>
+                    <div class="related-book">
+                        <div class="related-book-cover"></div>
+                        <p>Título</p>
+                    </div>
                 </div>
-                <div class="related-book">
-                    <img src="../images/placeholder-book.jpg" alt="Livro relacionado">
-                    <p>Título do Livro</p>
-                </div>
-                <div class="related-book">
-                    <img src="../images/placeholder-book.jpg" alt="Livro relacionado">
-                    <p>Título do Livro</p>
-                </div>
-                <div class="related-book">
-                    <img src="../images/placeholder-book.jpg" alt="Livro relacionado">
-                    <p>Título do Livro</p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
     
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.querySelector('.main-nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+    </script>
+
 </body>
 </html>
