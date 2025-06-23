@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Livro</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        .swal2-popup {
-            font-family: Arial, sans-serif !important;
-        }
-        img.preview {
-            max-width: 150px;
-            margin-bottom: 10px;
-            display: block;
-        }
-    </style>
-</head>
-<body>
-
 <?php
 require '../conexao/conexao.php';
 
 $stmtCategorias = $pdo->query("SELECT id, nome FROM categorias ORDER BY nome ASC");
 $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
 
+// Lógica para carregar os dados do livro a ser editado
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -57,6 +39,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+// Lógica para processar a atualização do livro (mantida do seu código original)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titulo = $_POST['titulo'];
     $preco = $_POST['preco'];
@@ -101,8 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if (move_uploaded_file($imagemTmp, $caminhoDestino)) {
-            if (!empty($livro['imagem']) && file_exists($livro['imagem'])) {
-                unlink($livro['imagem']);
+            // Se houver uma imagem antiga, exclua-a
+            if (!empty($livro['imagem']) && file_exists($pastaUploads . $livro['imagem'])) {
+                unlink($pastaUploads . $livro['imagem']);
             }
             $imagemParaSalvar = $nomeImagem;
         } else {
@@ -115,10 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
     } else {
-        $imagemParaSalvar = $livro['imagem'];
+        $imagemParaSalvar = $livro['imagem']; // Mantém a imagem existente se nenhuma nova for enviada
     }
 
-    $sql = "UPDATE livros SET 
+    $sql = "UPDATE livros SET
                 titulo = :titulo,
                 preco = :preco,
                 estoque = :estoque,
@@ -171,61 +155,177 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<form method="POST" action="edit.php?id=<?php echo $livro['id']; ?>" enctype="multipart/form-data">
-    <label>Título do livro:</label><br>
-    <input type="text" name="titulo" value="<?php echo htmlspecialchars($livro['titulo']); ?>" required><br><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/create&delete.css">
+    <title>Edit | leyo+</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 
-    <label>Preço:</label><br>
-    <input type="number" name="preco" min="0" step="0.01" value="<?php echo htmlspecialchars($livro['preco']); ?>" required><br><br>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="../../index.php">Leyo<span>+</span></a>
+            </div>
+            <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
+                <input type="text" name="busca" placeholder="Pesquise o livro" autocomplete="off">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
 
-    <label>Estoque:</label><br>
-    <input type="number" name="estoque" min="0" value="<?php echo htmlspecialchars($livro['estoque']); ?>" required><br><br>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-    <label>Ano de publicação:</label><br>
-    <input type="number" name="ano_publicacao" min="1000" value="<?php echo htmlspecialchars($livro['ano_publicacao']); ?>" required><br><br>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <label>Descrição:</label><br>
-    <textarea name="descricao" rows="4" cols="50" required><?php echo htmlspecialchars($livro['descricao']); ?></textarea><br><br>
+    <div class="book-form">
+        <form method="POST" action="edit.php?id=<?php echo $livro['id']; ?>" enctype="multipart/form-data">
+            <div class="form-main-content">
+                <div class="image-upload-section">
+                    <div class="image-placeholder">
+                        <img id="preview-imagem"
+                            src="<?php echo (!empty($livro['imagem']) && file_exists('../../uploads/' . $livro['imagem'])) ? '../../uploads/' . htmlspecialchars($livro['imagem']) : '#'; ?>"
+                            alt="Prévia da imagem"
+                            style="<?php echo (!empty($livro['imagem']) && file_exists('../../uploads/' . $livro['imagem'])) ? 'display:block;' : 'display:none;'; ?>">
+                    </div>
+                    <label for="image-upload-input" class="edit-photo-btn">Editar foto</label>
+                    <input type="file" name="imagem" id="image-upload-input" accept="image/*" style="display: none;">
 
-    <label>Categoria:</label><br>
-    <select name="categoria_id" required>
-        <option value="">Selecione uma categoria</option>
-        <?php foreach ($categorias as $categoria): ?>
-            <option value="<?= $categoria['id'] ?>" <?php if($categoria['id'] == $livro['categoria_id']) echo 'selected'; ?>>
-                <?= htmlspecialchars($categoria['nome']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
+                    <div class="author-publisher-mobile">
+                        <div class="form-group">
+                            <?php
+                                $stmtAutor = $pdo->prepare("SELECT nome FROM autores WHERE id = :id");
+                                $stmtAutor->execute([':id' => $livro['autor_id']]);
+                                $autor = $stmtAutor->fetchColumn();
+                            ?>
+                            <input type="text" name="autor_nome" required placeholder="Nome Autor"
+                                value="<?php echo htmlspecialchars($autor ?: ''); ?>">
+                        </div>
+                        <div class="form-group">
+                            <?php
+                                $stmtEditora = $pdo->prepare("SELECT nome FROM editoras WHERE id = :id");
+                                $stmtEditora->execute([':id' => $livro['editora_id']]);
+                                $editora = $stmtEditora->fetchColumn();
+                            ?>
+                            <input type="text" name="editora_nome" required placeholder="Editora"
+                                value="<?php echo htmlspecialchars($editora ?: ''); ?>">
+                        </div>
+                    </div>
+                </div>
 
-    <label>Nome do Autor:</label><br>
-    <?php
-        $stmtAutor = $pdo->prepare("SELECT nome FROM autores WHERE id = :id");
-        $stmtAutor->execute([':id' => $livro['autor_id']]);
-        $autor = $stmtAutor->fetchColumn();
-    ?>
-    <input type="text" name="autor_nome" value="<?php echo htmlspecialchars($autor ?: ''); ?>" required><br><br>
+                <div class="book-details-section">
+                    <div class="book-header">
+                        <div class="form-group book-title-input">
+                            <input type="text" name="titulo" required placeholder="Book Title"
+                                value="<?php echo htmlspecialchars($livro['titulo']); ?>">
+                        </div>
+                        <div class="form-group book-category-select">
+                            <select name="categoria_id" required>
+                                <option value="">Tema Unico</option>
+                                <?php foreach ($categorias as $categoria): ?>
+                                <option value="<?= $categoria['id'] ?>" <?php
+                                    if($categoria['id']==$livro['categoria_id']) echo 'selected' ; ?>>
+                                    <?= htmlspecialchars($categoria['nome']) ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
 
-    <label>Nome da Editora:</label><br>
-    <?php
-        $stmtEditora = $pdo->prepare("SELECT nome FROM editoras WHERE id = :id");
-        $stmtEditora->execute([':id' => $livro['editora_id']]);
-        $editora = $stmtEditora->fetchColumn();
-    ?>
-    <input type="text" name="editora_nome" value="<?php echo htmlspecialchars($editora ?: ''); ?>" required><br><br>
+                    <div class="form-group book-description-textarea">
+                        <textarea name="descricao" required
+                            placeholder="ESCREVA O ENREDO - Deep in the heart of the valley lies a quiet forest, untouched by time. The trees stand tall, their branches swaying gently in the wind, whispering secrets only nature can understand. Birds chirp high above, and the soft rustle of leaves creates a peaceful symphony. Occasionally, a deer wanders through the underbrush, pausing to listen to the silence. It's a place where the world slows down, where one can breathe freely and feel connected to something greater"><?php echo htmlspecialchars($livro['descricao']); ?></textarea>
+                    </div>
 
-    <label>Imagem atual:</label><br>
-    <?php if (!empty($livro['imagem']) && file_exists('../../uploads/' . $livro['imagem'])): ?>
-        <img src="../../uploads/<?php echo $livro['imagem']; ?>" alt="Imagem do livro" class="preview">
-    <?php else: ?>
-        <p>Sem imagem</p>
-    <?php endif; ?>
+                    <div class="form-row price-stock-inputs">
+                        <div class="form-group">
+                            <input type="number" name="estoque" min="0" required placeholder="Estoque"
+                                value="<?php echo htmlspecialchars($livro['estoque']); ?>">
+                        </div>
 
-    <label>Alterar imagem (opcional):</label><br>
-    <input type="file" name="imagem" accept="image/*"><br><br>
+                        <div class="form-group">
+                            <input type="number" name="preco" min="0" step="0.01" required placeholder="Preço"
+                                value="<?php echo htmlspecialchars($livro['preco']); ?>">
+                        </div>
+                    </div>
 
-    <button type="submit">Salvar alterações</button>
-</form>
+                    <div class="form-group publication-year-input">
+                        <input type="number" name="ano_publicacao" min="1000" max="2025" required
+                            placeholder="Ano de Publicação"
+                            value="<?php echo htmlspecialchars($livro['ano_publicacao']); ?>">
+                    </div>
 
+                    <div class="author-publisher-desktop">
+                        <div class="form-group">
+                            <?php
+                                // Re-fetch author and publisher to ensure values are correct after potential POST processing
+                                $stmtAutor = $pdo->prepare("SELECT nome FROM autores WHERE id = :id");
+                                $stmtAutor->execute([':id' => $livro['autor_id']]);
+                                $autor = $stmtAutor->fetchColumn();
+                            ?>
+                            <input type="text" name="autor_nome" required placeholder="Nome Autor"
+                                value="<?php echo htmlspecialchars($autor ?: ''); ?>">
+                        </div>
+                        <div class="form-group">
+                            <?php
+                                $stmtEditora = $pdo->prepare("SELECT nome FROM editoras WHERE id = :id");
+                                $stmtEditora->execute([':id' => $livro['editora_id']]);
+                                $editora = $stmtEditora->fetchColumn();
+                            ?>
+                            <input type="text" name="editora_nome" required placeholder="Editora"
+                                value="<?php echo htmlspecialchars($editora ?: ''); ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="attention-note">ATENÇÃO: Preencha todos os campos.</p>
+
+            <button type="submit" class="submit-btn save-btn">Salvar alterações</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('image-upload-input').addEventListener('change', function (event) {
+            const input = event.target;
+            const preview = document.getElementById('preview-imagem');
+            const editButton = document.querySelector('.edit-photo-btn');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    editButton.textContent = 'Editar foto';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                // If no file is selected, revert to previous image or hide
+                <? php if (!empty($livro['imagem']) && file_exists('../../uploads/'.$livro['imagem'])): ?>
+                    preview.src = '../../uploads/<?php echo htmlspecialchars($livro['imagem']); ?>';
+                preview.style.display = 'block';
+                <? php else: ?>
+                    preview.src = '#';
+                preview.style.display = 'none';
+                <? php endif; ?>
+                    editButton.textContent = 'Editar foto';
+            }
+        });
+    </script>
 </body>
+
 </html>
