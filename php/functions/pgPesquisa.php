@@ -14,7 +14,7 @@
     <header class="navbar">
         <!-- Menu Hamburguer -->
         <div class="logo">
-            <a href="../index.php"> Leyo<span> +</span> </a>
+            <a href="../../index.php"> Leyo<span> +</span> </a>
         </div>
         <div class="menu-toggle" id="menu-toggle">
             <span></span>
@@ -29,9 +29,9 @@
         </div>
         <nav>
             <ul id="nav-list">
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="AboutUs.php">Sobre nós</a></li>
-                <li><a href="cadastro.html">Cadastre-se</a></li>
+                <li><a href="../../index.php">Home</a></li>
+                <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
+                <li><a href="../../htmls/cadastro.html">Cadastre-se</a></li>
             </ul>
         </nav>
     </header>

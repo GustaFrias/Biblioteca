@@ -78,7 +78,7 @@
         <div class="principal" id="best-sellers">
             <section class="tela">
                 <div class="separador" id="temas">
-                    <h2 class="titulo">Best Sellers Of The Library</h2>
+                    <h2 class="titulo">Best Sellers</h2>
                     <p class="subtitle">Os livros mais amados pelos nossos leitores</p>
                 </div>
 
