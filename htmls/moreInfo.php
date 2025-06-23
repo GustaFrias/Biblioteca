@@ -54,7 +54,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
-                <a href="index.html">Leyo<span>+</span></a>
+                <a href="../index.php">Leyo<span>+</span></a>
             </div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
                 <input type="text" name="busca" placeholder="Pesquise aqui" autocomplete="off">
@@ -129,6 +129,23 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
             </section>
         </div>
     </main>
+    <footer>
+        <div id="footer_items">
+            <span id="copyright">
+                © 2025 <span class="">Leyo</span><span class="">+</span>
+            </span>
+            <div class="footer_infos">
+                <div class="">Entre em Contato:</div>
+                <div class="">(11) 98765-4321</div>
+                <div class="">Leyo+</div>
+            </div>
+            <div class="social-media-buttons">
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
     
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
