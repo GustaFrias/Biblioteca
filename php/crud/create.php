@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="image-placeholder">
                         <img id="preview-imagem" src="#" alt="Prévia da imagem" style="display:none;">
                     </div>
-                    <label for="image-upload-input" class="edit-photo-btn">Editar foto</label>
+                    <label for="image-upload-input" class="edit-photo-btn">Inserir Capa</label>
                     <input type="file" name="imagem" id="image-upload-input" accept="image/*" required style="display: none;">
                 </div>
 
@@ -203,13 +203,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 reader.onload = function (e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
-                    editButton.textContent = 'Editar foto';
+                    editButton.textContent = 'Trocar Capa';
                 };
                 reader.readAsDataURL(input.files[0]);
             } else {
                 preview.src = '#';
                 preview.style.display = 'none';
-                editButton.textContent = 'Editar foto';
+                editButton.textContent = 'Trocar Capa';
             }
         });
     </script>
