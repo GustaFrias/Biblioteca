@@ -54,7 +54,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
-                <a href="index.html">Leyo<span>+</span></a>
+                <a href="../index.php">Leyo<span>+</span></a>
             </div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
                 <input type="text" name="busca" placeholder="Pesquise aqui" autocomplete="off">
@@ -70,7 +70,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
             <nav class="main-nav">
                 <ul>
                     <li><a href="../index.php">Home</a></li>
-                    <li><a href="AboutUs.html">Sobre Nós</a></li>
+                    <li><a href="AboutUs.php">Sobre Nós</a></li>
                     <li><a href="cadastro.html">Cadastrar-se</a></li>
                     <li><a href="login.html">Login</a></li>
                 </ul>
@@ -85,7 +85,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
                     <div class="book-cover-container">
                         <img src="../uploads/<?= htmlspecialchars($livro['imagem']) ?>" alt="<?= htmlspecialchars($livro['titulo']) ?>" class="book-cover">
                     </div>
-                    <p class="book-author">Nome Autor: <?= htmlspecialchars($livro['nome_autor']) ?></p>
+                    <p class="book-author">Autor: <?= htmlspecialchars($livro['nome_autor']) ?></p>
                     <p class="book-publisher">Editora: <?= htmlspecialchars($livro['nome_editora']) ?></p>
                 </div>
                 
@@ -100,7 +100,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
                     <div class="purchase-section">
                         <button class="buy-button">
                             COMPRAR
-                            <span>R$valor</span>
+                            <span><span>R$<?= number_format($livro['preco'], 2, ',', '.') ?></span></span>
                         </button>
                     </div>
                 </div>
@@ -125,6 +125,9 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
                         <div class="related-book-cover"></div>
                         <p>Título</p>
                     </div>
+                    <div class="related-book">
+                        <div class="related-book-cover"></div>
+                        <p>Título</p>
                 </div>
             </section>
         </div>
