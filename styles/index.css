@@ -10,7 +10,8 @@
     width: 90%;
     max-width: 60%;
     height: 250px;
-    backdrop-filter: blur(2px);
+    background-color: rgba(45, 30, 20, 0.8);
+    border: 1px solid #5a4a41;
     border-radius:  16%;
     text-align: center;
 }
