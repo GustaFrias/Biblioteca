@@ -9,7 +9,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 //converte o id em inteiro pra evitar sqlinjection
 $id = (int) $_GET['id'];
 
-// Adicionado 'livros.valor' para buscar o preço do banco de dados
+
 $sql = "SELECT livros.*, autores.nome AS nome_autor, categorias.nome AS nome_categoria, editoras.nome AS nome_editora
         FROM livros
         LEFT JOIN autores ON livros.autor_id = autores.id
