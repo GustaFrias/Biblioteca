@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="../../styles/pgPesquisa.css">
     <title>Leyo+ - Pesquisa</title>
 </head>
@@ -81,6 +82,24 @@
         }
         ?>
     </main>
+
+    <footer>
+        <div id="footer_items">
+            <span id="copyright">
+                © 2025 <span class="">Leyo</span><span class="">+</span>
+            </span>
+            <div class="footer_infos">
+                <div class="">Entre em Contato:</div>
+                <div class="">(11) 98765-4321</div>
+                <div class="">Leyo+</div>
+            </div>
+            <div class="social-media-buttons">
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
     
 
     <script>
