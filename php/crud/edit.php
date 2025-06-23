@@ -4,7 +4,7 @@ require '../conexao/conexao.php';
 $stmtCategorias = $pdo->query("SELECT id, nome FROM categorias ORDER BY nome ASC");
 $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
 
-// Lógica para carregar os dados do livro a ser editado
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Lógica para processar a atualização do livro (mantida do seu código original)
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titulo = $_POST['titulo'];
     $preco = $_POST['preco'];
@@ -84,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if (move_uploaded_file($imagemTmp, $caminhoDestino)) {
-            // Se houver uma imagem antiga, exclua-a
             if (!empty($livro['imagem']) && file_exists($pastaUploads . $livro['imagem'])) {
                 unlink($pastaUploads . $livro['imagem']);
             }
@@ -99,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
     } else {
-        $imagemParaSalvar = $livro['imagem']; // Mantém a imagem existente se nenhuma nova for enviada
+        $imagemParaSalvar = $livro['imagem'];
     }
 
     $sql = "UPDATE livros SET
@@ -127,18 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: 'Livro atualizado com sucesso!',
-                timer: 2500,
-                showConfirmButton: false,
-                timerProgressBar: true
-            }).then(() => {
-                window.location.href = '../login&cadastro/admin.php';
-            });
-        </script>";
+       ;
         exit;
     } else {
         echo "<script>
@@ -272,7 +260,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="author-publisher-desktop">
                         <div class="form-group">
                             <?php
-                                // Re-fetch author and publisher to ensure values are correct after potential POST processing
                                 $stmtAutor = $pdo->prepare("SELECT nome FROM autores WHERE id = :id");
                                 $stmtAutor->execute([':id' => $livro['autor_id']]);
                                 $autor = $stmtAutor->fetchColumn();
@@ -314,7 +301,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
-                // If no file is selected, revert to previous image or hide
                 <? php if (!empty($livro['imagem']) && file_exists('../../uploads/'.$livro['imagem'])): ?>
                     preview.src = '../../uploads/<?php echo htmlspecialchars($livro['imagem']); ?>';
                 preview.style.display = 'block';
