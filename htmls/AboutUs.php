@@ -28,9 +28,9 @@
                 <nav>
                     <ul id="nav-list">
                        <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+                        <li><a href="../index.php">Home</a></li>
                         <li><a href="cadastro.html">Cadastrar-se</a></li>
                         <li><a href="login.html">Login</a></li>
-                        <li><a href="../index.php">Home</a></li>
                     <?php else: ?>
                         <li>
                             <li><a href="../index.php">Home</a></li>
