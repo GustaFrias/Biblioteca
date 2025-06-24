@@ -30,7 +30,7 @@
                 <ul id="nav-list">
                     <li><a href="htmls/AboutUs.php">Sobre Nós</a></li>
 
-                    <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+                   <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
                         <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
                         <li><a href="htmls/login.html">Login</a></li>
                     <?php else: ?>
@@ -39,18 +39,15 @@
                                 style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
                         </li>
                         <li>
-                            <a href="<?php echo isset($_SESSION['admin']) ? 'php/login&cadastro/admin.php' : '#'; ?>">
-                                <?php
-                                    if (isset($_SESSION['usuario'])) {
-                                        echo htmlspecialchars($_SESSION['usuario']);
-                                    } elseif (isset($_SESSION['admin'])) {
-                                        echo 'Administrador';
-                                    }
-                                ?>
-                            </a>
+                            <?php if (isset($_SESSION['admin'])): ?>
+                                <a href="php/login&cadastro/admin.php">Administrador</a>
+                            <?php elseif (isset($_SESSION['usuario'])): ?>
+                                <?= htmlspecialchars($_SESSION['usuario']) ?>
+                            <?php endif; ?>
                         </li>
                         <li><a href="php/login&cadastro/logout.php">Sair</a></li>
                     <?php endif; ?>
+
                 </ul>
             </nav>
         </header>
