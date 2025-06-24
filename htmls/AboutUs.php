@@ -27,29 +27,27 @@
                 </div>
                 <nav>
                     <ul id="nav-list">
+                       <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
                         <li><a href="../index.php">Home</a></li>
-        <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-    <li><a href="cadastro.html">Cadastrar-se</a></li>
-    <li><a href="login.html">Login</a></li>
-<?php else: ?>
-    <li>
-        <img src="../img/iconLogin.png" alt="" id="icon-login" style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
-    </li>
-    <li>
-        <a href="<?php echo isset($_SESSION['admin']) ? '../php/login&cadastro/admin.php' : ''; ?>">
-            <?php
-                if (isset($_SESSION['usuario'])) {
-                    echo htmlspecialchars($_SESSION['usuario']);
-                } elseif (isset($_SESSION['admin'])) {
-                    echo 'Administrador';
-                }
-            ?>
-        </a>
-    </li>
-    <li><a href="../php/login&cadastro/logout.php">Sair</a></li>
-<?php endif; ?>
+                        <li><a href="cadastro.html">Cadastrar-se</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    <?php else: ?>
+                        <li>
+                            <li><a href="../index.php">Home</a></li>
+                            <img src="../img/iconLogin.png" alt="" id="icon-login"
+                                style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+                        </li>
+                        <li>
+                            <?php if (isset($_SESSION['admin'])): ?>
+                                <li><a href="../php/login&cadastro/admin.php">Administrador</a></li>
+                            <?php elseif (isset($_SESSION['usuario'])): ?>
+                                <?= htmlspecialchars($_SESSION['usuario']) ?>
+                            <?php endif; ?>
+                        </li>
+                        <li><a href="../php/login&cadastro/logout.php">Sair</a></li>
+                    <?php endif; ?>
+                        </ul>
                 </nav>
-
             </header>
 
             <section class="tela">

@@ -1,12 +1,13 @@
 <?php
+session_start();
 require '../php/conexao/conexao.php';
 
-//verifica se o id tá na url, se n tiver ou n for númerico exibe a mensagem
+
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "Livro não encontrado.";
     exit;
 }
-//converte o id em inteiro pra evitar sqlinjection
+
 $id = (int) $_GET['id'];
 
 
@@ -26,7 +27,7 @@ if (!$livro) {
     exit;
 }
 
-// livros relacionados
+
 $sqlRelacionados = "SELECT livros.*, autores.nome AS nome_autor
                      FROM livros
                      LEFT JOIN autores ON livros.autor_id = autores.id
@@ -69,10 +70,28 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
 
             <nav class="main-nav">
                 <ul>
-                    <li><a href="../index.php">Home</a></li>
-                    <li><a href="AboutUs.php">Sobre Nós</a></li>
-                    <li><a href="cadastro.html">Cadastrar-se</a></li>
-                    <li><a href="login.html">Login</a></li>
+                  <ul id="nav-list">
+                    <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>            
+                         <li><a href="../index.php">Home</a></li>
+                         <li><a href="AboutUs.php">Sobre nós</a></li>
+                        <li><a href="cadastro.html">Cadastrar-se</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    <?php else: ?>
+                        <li>
+                            <li><a href="../index.php">Home</a></li>
+                            <li><a href="AboutUs.php">Sobre nós</a></li>
+                            <img src="../img/iconLogin.png" alt="" id="icon-login"
+                                style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+                        </li>
+                        <li>
+                            <?php if (isset($_SESSION['admin'])): ?>
+                                <li><a href="../php/login&cadastro/admin.php">Administrador</a></li>
+                            <?php elseif (isset($_SESSION['usuario'])): ?>
+                                <?= htmlspecialchars($_SESSION['usuario']) ?>
+                            <?php endif; ?>
+                        </li>
+                        <li><a href="../php/login&cadastro/logout.php">Sair</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
