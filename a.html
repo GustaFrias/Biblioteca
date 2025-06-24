@@ -104,7 +104,7 @@
                         $livros = $stmt->fetchAll();
 
                         foreach ($livros as $livro):
-                        ?>
+                    ?>
                         <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
                             <div class="book-column-left">
                                 <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
