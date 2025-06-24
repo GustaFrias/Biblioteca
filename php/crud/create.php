@@ -216,13 +216,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 reader.onload = function (e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
-                    editButton.textContent = 'Editar foto';
+                    editButton.textContent = 'Trocar Capa';
                 };
                 reader.readAsDataURL(input.files[0]);
             } else {
                 preview.src = '#';
                 preview.style.display = 'none';
-                editButton.textContent = 'Editar foto';
+                editButton.textContent = 'Trocar Capa';
             }
         });
 
