@@ -3,7 +3,9 @@ require '../conexao/conexao.php';
 
 $stmtCategorias = $pdo->query("SELECT id, nome FROM categorias ORDER BY nome ASC");
 $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
+?>
 
+<?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titulo = $_POST['titulo'];
     $preco = $_POST['preco'];
@@ -17,20 +19,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $pdo->prepare("SELECT id FROM autores WHERE nome = :nome");
     $stmt->execute([':nome' => $autor_nome]);
     $autor = $stmt->fetch(PDO::FETCH_ASSOC);
-    $autor_id = $autor ? $autor['id'] : (function () use ($pdo, $autor_nome) {
+    if ($autor) {
+        $autor_id = $autor['id'];
+    } else {
         $stmt = $pdo->prepare("INSERT INTO autores (nome) VALUES (:nome)");
         $stmt->execute([':nome' => $autor_nome]);
-        return $pdo->lastInsertId();
-    })();
+        $autor_id = $pdo->lastInsertId();
+    }
 
     $stmt = $pdo->prepare("SELECT id FROM editoras WHERE nome = :nome");
     $stmt->execute([':nome' => $editora_nome]);
     $editora = $stmt->fetch(PDO::FETCH_ASSOC);
-    $editora_id = $editora ? $editora['id'] : (function () use ($pdo, $editora_nome) {
+    if ($editora) {
+        $editora_id = $editora['id'];
+    } else {
         $stmt = $pdo->prepare("INSERT INTO editoras (nome) VALUES (:nome)");
         $stmt->execute([':nome' => $editora_nome]);
-        return $pdo->lastInsertId();
-    })();
+        $editora_id = $pdo->lastInsertId();
+    }
 
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagemTmp = $_FILES['imagem']['tmp_name'];
@@ -55,10 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':categoria_id', $categoria_id);
             $stmt->bindParam(':autor_id', $autor_id);
             $stmt->bindParam(':editora_id', $editora_id);
-
             if ($stmt->execute()) {
                 echo "<script>
-                    window.addEventListener('load', () => {
+                    document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
                             icon: 'success',
                             title: 'Livro cadastrado com sucesso!',
@@ -72,31 +77,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </script>";
             } else {
                 echo "<script>
-                    window.addEventListener('load', () => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Erro ao salvar no banco de dados.'
-                        });
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro ao salvar no banco de dados.'
                     });
                 </script>";
             }
         } else {
             echo "<script>
-                window.addEventListener('load', () => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro ao mover o arquivo de imagem.'
-                    });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao mover o arquivo de imagem.'
                 });
             </script>";
         }
     } else {
         echo "<script>
-            window.addEventListener('load', () => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Imagem não enviada ou inválida.'
-                });
+            Swal.fire({
+                icon: 'error',
+                title: 'Imagem não enviada ou inválida.'
             });
         </script>";
     }
@@ -109,9 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create | leyo+</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="../../styles/create&delete.css">
+    <title>Create | leyo+</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -125,22 +124,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="text" name="busca" placeholder="Pesquise o livro" autocomplete="off">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <div class="menu-toggle"><span></span><span></span><span></span></div>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <nav class="main-nav">
-                <ul><li><a href="#">Logout</a></li></ul>
+                <ul>
+                    <li><a href="#">Logout</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
     <div class="book-form">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="create.php" enctype="multipart/form-data">
             <div class="form-main-content">
                 <div class="image-upload-section">
                     <div class="image-placeholder">
                         <img id="preview-imagem" src="#" alt="Prévia da imagem" style="display:none;">
                     </div>
                     <label for="image-upload-input" class="edit-photo-btn">Editar foto</label>
-                    <input type="file" name="imagem" id="image-upload-input" accept="image/*" required style="display: none;">
+                    <input type="file" name="imagem" id="image-upload-input" accept="image/*" required
+                        style="display: none;">
                 </div>
 
                 <div class="book-details-section">
@@ -150,33 +158,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
                         <div class="form-group book-category-select">
                             <select name="categoria_id" required>
-                                <option value="">Tema Único</option>
+                                <option value="">Tema Unico</option>
                                 <?php foreach ($categorias as $categoria): ?>
-                                    <option value="<?= $categoria['id'] ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
+                                <option value="<?= $categoria['id'] ?>">
+                                    <?= htmlspecialchars($categoria['nome']) ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group book-description-textarea">
-                        <textarea name="descricao" required placeholder="ESCREVA O ENREDO..."></textarea>
+                        <textarea name="descricao" required
+                            placeholder="ESCREVA O ENREDO - Deep in the heart of the valley lies a quiet forest, untouched by time. The trees stand tall, their branches swaying gently in the wind, whispering secrets only nature can understand. Birds chirp high above, and the soft rustle of leaves creates a peaceful symphony. Occasionally, a deer wanders through the underbrush, pausing to listen to the silence. It's a place where the world slows down, where one can breathe freely and feel connected to something greater"></textarea>
                     </div>
 
                     <div class="form-row price-stock-inputs">
                         <div class="form-group">
                             <input type="number" name="estoque" min="0" required placeholder="Estoque">
                         </div>
+
                         <div class="form-group">
                             <input type="number" name="preco" min="0" step="0.01" required placeholder="Preço">
                         </div>
                     </div>
 
                     <div class="form-group publication-year-input">
-                        <input type="number" name="ano_publicacao" min="1000" max="2025" required placeholder="Ano de Publicação">
+                        <input type="number" name="ano_publicacao" min="1000" max="2025" required
+                            placeholder="Ano de Publicação">
                     </div>
 
-                    <!-- ✅ Campo único de autor e editora (corrigido) -->
-                    <div class="form-row">
+                    <div class="author-publisher-desktop">
                         <div class="form-group">
                             <input type="text" name="autor_nome" required placeholder="Nome Autor">
                         </div>
@@ -188,6 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
             <p class="attention-note">ATENÇÃO: Preencha todos os campos.</p>
+
             <button type="submit" class="submit-btn save-btn">Cadastrar Livro</button>
         </form>
     </div>
@@ -212,6 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 editButton.textContent = 'Editar foto';
             }
         });
+
     </script>
 </body>
 
