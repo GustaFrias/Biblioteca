@@ -73,7 +73,7 @@
             </form>
         </div>
     </div>
-
+    // Best sellers
     <div class="carussel">
         <div class="principal" id="best-sellers">
             <section class="tela">
@@ -136,6 +136,96 @@
             </section>
         </div>
     </div>
+    // romance
+    <div class="carussel">
+        <div class="principal">
+            <section class="tela">
+                <div class="separador">
+                    <h2 class="titulo">Romance</h2>
+                    <p class="subtitle">Envolva-se em histórias de amor e emoção</p>
+                </div>
+
+                <div class="books-container">
+                    <div class="book-grid">
+                        <?php
+                        $sqlRomance = "SELECT livros.*, autores.nome AS nome_autor
+                                    FROM livros
+                                    LEFT JOIN autores ON livros.autor_id = autores.id
+                                    WHERE livros.categoria_id = 2
+                                    ORDER BY livros.id DESC
+                                    LIMIT 5";
+
+                        $stmtRomance = $pdo->prepare($sqlRomance);
+                        $stmtRomance->execute();
+                        $romances = $stmtRomance->fetchAll();
+
+                        foreach ($romances as $livro):
+                        ?>
+                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                <p class="book-author"><?= htmlspecialchars($livro['nome_autor']) ?></p>
+                            </div>
+                            <div class="book-column-right">
+                                <h3 class="book-title"><?= htmlspecialchars($livro['titulo']) ?></h3>
+                                <p class="book-description">
+                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
+                                </p>
+                                <p class="book-price">R$ <?= number_format($livro['preco'], 2, ',', '.') ?></p>
+                            </div>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+// fantasia
+<div class="carussel">
+    <div class="principal">
+        <section class="tela">
+            <div class="separador">
+                <h2 class="titulo">Fantasia</h2>
+                <p class="subtitle">Viaje por mundos mágicos e extraordinários</p>
+            </div>
+
+            <div class="books-container">
+                <div class="book-grid">
+                    <?php
+                    $sqlFantasia = "SELECT livros.*, autores.nome AS nome_autor
+                                    FROM livros
+                                    LEFT JOIN autores ON livros.autor_id = autores.id
+                                    WHERE livros.categoria_id = 3
+                                    ORDER BY livros.id DESC
+                                    LIMIT 5";
+
+                    $stmtFantasia = $pdo->prepare($sqlFantasia);
+                    $stmtFantasia->execute();
+                    $fantasias = $stmtFantasia->fetchAll();
+
+                    foreach ($fantasias as $livro):
+                    ?>
+                    <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                        <div class="book-column-left">
+                            <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                 alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                            <p class="book-author"><?= htmlspecialchars($livro['nome_autor']) ?></p>
+                        </div>
+                        <div class="book-column-right">
+                            <h3 class="book-title"><?= htmlspecialchars($livro['titulo']) ?></h3>
+                            <p class="book-description">
+                                <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
+                            </p>
+                            <p class="book-price">R$ <?= number_format($livro['preco'], 2, ',', '.') ?></p>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 
     <div class="principal" id="index">
         <div class="degrade">
