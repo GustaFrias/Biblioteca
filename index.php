@@ -365,6 +365,7 @@
                         onde sofisticação, conforto e cultura se encontram. Cada detalhe foi pensado com carinho para
                         oferecer uma experiência única. Quer saber como esse sonho ganhou vida? Conheça nossa história
                         completa na página Sobre Nós.
+                    </span>
                 </div>
             </section>
         </div>
