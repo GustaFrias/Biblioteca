@@ -86,7 +86,7 @@
         ?>
     </main>
 
-    <footer>
+    <footer id="footer">
         <div id="footer_items">
             <span id="copyright">
                 © 2025 <span class="">Leyo</span><span class="">+</span>

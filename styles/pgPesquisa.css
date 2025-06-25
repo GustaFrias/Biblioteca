@@ -15,6 +15,7 @@ body {
     background-color: #D2B48C;
     font-family: 'Jacques Francois', serif;
     color: #fff;
+    height: 100%;
 }
 
 a {
@@ -94,6 +95,10 @@ a {
     border: none;
     width: 250px;
     outline: none;
+}
+
+#footer{
+    margin-bottom: -10%;
 }
 
 @media (max-width: 768px) {
