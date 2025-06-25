@@ -125,31 +125,27 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </section>
             
-            <section class="related-books">
+           <section class="related-books">
                 <h2 class="section-title">Livros similares</h2>
                 <div class="related-books-grid">
-                    <div class="related-book">
-                        <div class="related-book-cover"></div>
-                        <p>Título</p>
-                    </div>
-                    <div class="related-book">
-                        <div class="related-book-cover"></div>
-                        <p>Título</p>
-                    </div>
-                    <div class="related-book">
-                        <div class="related-book-cover"></div>
-                        <p>Título</p>
-                    </div>
-                    <div class="related-book">
-                        <div class="related-book-cover"></div>
-                        <p>Título</p>
-                    </div>
-                    <div class="related-book">
-                        <div class="related-book-cover"></div>
-                        <p>Título</p>
+                    <?php if ($relacionados): ?>
+                        <?php foreach ($relacionados as $rel): ?>
+                            <div class="related-book">
+                                        <a href="moreInfo.php?id=<?= $rel['id'] ?>">
+                                    <div class="related-book-cover">
+                                        <img src="../uploads/<?= htmlspecialchars($rel['imagem']) ?>" alt="<?= htmlspecialchars($rel['titulo']) ?>" width="100%", height="100%">
+                                    </div>
+                                    <p><?= htmlspecialchars($rel['titulo']) ?></p>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>Não há livros relacionados nesta categoria.</p>
+                    <?php endif; ?>
                 </div>
             </section>
-        </div>
+
+       
     </main>
     <footer>
         <div id="footer_items">
