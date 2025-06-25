@@ -74,55 +74,35 @@
         </div>
     </div>
     
-    <div class="carussel">     <!--best sellers -->
-        <div class="principal" id="best-sellers">
-            <section class="tela">
-                <div class="separador" id="temas">
-                    <h2 class="titulo">Best Sellers Of The Library</h2>
-                    <p class="subtitle">there will be a small title here</p>
+       <?php
+                // Defina aqui os id s dos bestsellers
+            $idsBestSellers = [1, 2, 3, 4, 5];
+            $placeholders = implode(',', array_fill(0, count($idsBestSellers), '?'));
+
+            $sql = "SELECT livros.*, autores.nome AS nome_autor
+                FROM livros
+                LEFT JOIN autores ON livros.autor_id = autores.id
+                WHERE livros.id IN ($placeholders)
+                ORDER BY FIELD(livros.id, $placeholders)";
+
+             $stmt = $pdo->prepare($sql);
+             $params = array_merge($idsBestSellers, $idsBestSellers);
+
+             $stmt->execute($params);
+                            $livros = $stmt->fetchAll();
+            foreach ($livros as $livro):
+        ?>
+            <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                <div class="book-info">
+                    <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>" alt="<?= htmlspecialchars($livro['titulo']) ?>" style="width:100px; height:auto;">
+                    <h3 class="book-title"><?= htmlspecialchars($livro['titulo']) ?></h3>
+                    <p class="book-description"><?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?></p>
+                    <p class="book-author"><?= htmlspecialchars($livro['nome_autor']) ?></p>
+                    <p class="book-price">R$ <?= number_format($livro['preco'], 2, ',', '.') ?></p>
                 </div>
-
-                <div class="books-container">
-                    <button class="scroll-btn left">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-
-                    <div class="book-grid">
-                        <?php
-                        $sql = "SELECT livros.*, autores.nome AS nome_autor
-                                FROM livros
-                                LEFT JOIN autores ON livros.autor_id = autores.id
-                                ORDER BY livros.id DESC
-                                LIMIT 10"; 
-
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute();
-                        $livros = $stmt->fetchAll();
-
-                        foreach ($livros as $livro):
-                        ?>
-                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                            <div class="book-column-left">
-                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                                <p class="book-author">
-                                    <?= htmlspecialchars($livro['nome_autor']) ?>
-                                </p>
-                            </div>
-                            <div class="book-column-right">
-                                <h3 class="book-title">
-                                    <?= htmlspecialchars($livro['titulo']) ?>
-                                </h3>
-                                <p class="book-description">
-                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                                </p>
-                                <p class="book-price">R$
-                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
-                                </p>
-                            </div>
-                        </a>
-                        <?php endforeach; ?>
-                    </div>
+            </a>
+        <?php endforeach; ?>
+    </div>
 
                     <button class="scroll-btn right">
                         <i class="fas fa-chevron-right"></i>
