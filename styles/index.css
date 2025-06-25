@@ -1,6 +1,10 @@
 @import url(aboutUs.css);
 @import url(import.css);
 
+a {
+    text-decoration: none;
+}
+
 .home {
     position: absolute;
     top: 50%;
@@ -12,7 +16,7 @@
     height: 250px;
     background-color: rgba(45, 30, 20, 0.8);
     border: 1px solid #5a4a41;
-    border-radius:  16%;
+    border-radius: 16%;
     text-align: center;
 }
 
@@ -25,13 +29,13 @@
     letter-spacing: 3px;
 }
 
-.home .caixa-input{
+.home .caixa-input {
     width: 50%;
     position: relative;
     margin: 0 auto 30px;
 }
 
-.home .caixa-input input{
+.home .caixa-input input {
     width: 100%;
     padding: 12px 40px 12px 12px;
     font-size: 16px;
@@ -42,7 +46,7 @@
     background: #D9D9D9;
 }
 
-.home .caixa-input label{
+.home .caixa-input label {
     position: absolute;
     top: 12px;
     left: 12px;
@@ -52,7 +56,7 @@
     background-color: transparent;
 }
 
-.home .caixa-input input:focus+label{
+.home .caixa-input input:focus+label {
     color: transparent;
     background: transparent;
 }
@@ -66,7 +70,7 @@
     pointer-events: none;
 }
 
-.diminuicao{
+.diminuicao {
     margin: -15px 25% 40px;
     text-align: center;
     font-weight: 300;
@@ -77,6 +81,9 @@
     background-image: url(../img/c8b1d922870a6fec38a22b890e7f4b8fbf10c6c4.png);
 }
 
+#temas {
+    padding-bottom: 50px;
+}
 
 /* Estilos do carrossel */
 .carussel {
@@ -84,14 +91,16 @@
     padding: 40px 0;
 }
 
-#best-sellers{
+#best-sellers {
+    max-width: 1200px;
+    margin: -5% auto -10%;
     background-image: none;
     text-align: center;
 }
 
 .books-container {
     position: relative;
-    max-width: 1200px; 
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 50px;
 }
@@ -111,28 +120,24 @@
     display: none;
 }
 
-
-
-
 .book-card {
-    min-width: calc(50% - 20px);
-    background: #f0f0f0;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    min-width: calc(33.333% - 22px);
+    background: #EAE0D5;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     flex: 0 0 auto;
     padding: 20px;
     color: #260B01;
-    display: flex; 
-    gap: 20px; 
+    display: flex;
+    gap: 20px;
     align-items: flex-start;
 }
 
 .book-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
-
 
 .book-column-left {
     flex: 0 0 120px;
@@ -141,18 +146,18 @@
 
 .book-column-left img {
     width: 100%;
-    height: 200px;
+    height: 180px;
+    object-fit: cover;
     border-radius: 8px;
     background-color: #714B36;
 }
-
 
 .book-column-right {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    height: 100%; 
+    height: 100%;
 }
 
 .book-title {
@@ -170,7 +175,7 @@
 .book-description {
     font-size: 0.9rem;
     margin: 0 0 15px 0;
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .book-price {
@@ -178,11 +183,8 @@
     font-weight: bold;
     color: #260B01;
     margin: 0;
-    align-self: flex-end; 
+    align-self: flex-end;
 }
-
-
-
 
 .scroll-btn {
     position: absolute;
@@ -238,6 +240,16 @@
 
 .separador .titulo {
     color: white;
+}
+
+#best-sellers .separador .titulo {
+    color: #260B01;
+}
+
+#best-sellers .separador .subtitle {
+    color: #4a1a08;
+    font-style: italic;
+    margin-top: 5px;
 }
 
 .separador .subtitle {

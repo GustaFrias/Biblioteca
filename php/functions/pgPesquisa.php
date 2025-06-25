@@ -12,45 +12,31 @@
 </head>
 
 <body>
-    <header class="navbar">
-        <!-- Menu Hamburguer -->
-        <div class="logo">
-            <a href="../../index.php"> Leyo<span> +</span> </a>
-        </div>
-        <div class="menu-toggle" id="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div>
-            <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-                <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
-                    value="<?php echo isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : ''; ?>" />
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="../../index.php">Leyo<span>+</span></a>
+            </div>
+            <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
+                <input type="text" name="busca" placeholder="Pesquise o livro" autocomplete="off">
+                <button type="submit"><i class="fas fa-search"></i></button>
             </form>
+
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.php">Home</a></li>
+                    <li><a href="../../htmls/AboutUs.php">sobre nós</a></li>
+                    <li><a href="../../htmls/cadastro.html">Cadastrar-se</a></li>
+                    <li><a href="../../htmls/login.html">login</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul id="nav-list">
-                 <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-    <li><a href="../..">Home</a></li>
-    <li><a href="../../htmls/cadastro.html">Cadastrar-se</a></li>
-    <li><a href="../../htmls/login.html">Login</a></li>
-<?php else: ?>
-    <li><a href="../..">Home</a></li>
-    <li><a href="../../htmls/AboutUs.php">sobre nós</a></li>
-        <img src="../../img/iconLogin.png" alt="" id="icon-login"
-             style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
-    </li>
-    <li>
-        <?php if (isset($_SESSION['admin'])): ?>
-            <a href="../login&cadastro/admin.php">Administrador</a>
-        <?php elseif (isset($_SESSION['usuario'])): ?>
-            <?= htmlspecialchars($_SESSION['usuario']) ?>
-        <?php endif; ?>
-    </li>
-    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
-<?php endif; ?>
-            </ul>
-        </nav>
     </header>
 
     <main class="container">
@@ -117,7 +103,7 @@
             </div>
         </div>
     </footer>
-    
+
 
     <script>
         // Menu Hamburguer

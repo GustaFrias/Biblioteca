@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Kalam:wght@300;400;700&display=swap');
 @import url(footer.css);
+@import url(NavBar_Com_BarraPesquisa.css);
 
 * {
     margin: 0;
@@ -17,114 +16,6 @@ body {
     color: #ffffff;
     font-family: 'Jacques Francois', serif;
     line-height: 1.6;
-}
-
-/* Cabeçalho */
-.main-header {
-    background-color: #382a22;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.logo {
-    font-size: 24px;
-    transition: all 0.2s ease; /* Animação adicionada */
-}
-
-.logo:hover {
-    transform: scale(1.03); /* Animação adicionada */
-}
-
-.logo a {
-    font-family: "Jacques Francois", serif;
-    font-size: 28px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #A66E4E;
-}
-
-.logo span {
-    font-weight: 400;
-    font-family: "Kalam", cursive;
-    color: #ffffff;
-}
-
-.main-header form {
-    display: flex;
-    align-items: center;
-    width: 40%;
-}
-
-.main-header input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px 0 0 20px;
-    outline: none;
-    font-family: 'Arial', sans-serif;
-}
-
-.main-header button {
-    background-color: #ffffff;
-    color: black;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
-    height: 37.6px;
-}
-
-.main-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 25px; /* Animação adicionada */
-    transition: all 0.3s ease-in-out; /* Animação adicionada */
-    margin: 0;
-    padding: 0;
-}
-
-.main-nav ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 8px 15px; /* Animação adicionada */
-    border-radius: 5px; /* Animação adicionada */
-    transition: all 0.3s; /* Animação adicionada */
-    font-weight: 500;
-    position: relative;
-}
-
-.main-nav ul li a:hover {
-    background-color: #593312; /* Animação adicionada */
-    color: #fff;
-}
-
-/* Animação da linha inferior no link */
-.main-nav ul li a::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #A66E4E;
-    transition: width 0.3s ease;
-}
-
-.main-nav ul li a:hover::before {
-    width: 70%;
 }
 
 /* Menu Hambúrguer (Adicionado de NavBar.css) */

@@ -1,10 +1,11 @@
+/* footer.css - Arquivo Modificado */
+
 footer {
     background-color: #260B01;
     padding: 40px 8%;
     color: #fff;
     width: 100%;
-    position: relative;
-    bottom: 0;
+    /* As propriedades 'position' e 'bottom' foram removidas */
 }
 
 #footer_items {

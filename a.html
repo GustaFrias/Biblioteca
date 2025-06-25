@@ -1,158 +1,104 @@
-<?php session_start();
-    require_once "php/conexao/conexao.php";
-?>
-
+<?php session_start();?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/index.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Leyo+</title>
+    <link rel="stylesheet" href="../../styles/pgPesquisa.css">
+    <title>Leyo+ - Pesquisa</title>
 </head>
 
 <body>
-    <div class="principal" id="tela">
-        <header>
-            <div class="logo">
-                <a href="index.php">Leyo<span> +</span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav>
-                <ul id="nav-list">
-                    <li><a href="htmls/AboutUs.php">Sobre Nós</a></li>
-
-                    <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-                    <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
-                    <li><a href="htmls/login.html">Login</a></li>
-                    <?php else: ?>
-                    <li>
-                        <img src="img/iconLogin.png" alt="" id="icon-login"
-                            style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
-                    </li>
-                    <li>
-                        <a href="<?php echo isset($_SESSION['admin']) ? 'php/login&cadastro/admin.php' : '#'; ?>">
-                            <?php
-                                    if (isset($_SESSION['usuario'])) {
-                                        echo htmlspecialchars($_SESSION['usuario']);
-                                    } elseif (isset($_SESSION['admin'])) {
-                                        echo 'Administrador';
-                                    }
-                                ?>
-                        </a>
-                    </li>
-                    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </header>
-
-        <div class="home">
-            <h2 class="titulo">ONDE LER É REALEZA E CADA PÁGINA, UM CONVITE AO ENCANTAMENTO.</h2>
-            <div class="diminuicao">
-                <span class="texto">
-                    Descubra um espaço onde a elegância encontra a paixão pelos livros, e cada visita é uma experiência
-                    única de conforto e inspiração.
-                </span>
-            </div>
-
+    <header class="navbar">
+        <!-- Menu Hamburguer -->
+        <div class="logo">
+            <a href="../../index.php"> Leyo<span> +</span> </a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-                <div class="caixa-input">
-                    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
-                        oninput="buscarInstantaneamente()" />
-                    <i class="fas fa-search"></i>
-                </div>
+                <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
+                    value="<?php echo isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : ''; ?>" />
             </form>
         </div>
-    </div>
+        <nav>
+            <ul id="nav-list">
+                <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+                <li><a href="../..">Home</a></li>
+                <li><a href="../../htmls/cadastro.html">Cadastrar-se</a></li>
+                <li><a href="../../htmls/login.html">Login</a></li>
+                <?php else: ?>
+                <li><a href="../..">Home</a></li>
+                <li><a href="../../htmls/AboutUs.php">sobre nós</a></li>
+                <img src="../../img/iconLogin.png" alt="" id="icon-login"
+                    style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+                </li>
+                <li>
+                    <?php if (isset($_SESSION['admin'])): ?>
+                    <a href="../login&cadastro/admin.php">Administrador</a>
+                    <?php elseif (isset($_SESSION['usuario'])): ?>
+                    <?= htmlspecialchars($_SESSION['usuario']) ?>
+                    <?php endif; ?>
+                </li>
+                <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="carussel">
-        <div class="principal" id="best-sellers">
-            <section class="tela">
-                <div class="separador" id="temas">
-                    <h2 class="titulo">Best Sellers</h2>
-                    <p class="subtitle">Os livros mais amados pelos nossos leitores</p>
-                </div>
+    <main class="container">
+        <?php
+        require '../conexao/conexao.php';
 
-                <div class="books-container">
-                    <button class="scroll-btn left">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
+        if (isset($_GET['busca']) && !empty(trim($_GET['busca']))) {
+            $busca = "%" . trim($_GET['busca']) . "%";
+            $sql = "SELECT livros.*, autores.nome AS nome_autor 
+                    FROM livros 
+                    LEFT JOIN autores ON livros.autor_id = autores.id 
+                    WHERE livros.titulo LIKE :busca OR autores.nome LIKE :busca";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':busca', $busca, PDO::PARAM_STR);
+            $stmt->execute();
 
-                    <div class="book-grid">
-                        <?php
-                        $idsBestSellers = [1, 2, 3, 4, 5];
-                        $placeholders = implode(',', array_fill(0, count($idsBestSellers), '?'));
-
-                        $sql = "SELECT livros.*, autores.nome AS nome_autor
-                                FROM livros
-                                LEFT JOIN autores ON livros.autor_id = autores.id
-                                WHERE livros.id IN ($placeholders)
-                                ORDER BY FIELD(livros.id, $placeholders)";
-
-                        $stmt = $pdo->prepare($sql);
-                        $params = array_merge($idsBestSellers, $idsBestSellers);
-
-                        $stmt->execute($params);
-                        $livros = $stmt->fetchAll();
-
-                        foreach ($livros as $livro):
-                    ?>
-                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                            <div class="book-column-left">
-                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                                <p class="book-author">
-                                    <?= htmlspecialchars($livro['nome_autor']) ?>
-                                </p>
-                            </div>
-                            <div class="book-column-right">
-                                <h3 class="book-title">
-                                    <?= htmlspecialchars($livro['titulo']) ?>
-                                </h3>
-                                <p class="book-description">
-                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                                </p>
-                                <p class="book-price">R$
-                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
-                                </p>
-                            </div>
-                        </a>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <button class="scroll-btn right">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <div class="principal" id="index">
-        <div class="degrade">
-            <section class="tela">
-                <div class="separador">
-                    <h2 class="titulo">Um Pouco Sobre Nós</h2>
-                </div>
-                <div class="separador">
-                    <span class="texto">
-                        Mais que uma livraria, somos um refúgio elegante para quem ama livros e valoriza momentos de
-                        calma e beleza. Inspirados pela realeza e guiados pela paixão pela leitura, criamos um espaço
-                        onde sofisticação, conforto e cultura se encontram. Cada detalhe foi pensado com carinho para
-                        oferecer uma experiência única. Quer saber como esse sonho ganhou vida? Conheça nossa história
-                        completa na página Sobre Nós.
-                </div>
-            </section>
-        </div>
-    </div>
+            if ($stmt->rowCount() > 0) {
+                echo '<div class="resultados-container">';
+                echo '<h2>Resultados da pesquisa para: "' . htmlspecialchars(trim($_GET['busca'])) . '"</h2>';
+                echo '<div class="livros-grid">';
+                
+                while ($livro = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<div class='card'>";
+                    echo "<a href='../../htmls/moreInfo.php?id=" . htmlspecialchars($livro['id']) . "'>";
+                    if (!empty($livro['imagem'])) {
+                        echo "<img src='../../uploads/" . htmlspecialchars($livro['imagem']) . "' class='capaLivros' alt='" . htmlspecialchars($livro['titulo']) . "'><br>";
+                    } else {
+                        echo "<div class='capa-placeholder'></div>";
+                    }
+                    echo "<h3>" . htmlspecialchars($livro['titulo']) . "</h3>";
+                    echo "</a>";
+                    echo "</div>";
+                }
+                
+                echo '</div></div>';
+            } else {
+                echo '<div class="nenhum-resultado">';
+                echo '<p>Nenhum livro encontrado para: "' . htmlspecialchars(trim($_GET['busca'])) . '"</p>';
+                echo '<p>Tente usar termos diferentes ou verifique a ortografia.</p>';
+                echo '</div>';
+            }
+        } else {
+            echo '<div class="nenhum-termo">';
+            echo '<p>Digite um termo de pesquisa na barra acima para encontrar livros.</p>';
+            echo '</div>';
+        }
+        ?>
+    </main>
 
     <footer>
         <div id="footer_items">
@@ -172,7 +118,29 @@
         </div>
     </footer>
 
-    <script src="styles/carussel.js"></script>
+
+    <script>
+        // Menu Hamburguer
+        const menuToggle = document.getElementById('menu-toggle');
+        const navList = document.getElementById('nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+
+        // Validação da busca
+        function validarBusca() {
+            const termo = document.getElementById('barraBusca').value.trim();
+            if (termo === '') {
+                alert('Por favor, digite um termo para pesquisar.');
+                return false;
+            }
+            return true;
+        }
+
+
+    </script>
 </body>
 
 </html>

@@ -1,43 +1,46 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const bookGrid = document.querySelector('.book-grid');
-    const scrollLeftBtn = document.querySelector('.scroll-btn.left');
-    const scrollRightBtn = document.querySelector('.scroll-btn.right');
-    
-    if (!bookGrid || !scrollLeftBtn || !scrollRightBtn) return;
-    
-    // Mostra/oculta botões conforme necessidade
-    function updateButtons() {
-        const canScrollLeft = bookGrid.scrollLeft > 10;
-        const canScrollRight = bookGrid.scrollLeft < (bookGrid.scrollWidth - bookGrid.clientWidth - 10);
-        
-        scrollLeftBtn.style.display = canScrollLeft ? 'flex' : 'none';
-        scrollRightBtn.style.display = canScrollRight ? 'flex' : 'none';
+document.addEventListener("DOMContentLoaded", function () {
+  const allBookContainers = document.querySelectorAll(".books-container");
+
+  allBookContainers.forEach((container) => {
+    const bookGrid = container.querySelector(".book-grid");
+    const scrollLeftBtn = container.querySelector(".scroll-btn.left");
+    const scrollRightBtn = container.querySelector(".scroll-btn.right");
+
+    if (!bookGrid || !scrollLeftBtn || !scrollRightBtn) {
+      return;
     }
-    
+
+    function updateButtons() {
+      const canScrollLeft = bookGrid.scrollLeft > 10;
+      const canScrollRight =
+        bookGrid.scrollWidth - bookGrid.clientWidth - bookGrid.scrollLeft > 10;
+
+      scrollLeftBtn.style.display = canScrollLeft ? "flex" : "none";
+      scrollRightBtn.style.display = canScrollRight ? "flex" : "none";
+    }
+
     // Rola suavemente
     function smoothScroll(direction) {
-        const scrollAmount = bookGrid.clientWidth * 0.8;
-        bookGrid.scrollBy({
-            left: direction === 'right' ? scrollAmount : -scrollAmount,
-            behavior: 'smooth'
-        });
+      const scrollAmount = bookGrid.clientWidth * 0.8;
+      bookGrid.scrollBy({
+        left: direction === "right" ? scrollAmount : -scrollAmount,
+        behavior: "smooth",
+      });
     }
-    
-    // Event listeners
-    scrollLeftBtn.addEventListener('click', () => smoothScroll('left'));
-    scrollRightBtn.addEventListener('click', () => smoothScroll('right'));
-    
-    bookGrid.addEventListener('scroll', updateButtons);
-    
-    // Verifica ao carregar e redimensionar
+
+    // Adiciona os eventos
+    scrollLeftBtn.addEventListener("click", () => smoothScroll("left"));
+    scrollRightBtn.addEventListener("click", () => smoothScroll("right"));
+
+    bookGrid.addEventListener("scroll", updateButtons);
+
     function checkScroll() {
-        // Força recálculo do layout
-        void bookGrid.offsetWidth;
-        updateButtons();
+      void bookGrid.offsetWidth;
+      updateButtons();
     }
-    
-    window.addEventListener('resize', checkScroll);
-    
-    // Inicialização
-    setTimeout(checkScroll, 100); // Pequeno delay para garantir cálculo correto
+
+    window.addEventListener("resize", checkScroll);
+
+    setTimeout(checkScroll, 150);
+  });
 });

@@ -30,25 +30,25 @@
                     <li><a href="htmls/AboutUs.php">Sobre Nós</a></li>
 
                     <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-                        <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
-                        <li><a href="htmls/login.html">Login</a></li>
+                    <li><a href="htmls/cadastro.html">Cadastrar-se</a></li>
+                    <li><a href="htmls/login.html">Login</a></li>
                     <?php else: ?>
-                        <li>
-                            <img src="img/iconLogin.png" alt="" id="icon-login"
-                                style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
-                        </li>
-                        <li>
-                            <a href="<?php echo isset($_SESSION['admin']) ? 'php/login&cadastro/admin.php' : '#'; ?>">
-                                <?php
+                    <li>
+                        <img src="img/iconLogin.png" alt="" id="icon-login"
+                            style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+                    </li>
+                    <li>
+                        <a href="<?php echo isset($_SESSION['admin']) ? 'php/login&cadastro/admin.php' : '#'; ?>">
+                            <?php
                                     if (isset($_SESSION['usuario'])) {
                                         echo htmlspecialchars($_SESSION['usuario']);
                                     } elseif (isset($_SESSION['admin'])) {
                                         echo 'Administrador';
                                     }
                                 ?>
-                            </a>
-                        </li>
-                        <li><a href="php/login&cadastro/logout.php">Sair</a></li>
+                        </a>
+                    </li>
+                    <li><a href="php/login&cadastro/logout.php">Sair</a></li>
                     <?php endif; ?>
 
                 </ul>
@@ -78,8 +78,8 @@
         <div class="principal" id="best-sellers">
             <section class="tela">
                 <div class="separador" id="temas">
-                    <h2 class="titulo">Best Sellers</h2>
-                    <p class="subtitle">Os livros mais amados pelos nossos leitores</p>
+                    <h2 class="titulo">Best Sellers Of The Library</h2>
+                    <p class="subtitle">there will be a small title here</p>
                 </div>
 
                 <div class="books-container">
@@ -89,19 +89,124 @@
 
                     <div class="book-grid">
                         <?php
-                        $idsBestSellers = [1, 2, 3, 4, 5];
-                        $placeholders = implode(',', array_fill(0, count($idsBestSellers), '?'));
-
                         $sql = "SELECT livros.*, autores.nome AS nome_autor
                                 FROM livros
                                 LEFT JOIN autores ON livros.autor_id = autores.id
-                                WHERE livros.id IN ($placeholders)
-                                ORDER BY FIELD(livros.id, $placeholders)";
+                                ORDER BY livros.id DESC
+                                LIMIT 10"; 
 
                         $stmt = $pdo->prepare($sql);
-                        $params = array_merge($idsBestSellers, $idsBestSellers);
+                        $stmt->execute();
+                        $livros = $stmt->fetchAll();
 
-                        $stmt->execute($params);
+                        foreach ($livros as $livro):
+                        ?>
+                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                <p class="book-author">
+                                    <?= htmlspecialchars($livro['nome_autor']) ?>
+                                </p>
+                            </div>
+                            <div class="book-column-right">
+                                <h3 class="book-title">
+                                    <?= htmlspecialchars($livro['titulo']) ?>
+                                </h3>
+                                <p class="book-description">
+                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
+                                </p>
+                                <p class="book-price">R$
+                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
+                                </p>
+                            </div>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <button class="scroll-btn right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+        <div class="principal" id="best-sellers">
+            <section class="tela">
+                <div class="separador" id="temas">
+                    <h2 class="titulo">Popular Of The Library </h2>
+                    <p class="subtitle">there will be a small title here</p>
+                </div>
+
+                <div class="books-container">
+                    <button class="scroll-btn left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="book-grid">
+                        <?php
+                        $sql = "SELECT livros.*, autores.nome AS nome_autor
+                                FROM livros
+                                LEFT JOIN autores ON livros.autor_id = autores.id
+                                ORDER BY livros.id DESC
+                                LIMIT 10"; 
+
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+                        $livros = $stmt->fetchAll();
+
+                        foreach ($livros as $livro):
+                        ?>
+                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                <p class="book-author">
+                                    <?= htmlspecialchars($livro['nome_autor']) ?>
+                                </p>
+                            </div>
+                            <div class="book-column-right">
+                                <h3 class="book-title">
+                                    <?= htmlspecialchars($livro['titulo']) ?>
+                                </h3>
+                                <p class="book-description">
+                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
+                                </p>
+                                <p class="book-price">R$
+                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
+                                </p>
+                            </div>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <button class="scroll-btn right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+        <div class="principal" id="best-sellers">
+            <section class="tela">
+                <div class="separador" id="temas">
+                    <h2 class="titulo">Others Books Of The Library</h2>
+                    <p class="subtitle">there will be a small title here</p>
+                </div>
+
+                <div class="books-container">
+                    <button class="scroll-btn left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="book-grid">
+                        <?php
+                        $sql = "SELECT livros.*, autores.nome AS nome_autor
+                                FROM livros
+                                LEFT JOIN autores ON livros.autor_id = autores.id
+                                ORDER BY livros.id DESC
+                                LIMIT 10"; 
+
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
                         $livros = $stmt->fetchAll();
 
                         foreach ($livros as $livro):
