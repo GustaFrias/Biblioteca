@@ -78,8 +78,8 @@
         <div class="principal" id="best-sellers">
             <section class="tela">
                 <div class="separador" id="temas">
-                    <h2 class="titulo">Best Sellers Of The Library</h2>
-                    <p class="subtitle">there will be a small title here</p>
+                    <h2 class="titulo">Os livros mais vendidos e amados pelos leitores</h2>
+                    <p class="subtitle">Descubra o que está fazendo sucesso!</p>
                 </div>
 
                 <div class="books-container">
@@ -89,14 +89,18 @@
 
                     <div class="book-grid">
                         <?php
+                       $idsDesejados = [1, 2, 3, 4, 5, 6]; // coloque os IDs desejados aqui
+
+                        $placeholders = implode(',', array_fill(0, count($idsDesejados), '?'));
+
                         $sql = "SELECT livros.*, autores.nome AS nome_autor
-                                FROM livros
-                                LEFT JOIN autores ON livros.autor_id = autores.id
-                                ORDER BY livros.id DESC
-                                LIMIT 10"; 
+                        FROM livros
+                        LEFT JOIN autores ON livros.autor_id = autores.id
+                        WHERE livros.id IN ($placeholders)
+                        ORDER BY FIELD(livros.id, $placeholders)";
 
                         $stmt = $pdo->prepare($sql);
-                        $stmt->execute();
+                        $stmt->execute(array_merge($idsDesejados, $idsDesejados));
                         $livros = $stmt->fetchAll();
 
                         foreach ($livros as $livro):
@@ -130,65 +134,11 @@
                 </div>
             </section>
         </div>
+       
         <div class="principal" id="best-sellers">
             <section class="tela">
                 <div class="separador" id="temas">
-                    <h2 class="titulo">Popular Of The Library </h2>
-                    <p class="subtitle">there will be a small title here</p>
-                </div>
-
-                <div class="books-container">
-                    <button class="scroll-btn left">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-
-                    <div class="book-grid">
-                        <?php
-                        $sql = "SELECT livros.*, autores.nome AS nome_autor
-                                FROM livros
-                                LEFT JOIN autores ON livros.autor_id = autores.id
-                                ORDER BY livros.id DESC
-                                LIMIT 10"; 
-
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute();
-                        $livros = $stmt->fetchAll();
-
-                        foreach ($livros as $livro):
-                        ?>
-                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                            <div class="book-column-left">
-                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                                <p class="book-author">
-                                    <?= htmlspecialchars($livro['nome_autor']) ?>
-                                </p>
-                            </div>
-                            <div class="book-column-right">
-                                <h3 class="book-title">
-                                    <?= htmlspecialchars($livro['titulo']) ?>
-                                </h3>
-                                <p class="book-description">
-                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                                </p>
-                                <p class="book-price">R$
-                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
-                                </p>
-                            </div>
-                        </a>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <button class="scroll-btn right">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </section>
-        </div>
-        <div class="principal" id="best-sellers">
-            <section class="tela">
-                <div class="separador" id="temas">
-                    <h2 class="titulo">Others Books Of The Library</h2>
+                    <h2 class="titulo">Outros livros da nossa livraria</h2>
                     <p class="subtitle">there will be a small title here</p>
                 </div>
 
