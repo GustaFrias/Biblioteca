@@ -160,7 +160,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="text" name="busca" placeholder="Pesquise o livro" autocomplete="off">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <nav class="main-nav"><ul><li><a href="#">Logout</a></li></ul></nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../login&cadastro/admin.php">Voltar</a></li>
+                    <li><a href="../login&cadastro/logout.php">Logout</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 

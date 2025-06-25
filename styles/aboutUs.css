@@ -63,12 +63,12 @@ body {
     align-items: justify;
 }
 
-.mudanca{
+.mudanca {
     color: #591902;
 }
 
 
-#terceiro{
+#terceiro {
     background-image: url(../img/d6e7d65728d81e0366968df1eb5c253311a836ab.png);
     display: flex;
     justify-content: end;
@@ -76,31 +76,33 @@ body {
 
 }
 
-#end{
+#end {
     margin-left: 30%;
     text-align: end;
 }
 
 /*degrade*/
 
-.navbar{
-    position: absolute; /* Permanece no topo, mas sem rolar com a página */
+.navbar {
+    position: absolute;
+    /* Permanece no topo, mas sem rolar com a página */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Garante que fique acima do degrade */
+    z-index: 1000;
+    /* Garante que fique acima do degrade */
     background: transparent;
     padding: 15px 30px;
     box-shadow: none;
 }
 
-.degrade{
+.degrade {
     height: 100%;
     width: 100%;
     background: linear-gradient(to right, #591902, #00000000);
     padding-top: 100px;
 }
 
-#left{
+#left {
     background: linear-gradient(to left, #591902, #BF360400);
 }

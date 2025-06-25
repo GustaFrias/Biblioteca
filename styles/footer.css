@@ -1,23 +1,27 @@
+/* footer.css - Arquivo Modificado */
+
 footer {
     background-color: #260B01;
     padding: 40px 8%;
     color: #fff;
     width: 100%;
-    position: relative;
-    bottom: 0;
+    /* As propriedades 'position' e 'bottom' foram removidas */
 }
 
 #footer_items {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Permite que os itens quebrem para nova linha em telas pequenas */
-    gap: 20px; /* Espaço entre os itens */
+    flex-wrap: wrap;
+    /* Permite que os itens quebrem para nova linha em telas pequenas */
+    gap: 20px;
+    /* Espaço entre os itens */
 }
 
 .social-media-buttons {
     display: flex;
-    gap: 15px; /* Substitui as margens individuais */
+    gap: 15px;
+    /* Substitui as margens individuais */
 }
 
 .social-media-buttons a {
@@ -33,7 +37,8 @@ footer {
 }
 
 .social-media-buttons a:hover {
-    color: #f0a500; /* Cor de hover para melhor interatividade */
+    color: #f0a500;
+    /* Cor de hover para melhor interatividade */
 }
 
 .footer_infos {
@@ -44,7 +49,8 @@ footer {
 }
 
 #copyright {
-    white-space: nowrap; /* Evita quebra de linha no copyright */
+    white-space: nowrap;
+    /* Evita quebra de linha no copyright */
 }
 
 /* Responsividade */
@@ -54,11 +60,11 @@ footer {
         text-align: center;
         gap: 15px;
     }
-    
+
     .social-media-buttons {
         justify-content: center;
     }
-    
+
     footer {
         padding: 30px 5%;
     }

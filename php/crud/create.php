@@ -133,7 +133,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="../login&cadastro/admin.php">Voltar</a></li>
+                    <li><a href="../login&cadastro/logout.php">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -204,6 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button type="submit" class="submit-btn save-btn">Cadastrar Livro</button>
         </form>
     </div>
+    
 
     <script>
         document.getElementById('image-upload-input').addEventListener('change', function (event) {
