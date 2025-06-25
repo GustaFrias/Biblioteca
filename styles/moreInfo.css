@@ -98,7 +98,8 @@ body {
     object-fit: cover;
 }
 
-.book-author, .book-publisher {
+.book-author,
+.book-publisher {
     font-size: 16px;
     margin-top: 5px;
 }
@@ -194,7 +195,9 @@ body {
 }
 
 /* Responsividade */
-@media (max-width: 992px) { /* Ajuste para esconder a busca antes */
+@media (max-width: 992px) {
+
+    /* Ajuste para esconder a busca antes */
     .main-header form {
         display: none;
     }
@@ -204,11 +207,12 @@ body {
     .header-content {
         flex-wrap: wrap;
     }
-    
+
     .main-header form {
         display: flex;
         width: 100%;
-        order: 3; /* Muda a ordem do formulário */
+        order: 3;
+        /* Muda a ordem do formulário */
         margin-top: 15px;
     }
 
@@ -240,13 +244,14 @@ body {
         width: 100%;
         display: block;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
 
     .main-nav {
-        order: 2; /* Muda a ordem da navegação */
+        order: 2;
+        /* Muda a ordem da navegação */
     }
 
     /* Ajustes no layout principal */
@@ -254,7 +259,7 @@ body {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .book-cover-section {
         flex: 0 0 auto;
         width: 80%;
@@ -273,6 +278,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

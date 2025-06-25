@@ -22,11 +22,11 @@
 
 .logo {
     font-size: 24px;
-    transition: all 0.2s ease; 
+    transition: all 0.2s ease;
 }
 
 .logo:hover {
-    transform: scale(1.03); 
+    transform: scale(1.03);
 }
 
 .logo a {
@@ -71,8 +71,8 @@
 .main-nav ul {
     display: flex;
     list-style: none;
-    gap: 25px; 
-    transition: all 0.3s ease-in-out; 
+    gap: 25px;
+    transition: all 0.3s ease-in-out;
     margin: 0;
     padding: 0;
 }
@@ -80,15 +80,15 @@
 .main-nav ul li a {
     text-decoration: none;
     color: white;
-    padding: 8px 15px; 
-    border-radius: 5px; 
-    transition: all 0.3s; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
     font-weight: 500;
     position: relative;
 }
 
 .main-nav ul li a:hover {
-    background-color: #593312; 
+    background-color: #593312;
     color: #fff;
 }
 

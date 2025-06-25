@@ -76,7 +76,8 @@ a {
 }
 
 
-.nenhum-resultado, .nenhum-termo {
+.nenhum-resultado,
+.nenhum-termo {
     text-align: center;
     padding: 50px 20px;
     color: #fff;
@@ -99,7 +100,7 @@ a {
     .livros-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
-    
+
     #barraBusca {
         width: 180px;
     }
