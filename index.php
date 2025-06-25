@@ -73,8 +73,8 @@
             </form>
         </div>
     </div>
-    // Best sellers
-    <div class="carussel">
+    
+    <div class="carussel">     <!--best sellers -->
         <div class="principal" id="best-sellers">
             <section class="tela">
                 <div class="separador" id="temas">
@@ -136,13 +136,12 @@
             </section>
         </div>
     </div>
-    // romance
-    <div class="carussel">
+    
+    <div class="carussel">    <!-- Romance-->
         <div class="principal">
             <section class="tela">
                 <div class="separador">
                     <h2 class="titulo">Romance</h2>
-                    <p class="subtitle">Envolva-se em histórias de amor e emoção</p>
                 </div>
 
                 <div class="books-container">
@@ -181,13 +180,12 @@
             </section>
         </div>
     </div>
-// fantasia
-<div class="carussel">
+
+<div class="carussel">    <!-- Fantasia -->
     <div class="principal">
         <section class="tela">
             <div class="separador">
                 <h2 class="titulo">Fantasia</h2>
-                <p class="subtitle">Viaje por mundos mágicos e extraordinários</p>
             </div>
 
             <div class="books-container">
