@@ -37,19 +37,7 @@ if (isset($_GET['id'])) {
         $stmt->bindParam(':id', $id);
 
         if ($stmt->execute()) {
-            echo "
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso!',
-                    text: 'Livro excluído com sucesso!',
-                    timer: 2500,
-                    showConfirmButton: false,
-                    timerProgressBar: true
-                }).then(() => {
-                    window.location.href = '../login&cadastro/admin.php';
-                });
-            </script>";
+            header("location: ../login&cadastro/admin.php");
         } else {
             echo "
             <script>

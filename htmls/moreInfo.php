@@ -117,10 +117,14 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
                     </div>
 
                     <div class="purchase-section">
-                        <button class="buy-button">
+
+                        <form form method="POST" action="">
+                        <button class="buy-button" type ="submit">
                             COMPRAR
                             <span><span>R$<?= number_format($livro['preco'], 2, ',', '.') ?></span></span>
                         </button>
+                            </form>
+
                     </div>
                 </div>
             </section>
