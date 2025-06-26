@@ -32,9 +32,17 @@ if (isset($_GET['id'])) {
             unlink($caminhoImagem);
         }
         
+
+        $sqlVendas = "DELETE FROM vendas WHERE livro_id = :id";
+        $stmtVendas = $pdo->prepare($sqlVendas);
+        $stmtVendas->bindParam(':id', $id);
+        $stmtVendas->execute();
+
+
         $sql = "DELETE FROM livros WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
+
 
         if ($stmt->execute()) {
             header("location: ../login&cadastro/admin.php");
