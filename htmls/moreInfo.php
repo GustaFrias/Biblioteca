@@ -118,13 +118,13 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="purchase-section">
 
-                        <form form method="POST" action="">
-                        <button class="buy-button" type ="submit">
-                            COMPRAR
-                            <span><span>R$<?= number_format($livro['preco'], 2, ',', '.') ?></span></span>
-                        </button>
-                            </form>
-
+                        <form id="formComprar" method="POST">
+                            <input type="hidden" name="id" value="<?= $livro['id'] ?>">
+                            <button class="buy-button" type="submit">
+                                COMPRAR
+                                <span><span>R$<?= number_format($livro['preco'], 2, ',', '.') ?></span></span>
+                            </button>
+                        </form>                         
                     </div>
                 </div>
             </section>
@@ -178,5 +178,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
             mainNav.classList.toggle('active');
         });
     </script>
+    <script src="/Biblioteca/php/functions/comprar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
