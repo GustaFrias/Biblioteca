@@ -40,13 +40,16 @@
                         <?php else: ?>
                         <li><a href="../../index.php">Home</a></li>
                         <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
+
+                        <?php if (isset($_SESSION['admin'])): ?>
                         <li>
                             <img src="../../img/iconLogin.png" alt="Ícone de login" id="icon-login">
                         </li>
-
-                        <?php if (isset($_SESSION['admin'])): ?>
                         <li><a href="../login&cadastro/admin.php">Administrador</a></li>
                         <?php elseif (isset($_SESSION['usuario'])): ?>
+                        <li>
+                            <img src="../../img/iconLogin.png" alt="Ícone de login" id="icon-login" style="margin-right: -20px;">
+                        </li>
                         <li>
                             <?= htmlspecialchars($_SESSION['usuario']) ?>
                         </li>
