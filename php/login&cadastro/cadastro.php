@@ -1,6 +1,19 @@
 <?php
-require '../conexao/conexao.php';
-
+require '../conexao/conexao.php'; 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Cadastro Realizado</title>
+</head>
+<body>
+    
+</body>
+</html>
+<?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = trim($_POST['nome']);
     $email = trim($_POST['email']);
@@ -15,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Vish!',
                 text: 'As senhas não estão iguais.'
             }).then(() => {
-                window.location.href = '../../index.php';
+                window.location.href = '../../htmls/cadastro.html';
             });
         </script>";
         exit;
@@ -34,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Erro!',
                 text: 'E-mail já cadastrado.'
             }).then(() => {
-                window.location.href = '../../index.php';
+                window.location.href = '../../htmls/cadastro.html';
             });
         </script>";
         exit;
@@ -71,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 title: 'Erro!',
                 text: 'Erro ao cadastrar no banco de dados.'
             }).then(() => {
-                window.location.href = '../../index.php';
+                window.location.href = '../../htmls/cadastro.html';
             });
         </script>";
         exit;
