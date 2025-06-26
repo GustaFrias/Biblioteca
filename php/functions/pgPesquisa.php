@@ -30,29 +30,30 @@
 
             <nav class="main-nav">
                 <ul>
-                  <ul id="nav-list">
-                    <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>            
-                         <li><a href="../../index.php">Home</a></li>
-                         <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
+                    <ul id="nav-list">
+                        <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
+                        <li><a href="../../index.php">Home</a></li>
+                        <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
                         <li><a href="../../htmls/cadastro.html">Cadastrar-se</a></li>
                         <li><a href="../../htmls/login.html">Login</a></li>
-                    <?php else: ?>
+                        <?php else: ?>
                         <li>
-                            <li><a href="../../index.php">Home</a></li>
-                            <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
-                            <img src="../../img/iconLogin.png" alt="" id="icon-login"
-                                style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+                        <li><a href="../../index.php">Home</a></li>
+                        <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
+                        <img src="../../img/iconLogin.png" alt="" id="icon-login"
+                            style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
                         </li>
+
+                        <?php if (isset($_SESSION['admin'])): ?>
+                        <li><a href="../login&cadastro/admin.php">Administrador</a></li>
+                        <?php elseif (isset($_SESSION['usuario'])): ?>
                         <li>
-                            <?php if (isset($_SESSION['admin'])): ?>
-                                <li><a href="../login&cadastro/admin.php">Administrador</a></li>
-                            <?php elseif (isset($_SESSION['usuario'])): ?>
-                                <?= htmlspecialchars($_SESSION['usuario']) ?>
-                            <?php endif; ?>
+                            <?= htmlspecialchars($_SESSION['usuario']) ?>
                         </li>
+                        <?php endif; ?>
                         <li><a href="../login&cadastro/logout.php">Sair</a></li>
-                    <?php endif; ?>
-                </ul>
+                        <?php endif; ?>
+                    </ul>
             </nav>
         </div>
     </header>

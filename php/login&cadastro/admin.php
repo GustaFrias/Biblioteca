@@ -12,11 +12,12 @@ $livros = $stmt->fetchAll();
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Admin - Leyo</title>
+    <title>Admin - Leyo +</title>
     <link rel="stylesheet" href="../../styles/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -29,13 +30,13 @@ $livros = $stmt->fetchAll();
                 <a href="../../index.php">Leyo<span>+</span></a>
             </div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
-                <div class="caixa-input">
-                    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
-                        oninput="buscarInstantaneamente()" />
-                    <i class="fas fa-search"></i>
-                </div>
+
+                <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
+                    oninput="buscarInstantaneamente()">
+                <button type="submit"><i class="fas fa-search"></i></button>
+
             </form>
-            
+
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -69,10 +70,10 @@ $livros = $stmt->fetchAll();
 
         if (isset($_SESSION['msg_erro'])) {
             echo "<script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro!',
-                text: '" . $_SESSION['msg_erro'] . "'
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: '" . $_SESSION['msg_erro'] . "'
             });
             </script>";
             unset($_SESSION['msg_erro']);
@@ -81,24 +82,34 @@ $livros = $stmt->fetchAll();
 
         <div class="organization" id="listaLivros">
             <?php foreach ($livros as $livro): ?>
-                <div class="book-card" data-titulo="<?= strtolower(htmlspecialchars($livro['titulo'])); ?>">
-                    <?php if (!empty($livro['imagem'])): ?>
-                        <div class="book-card-image">
-                            <img src="../../uploads/<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro" />
-                        </div>
-                    <?php endif; ?>
-                    <div class="book-card-details">
-                        <h3><?= htmlspecialchars($livro['titulo']); ?></h3>
-                        <p><strong>Preço:</strong> R$ <?= number_format($livro['preco'], 2, ',', '.'); ?></p>
-                        <p><strong>Em Estoque:</strong> <?= htmlspecialchars($livro['estoque']); ?></p>
-                        <p><strong>Categoria:</strong> <?= htmlspecialchars($livro['categoria_nome'] ?? 'Não categorizado'); ?></p>
-                        <p><strong>Ano de publicação:</strong> <?= htmlspecialchars($livro['ano_publicacao']); ?></p>
-                        <div class="book-card-actions">
-                            <a href="../crud/edit.php?id=<?= $livro['id']; ?>">Editar</a>
-                            <a href="#" onclick="confirmarExclusao(<?= $livro['id']; ?>)">Deletar</a>
-                        </div>
+            <div class="book-card" data-titulo="<?= strtolower(htmlspecialchars($livro['titulo'])); ?>">
+                <?php if (!empty($livro['imagem'])): ?>
+                <div class="book-card-image">
+                    <img src="../../uploads/<?= htmlspecialchars($livro['imagem']); ?>" alt="Capa do livro" />
+                </div>
+                <?php endif; ?>
+                <div class="book-card-details">
+                    <h3>
+                        <?= htmlspecialchars($livro['titulo']); ?>
+                    </h3>
+                    <p><strong>Preço:</strong> R$
+                        <?= number_format($livro['preco'], 2, ',', '.'); ?>
+                    </p>
+                    <p><strong>Em Estoque:</strong>
+                        <?= htmlspecialchars($livro['estoque']); ?>
+                    </p>
+                    <p><strong>Categoria:</strong>
+                        <?= htmlspecialchars($livro['categoria_nome'] ?? 'Não categorizado'); ?>
+                    </p>
+                    <p><strong>Ano de publicação:</strong>
+                        <?= htmlspecialchars($livro['ano_publicacao']); ?>
+                    </p>
+                    <div class="book-card-actions">
+                        <a href="../crud/edit.php?id=<?= $livro['id']; ?>">Editar</a>
+                        <a href="#" onclick="confirmarExclusao(<?= $livro['id']; ?>)">Deletar</a>
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </main>
@@ -161,4 +172,5 @@ $livros = $stmt->fetchAll();
     </script>
 
 </body>
+
 </html>
