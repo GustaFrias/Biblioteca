@@ -28,9 +28,12 @@ $livros = $stmt->fetchAll();
             <div class="logo">
                 <a href="../../index.php">Leyo<span>+</span></a>
             </div>
-            <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
-                <input type="text" name="busca" placeholder="Pesquise aqui" autocomplete="off">
-                <button type="submit"><i class="fas fa-search"></i></button>
+            <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get" onsubmit="return validarBusca()">
+                <div class="caixa-input">
+                    <input type="text" id="barraBusca" name="busca" placeholder="Pesquise aqui" autocomplete="off"
+                        oninput="buscarInstantaneamente()" />
+                    <i class="fas fa-search"></i>
+                </div>
             </form>
             
             <div class="menu-toggle">
