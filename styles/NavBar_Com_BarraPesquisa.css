@@ -43,9 +43,23 @@
     color: #ffffff;
 }
 
-.main-header form {
+#nav-list{
     display: flex;
     align-items: center;
+    gap: 20px;
+}
+
+
+#nav-list li #icon-login {
+    width: 50px;
+    height: auto;
+    margin-right: -30px;
+    display: block;
+}
+
+
+.main-header form {
+    display: flex;
     width: 40%;
 }
 

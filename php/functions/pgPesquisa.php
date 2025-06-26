@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/NavBar_Com_BarraPesquisa.css">
     <link rel="stylesheet" href="../../styles/pgPesquisa.css">
     <title>Leyo+ - Pesquisa</title>
 </head>
@@ -37,11 +38,10 @@
                         <li><a href="../../htmls/cadastro.html">Cadastrar-se</a></li>
                         <li><a href="../../htmls/login.html">Login</a></li>
                         <?php else: ?>
-                        <li>
                         <li><a href="../../index.php">Home</a></li>
                         <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
-                        <img src="../../img/iconLogin.png" alt="" id="icon-login"
-                            style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
+                        <li>
+                            <img src="../../img/iconLogin.png" alt="Ícone de login" id="icon-login">
                         </li>
 
                         <?php if (isset($_SESSION['admin'])): ?>
