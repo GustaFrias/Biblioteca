@@ -32,18 +32,16 @@
                         <li><a href="cadastro.html">Cadastrar-se</a></li>
                         <li><a href="login.html">Login</a></li>
                     <?php else: ?>
+                        <li><a href="../index.php">Home</a></li>
                         <li>
-                            <li><a href="../index.php">Home</a></li>
                             <img src="../img/iconLogin.png" alt="" id="icon-login"
                                 style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
                         </li>
-                        <li>
                             <?php if (isset($_SESSION['admin'])): ?>
                                 <li><a href="../php/login&cadastro/admin.php">Administrador</a></li>
                             <?php elseif (isset($_SESSION['usuario'])): ?>
-                                <?= htmlspecialchars($_SESSION['usuario']) ?>
+                                <li><?= htmlspecialchars($_SESSION['usuario']) ?></li>
                             <?php endif; ?>
-                        </li>
                         <li><a href="../php/login&cadastro/logout.php">Sair</a></li>
                     <?php endif; ?>
                         </ul>
