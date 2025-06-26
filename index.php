@@ -110,20 +110,10 @@
                                 <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
                                     alt="<?= htmlspecialchars($livro['titulo']) ?>">
                                 <p class="book-author">
-                                    <?= htmlspecialchars($livro['nome_autor']) ?>
-                                </p>
-                            </div>
-                            <div class="book-column-right">
-                                <h3 class="book-title">
                                     <?= htmlspecialchars($livro['titulo']) ?>
-                                </h3>
-                                <p class="book-description">
-                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                                </p>
-                                <p class="book-price">R$
-                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
                                 </p>
                             </div>
+                           
                         </a>
                         <?php endforeach; ?>
                     </div>
