@@ -155,21 +155,11 @@
                             <div class="book-column-left">
                                 <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
                                     alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                                <p class="book-author">
-                                    <?= htmlspecialchars($livro['nome_autor']) ?>
-                                </p>
-                            </div>
-                            <div class="book-column-right">
-                                <h3 class="book-title">
+                                 <p class="book-author">
                                     <?= htmlspecialchars($livro['titulo']) ?>
-                                </h3>
-                                <p class="book-description">
-                                    <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                                </p>
-                                <p class="book-price">R$
-                                    <?= number_format($livro['preco'], 2, ',', '.') ?>
                                 </p>
                             </div>
+                            
                         </a>
                         <?php endforeach; ?>
                     </div>
@@ -209,26 +199,16 @@
 
                     foreach ($livros as $livro):
                     ?>
-                    <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                        <div class="book-column-left">
-                            <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                            <p class="book-author">
-                                <?= htmlspecialchars($livro['nome_autor']) ?>
-                            </p>
-                        </div>
-                        <div class="book-column-right">
-                            <h3 class="book-title">
-                                <?= htmlspecialchars($livro['titulo']) ?>
-                            </h3>
-                            <p class="book-description">
-                                <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                            </p>
-                            <p class="book-price">R$
-                                <?= number_format($livro['preco'], 2, ',', '.') ?>
-                            </p>
-                        </div>
-                    </a>
+                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                 <p class="book-author">
+                                    <?= htmlspecialchars($livro['titulo']) ?>
+                                </p>
+                            </div>
+                            
+                        </a>
                     <?php endforeach; ?>
                 </div>
 
@@ -267,20 +247,16 @@
 
                     foreach ($livros as $livro):
                     ?>
-                    <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                        <div class="book-column-left">
-                            <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                 alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                            <p class="book-author"><?= htmlspecialchars($livro['nome_autor']) ?></p>
-                        </div>
-                        <div class="book-column-right">
-                            <h3 class="book-title"><?= htmlspecialchars($livro['titulo']) ?></h3>
-                            <p class="book-description">
-                                <?= mb_strimwidth(htmlspecialchars($livro['descricao']), 0, 100, '...') ?>
-                            </p>
-                            <p class="book-price">R$ <?= number_format($livro['preco'], 2, ',', '.') ?></p>
-                        </div>
-                    </a>
+                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                 <p class="book-author">
+                                    <?= htmlspecialchars($livro['titulo']) ?>
+                                </p>
+                            </div>
+                            
+                        </a>
                     <?php endforeach; ?>
                 </div>
 
