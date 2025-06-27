@@ -53,32 +53,6 @@ $livros = $stmt->fetchAll();
     </header>
 
     <main>
-        <?php
-        if (isset($_SESSION['msg_sucesso'])) {
-            echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: '" . $_SESSION['msg_sucesso'] . "',
-                timer: 2500,
-                showConfirmButton: false,
-                timerProgressBar: true
-            });
-            </script>";
-            unset($_SESSION['msg_sucesso']);
-        }
-
-        if (isset($_SESSION['msg_erro'])) {
-            echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro!',
-                    text: '" . $_SESSION['msg_erro'] . "'
-            });
-            </script>";
-            unset($_SESSION['msg_erro']);
-        }
-        ?>
 
         <div class="organization" id="listaLivros">
             <?php foreach ($livros as $livro): ?>
