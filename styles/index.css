@@ -131,11 +131,8 @@ a {
 }
 
 .book-card {
-    min-width: 280px;
-    max-width: 60%;
-    background: #EAE0D5;
+    background: transparent;
     border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     flex: 0 0 auto;
     padding: 15px;
