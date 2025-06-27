@@ -155,10 +155,15 @@
                             <div class="book-column-left">
                                 <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
                                     alt="<?= htmlspecialchars($livro['titulo']) ?>">
+<<<<<<< HEAD
+                                 <p class="book-author">
+=======
                                 <p class="book-author">
+>>>>>>> 617b381ed84741588e29a0563bf250c361a84d59
                                     <?= htmlspecialchars($livro['titulo']) ?>
                                 </p>
                             </div>
+                            
                         </a>
                         <?php endforeach; ?>
                     </div>
@@ -198,6 +203,18 @@
 
                     foreach ($livros as $livro):
                     ?>
+<<<<<<< HEAD
+                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                 <p class="book-author">
+                                    <?= htmlspecialchars($livro['titulo']) ?>
+                                </p>
+                            </div>
+                            
+                        </a>
+=======
                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
                         <div class="book-column-left">
                             <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
@@ -207,6 +224,7 @@
                             </p>
                         </div>
                     </a>
+>>>>>>> 617b381ed84741588e29a0563bf250c361a84d59
                     <?php endforeach; ?>
                 </div>
 
@@ -245,13 +263,16 @@
 
                     foreach ($livros as $livro):
                     ?>
-                    <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                        <div class="book-column-left">
-                            <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                 alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                            <p class="book-author"><?= htmlspecialchars($livro['titulo']) ?></p>
-                        </div>
-                    </a>
+                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                            <div class="book-column-left">
+                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                 <p class="book-author">
+                                    <?= htmlspecialchars($livro['titulo']) ?>
+                                </p>
+                            </div>
+                            
+                        </a>
                     <?php endforeach; ?>
                 </div>
 
