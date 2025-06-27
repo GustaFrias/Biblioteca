@@ -102,8 +102,8 @@ a {
 }
 
 #best-sellers {
-    max-width: 1200px;
-    margin: -10% auto;
+    width: 80%;
+    margin: -10% auto -18%;
     background-image: none;
     text-align: center;
 }
