@@ -108,6 +108,14 @@ a {
     text-align: center;
 }
 
+.best-sellers-container {
+    border-bottom: 5px solid #260B01;
+}
+
+#romance {
+    border: none;
+}
+
 .books-container {
     position: relative;
     max-width: 1200px;
@@ -143,7 +151,6 @@ a {
 
 .book-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .book-column-left {

@@ -79,10 +79,9 @@
             <section class="tela">
                 <div class="separador" id="temas">
                     <h2 class="titulo">Os livros mais vendidos e amados pelos leitores</h2>
-                    <p class="subtitle">Descubra o que está fazendo sucesso!</p>
                 </div>
 
-                <div class="books-container">
+                <div class="books-container best-sellers-container">
                     <button class="scroll-btn left">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -129,10 +128,9 @@
             <section class="tela">
                 <div class="separador" id="temas">
                     <h2 class="titulo">Outros livros da nossa livraria</h2>
-                    <p class="subtitle">there will be a small title here</p>
                 </div>
 
-                <div class="books-container">
+                <div class="books-container best-sellers-container">
                     <button class="scroll-btn left">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -155,11 +153,7 @@
                             <div class="book-column-left">
                                 <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
                                     alt="<?= htmlspecialchars($livro['titulo']) ?>">
-<<<<<<< HEAD
-                                 <p class="book-author">
-=======
                                 <p class="book-author">
->>>>>>> 617b381ed84741588e29a0563bf250c361a84d59
                                     <?= htmlspecialchars($livro['titulo']) ?>
                                 </p>
                             </div>
@@ -174,116 +168,54 @@
                 </div>
             </section>
         </div>
+
+        <div class="principal" id="best-sellers">
+            <section class="tela">
+                <div class="separador" id="temas">
+                    <h2 class="titulo">Romance</h2>
+                </div>
+
+                <div class="books-container best-sellers-container" id="romance">
+                    <button class="scroll-btn left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="book-grid">
+                        <?php
+                        $sql = "SELECT livros.*, autores.nome AS nome_autor
+                                FROM livros
+                                LEFT JOIN autores ON livros.autor_id = autores.id
+                                WHERE livros.categoria_id = 2
+                                ORDER BY livros.id DESC
+                                LIMIT 10";
+
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+                        $livros = $stmt->fetchAll();
+
+                        foreach ($livros as $livro):
+                        ?>
+                        <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
+                                <div class="book-column-left">
+                                    <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
+                                        alt="<?= htmlspecialchars($livro['titulo']) ?>">
+                                    <p class="book-author">
+                                        <?= htmlspecialchars($livro['titulo']) ?>
+                                    </p>
+                                </div>
+                                
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <button class="scroll-btn right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
     </div>
     
-   <div class="carussel">     <!-- romance -->
-    <div class="principal" id="best-sellers">
-        <section class="tela">
-            <div class="separador" id="temas">
-                <h2 class="titulo">Romance</h2>
-            </div>
-
-            <div class="books-container">
-                <button class="scroll-btn left">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="book-grid">
-                    <?php
-                    $sql = "SELECT livros.*, autores.nome AS nome_autor
-                            FROM livros
-                            LEFT JOIN autores ON livros.autor_id = autores.id
-                            WHERE livros.categoria_id = 2
-                            ORDER BY livros.id DESC
-                            LIMIT 10";
-
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute();
-                    $livros = $stmt->fetchAll();
-
-                    foreach ($livros as $livro):
-                    ?>
-<<<<<<< HEAD
-                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                            <div class="book-column-left">
-                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                                 <p class="book-author">
-                                    <?= htmlspecialchars($livro['titulo']) ?>
-                                </p>
-                            </div>
-                            
-                        </a>
-=======
-                    <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                        <div class="book-column-left">
-                            <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                            <p class="book-author">
-                                <?= htmlspecialchars($livro['titulo']) ?>
-                            </p>
-                        </div>
-                    </a>
->>>>>>> 617b381ed84741588e29a0563bf250c361a84d59
-                    <?php endforeach; ?>
-                </div>
-
-                <button class="scroll-btn right">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </section>
-    </div>
-</div>
-
-<div class="carussel">
-    <div class="principal" id="best-sellers">
-        <section class="tela">
-            <div class="separador" id="temas">
-                <h2 class="titulo">Fantasia</h2>
-            </div>
-
-            <div class="books-container">
-                <button class="scroll-btn left">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="book-grid">
-                    <?php
-                    $sql = "SELECT livros.*, autores.nome AS nome_autor
-                            FROM livros
-                            LEFT JOIN autores ON livros.autor_id = autores.id
-                            WHERE livros.categoria_id = 3
-                            ORDER BY livros.id DESC
-                            LIMIT 10";
-
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute();
-                    $livros = $stmt->fetchAll();
-
-                    foreach ($livros as $livro):
-                    ?>
-                     <a href="htmls/moreInfo.php?id=<?= $livro['id'] ?>" class="book-card">
-                            <div class="book-column-left">
-                                <img src="uploads/<?= htmlspecialchars($livro['imagem']) ?>"
-                                    alt="<?= htmlspecialchars($livro['titulo']) ?>">
-                                 <p class="book-author">
-                                    <?= htmlspecialchars($livro['titulo']) ?>
-                                </p>
-                            </div>
-                            
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-
-                <button class="scroll-btn right">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </section>
-    </div>
-</div>
-
     <div class="principal" id="index">
         <div class="degrade">
             <section class="tela">
