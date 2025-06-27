@@ -16,7 +16,7 @@
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
-                <a href="../../index.php">Leyo<span>+</span></a>
+                <a href="../../default.php">Leyo<span>+</span></a>
             </div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
                 <input type="text" name="busca" placeholder="Pesquise o livro" autocomplete="off">
@@ -33,12 +33,12 @@
                 <ul>
                     <ul id="nav-list">
                         <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-                        <li><a href="../../index.php">Home</a></li>
+                        <li><a href="../../default.php">Home</a></li>
                         <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
                         <li><a href="../../htmls/cadastro.html">Cadastrar-se</a></li>
                         <li><a href="../../htmls/login.html">Login</a></li>
                         <?php else: ?>
-                        <li><a href="../../index.php">Home</a></li>
+                        <li><a href="../../default.php">Home</a></li>
                         <li><a href="../../htmls/AboutUs.php">Sobre nós</a></li>
 
                         <?php if (isset($_SESSION['admin'])): ?>

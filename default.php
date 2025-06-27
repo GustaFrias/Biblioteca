@@ -18,7 +18,7 @@
     <div class="principal" id="tela">
         <header>
             <div class="logo">
-                <a href="index.php">Leyo<span> +</span></a>
+                <a href="default.php">Leyo<span> +</span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>

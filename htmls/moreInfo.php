@@ -55,7 +55,7 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
-                <a href="../index.php">Leyo<span>+</span></a>
+                <a href="../default.php">Leyo<span>+</span></a>
             </div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
                 <input type="text" name="busca" placeholder="Pesquise aqui" autocomplete="off">
@@ -72,12 +72,12 @@ $relacionados = $stmtRelacionados->fetchAll(PDO::FETCH_ASSOC);
                 <ul>
                   <ul id="nav-list">
                     <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>            
-                         <li><a href="../index.php">Home</a></li>
+                         <li><a href="../default.php">Home</a></li>
                          <li><a href="AboutUs.php">Sobre nós</a></li>
                         <li><a href="cadastro.html">Cadastrar-se</a></li>
                         <li><a href="login.html">Login</a></li>
                     <?php else: ?>
-                            <li><a href="../index.php">Home</a></li>
+                            <li><a href="../default.php">Home</a></li>
                             <li><a href="AboutUs.php">Sobre nós</a></li>
                             <li>
                             <img src="../img/iconLogin.png" alt="" id="icon-login"">

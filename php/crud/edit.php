@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <header class="main-header">
         <div class="header-content">
-            <div class="logo"><a href="../../index.php">Leyo<span>+</span></a></div>
+            <div class="logo"><a href="../../default.php">Leyo<span>+</span></a></div>
             <form action="/Biblioteca/php/functions/pgPesquisa.php" method="get">
                 <input type="text" name="busca" placeholder="Pesquise o livro" autocomplete="off">
                 <button type="submit"><i class="fas fa-search"></i></button>

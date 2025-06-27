@@ -18,7 +18,7 @@
             <header class="navbar">
                 <!-- Hamburguer -->
                 <div class="logo">
-                    <a href="../index.php"> Leyo<span> +</span> </a>
+                    <a href="../default.php"> Leyo<span> +</span> </a>
                 </div>
                 <div class="menu-toggle" id="menu-toggle">
                     <span></span>
@@ -28,11 +28,11 @@
                 <nav>
                     <ul id="nav-list">
                        <?php if (!isset($_SESSION['usuario']) && !isset($_SESSION['admin'])): ?>
-                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="../default.php">Home</a></li>
                         <li><a href="cadastro.html">Cadastrar-se</a></li>
                         <li><a href="login.html">Login</a></li>
                     <?php else: ?>
-                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="../default.php">Home</a></li>
                         <li>
                             <img src="../img/iconLogin.png" alt="" id="icon-login"
                                 style="width: 50px; height: auto; margin-top: -13px; margin-right: -30px;">
