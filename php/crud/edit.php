@@ -20,7 +20,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit;
 }
 
-$id = (int)$_GET['id'];
+$id = $_GET['id'];
 $sql = "SELECT * FROM livros WHERE id = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id', $id);
