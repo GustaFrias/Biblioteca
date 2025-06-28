@@ -17,8 +17,7 @@ document.getElementById('formComprar').addEventListener('submit', function(e) {
                 text: res.mensagem,
                 confirmButtonText: 'OK'
             }).then(() => {
-                // Opcional: atualizar página ou redirecionar
-                // location.reload();
+                
             });
         } else {
             Swal.fire({
