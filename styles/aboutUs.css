@@ -85,12 +85,10 @@ body {
 
 .navbar {
     position: absolute;
-    /* Permanece no topo, mas sem rolar com a página */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    /* Garante que fique acima do degrade */
     background: transparent;
     padding: 15px 30px;
     box-shadow: none;
@@ -105,4 +103,60 @@ body {
 
 #left {
     background: linear-gradient(to left, #591902, #BF360400);
+}
+
+@media (max-width: 768px) {
+
+    body{
+        height: 100%;
+    }
+
+    .tela {
+        height: 100%; 
+        width: 90%; 
+        margin: 0 auto; 
+        padding: 20px; 
+        position: static; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .titulo {
+        font-size: 28px; 
+        text-align: center;
+    }
+
+    .texto {
+        font-size: 16px; 
+    }
+
+    #terceiro {
+        justify-content: center;
+    }
+
+    #end {
+        margin-left: 0; 
+        text-align: center; 
+    }
+
+    /* Ajuste nos degrades para mobile */
+    .degrade {
+        background: linear-gradient(to bottom, #591902, #00000080); 
+        padding-top: 80px;
+    }
+
+    #left {
+        background: linear-gradient(to bottom, #591902, #BF360480); 
+    }
+
+    /* Ajustes no Footer para mobile */
+    footer{
+        padding: 0 0 -50px;
+    }
+
+    footer #footer_items {
+        flex-direction: column; 
+        gap: 15px; 
+    }
 }

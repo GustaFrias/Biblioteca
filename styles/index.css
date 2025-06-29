@@ -308,10 +308,7 @@ a {
 
 @media (max-width: 480px) {
     .home {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
+        transform: translate(-50%, -45%);
         margin: 20px auto;
         border-radius: 10px;
     }
